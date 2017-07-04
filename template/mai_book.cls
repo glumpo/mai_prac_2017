@@ -1,4 +1,4 @@
-\NeedsTeXFormat{LaTeX2e}
+\NeedsTeXFormat{LaTeX2e}[2017/06/04 MAI Practice]
 \ProvidesClass{mai_book}
 
 \LoadClass[10pt,a5paper]{book}
@@ -19,8 +19,11 @@
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 
-\renewcommand{\sectionmark}[1]{%
-\markboth{\thesection.\ #1}{}}
+\newcommand{\newtop}[1]{\renewcommand{\sectionmark}[1]{\markboth{\thesection.\ #1}{}}}
+
+\renewcommand{\sectionmark}[1]{\markboth{\thesection.\ #1}{}}
+\lhead{}
+\lhead{\thepage}
 
 %\newcommand{\head}{empty}
 %\newcommand{\changehead}[1]{\renewcommand{\head}{#1}}
