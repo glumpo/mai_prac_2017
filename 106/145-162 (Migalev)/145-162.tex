@@ -1,0 +1,38 @@
+\documentclass{mai_book}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont{DejaVuSans}
+\setdefaultlanguage{russian}
+
+\begin{document}
+
+\lhead{\small\textit{Решения упражнений}}
+\rhead{145}
+
+\noindent
+[1, \textit{n}] в [1, \textit{n}], при этом коэффициент $\mu_\alpha$ определяется суммой
+
+\begin{equation*}
+\mu_{\alpha} = \sum_{\epsilon_i\in\{0,1\}} (-1)^{\epsilon_1+...+\epsilon_n} \epsilon_{\alpha(1)}...\epsilon_{\alpha(n)}.
+\end{equation*}
+
+\noindent
+Если $\alpha$ — перестановка, коэффициент $\mu_\alpha$ равен $(—1)^n$, поскольку единственный ненулевой член суммы — это тот, для которого все $\epsilon_i$, равны 1. В противном случае можно разложить $\mu_\alpha$ следующим образом:
+
+\begin{equation*}
+\sum_{\epsilon_i, i \neq k} (-1)^{\epsilon_1+...+\epsilon_n} \sum_{\epsilon_k=0,1} (-1)^{\epsilon_k} \epsilon_{\alpha(1)}...\epsilon_{\alpha(n)},
+\end{equation*}
+
+\noindent
+где \textit{k} — элемент из [1, \textit{n}], который не принадлежит образу $\alpha$, и хорошо видно, что внутренний член (сумма по $\epsilon_k$) равен нулю; это доказывает, что $\mu_\alpha$ в этом случае равно нулю. Второе искомое выражение (суммы которого записываются на множествах) просто выводится из первого, исключением ненулевых $\epsilon_i$, появляющихся в сумме.
+
+\setcounter{equation}{6}
+
+\begin{equation}
+{\sum}_{E'} = {\sum}_E + (-1)^{|E'|} \prod_{1 \leq i \leq n} S_i (E').
+\end{equation}
+
+\noindent
+Вклад наименьшего элемента 0̸  в эту сумму — нулевой; значит, начнем с его последователя, который может быть {1}, {\textit{n}} или какое-нибудь одноэлементное множество в соответствии с порядком, заданным на [1,\textit{n}]. Можно заметить, что $S_i(E') = S_i(E) \pm a_{ij}$, где $\{j\} = E \triangle E'$.
+
+\end{document} 
