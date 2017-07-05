@@ -45,11 +45,33 @@
 }
 
 
+\newcounter{thesection}
+\addtocounter{thesection}{1}
+
+\renewcommand{\thesubsection}{\arabic{thesection}.\arabic{subsection}}
+
 \titleformat {\chapter}
 [display]
 {\bfseries\Huge}
-{Глава \ \thechapter}
+{Глава \ \Roman{chapter}}
 {2ex} % sep
+{} % before-code
+[] % after-code
+
+\titleformat {\section}
+[display]
+{\bfseries\Large}
+{\arabic{thesection}}
+{0ex} % sep
+{\stepcounter{thesection}} % before-code
+[] % after-code
+
+
+\titleformat {\subsection}
+[display]
+{\bfseries\Large}
+{\thesubsection}
+{0ex} % sep
 {} % before-code
 [] % after-code
 
