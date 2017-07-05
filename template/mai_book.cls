@@ -19,11 +19,12 @@
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 
-\newcommand{\newtop}[1]{\renewcommand{\sectionmark}[1]{\markboth{\thesection.\ #1}{}}}
 
-\renewcommand{\sectionmark}[1]{\markboth{\thesection.\ #1}{}}
-\lhead{}
-\lhead{\thepage}
+
+\newcommand{\newtop}[1]{\sectionmark{#1}}
+\renewcommand{\sectionmark}[1]{\markboth{\thepage}{#1}}
+%\lhead{}
+%\lhead{\thepage}
 
 %\newcommand{\head}{empty}
 %\newcommand{\changehead}[1]{\renewcommand{\head}{#1}}
@@ -59,19 +60,18 @@
 [] % after-code
 
 \titleformat {\section}
-[display]
-{\bfseries\Large}
-{\arabic{thesection}}
+[hang]
+{\bfseries\normalsize}
+{\arabic{thesection} \ }
 {0ex} % sep
 {\stepcounter{thesection}} % before-code
 [] % after-code
 
 
 \titleformat {\subsection}
-[display]
-{\bfseries\Large}
-{\thesubsection}
+[hang]
+{\bfseries\normalfont\normalsize}
+{\thesubsection \ }
 {0ex} % sep
 {} % before-code
 [] % after-code
-
