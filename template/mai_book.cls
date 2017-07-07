@@ -134,6 +134,4 @@ language=C
 
 \newcounter{thecaption}
 \addtocounter{thecaption}{1}
-\RequirePackage{tikz}
-\RequirePackage{wrapfig}
-\renewcommand{\caption}[1]{\newline\textbf{Рис. \arabic{thecaption}.} {#1} \stepcounter{thesection}}
+\renewcommand{caption}[1]{\newline\textbf{Рис. \arabic{thecaption}.} {#1} \stepcounter{thesection}}
