@@ -132,6 +132,6 @@ language=C
 \theoremstyle{mai_theorem_style}
 \newtheorem*{beznomera}{}
 
-\newcounter{thecaption}
-\addtocounter{thecaption}{1}
-\renewcommand{caption}[1]{\newline\textbf{Рис. \arabic{thecaption}.} {#1} \stepcounter{thesection}}
+%\newcounter{thecaption}
+%\addtocounter{thecaption}{1}
+%\renewcommand{caption}[1]{\newline\textbf{Рис. \arabic{thecaption}.} {#1} \stepcounter{thesection}}
