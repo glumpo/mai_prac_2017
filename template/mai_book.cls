@@ -15,6 +15,9 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{wrapfig}
+
 \RequirePackage[left=0.5cm,right=0.5cm,top=2cm,bottom=0.5cm]{geometry}
 
 \RequirePackage{atbegshi}
@@ -40,9 +43,9 @@
 
 %шрифт кода
 \setmainfont{DejaVuSerif}
-\newfontfamily{\cyrillicfonttt}{Liberation Mono}
-\newfontfamily{\cyrillicfontit}{Liberation Sans}
-\newfontfamily{\cyrillicfontsf}{Liberation Serif}
+%\newfontfamily{\cyrillicfonttt}{Liberation Mono}
+%\newfontfamily{\cyrillicfontit}{Liberation Sans}
+%\newfontfamily{\cyrillicfontsf}{Liberation Serif}
 
 \DeclareMathOperator{\Nod}{НОД}
 \DeclareMathOperator{\card}{card}
@@ -128,3 +131,9 @@ language=C
 
 \theoremstyle{mai_theorem_style}
 \newtheorem*{beznomera}{}
+
+\newcounter{thecaption}
+\addtocounter{thecaption}{1}
+\RequirePackage{tikz}
+\RequirePackage{wrapfig}
+\renewcommand{\caption}[1]{\newline\textbf{Рис. \arabic{thecaption}.} {#1} \stepcounter{thesection}}
