@@ -63,6 +63,7 @@ language=C
 \pagestyle{fancy}
 
 \fancyhead[LE,RO]{\thepage}
+\fancyhead[LO,RE]{LOL AHAHA}
 
 
 \titleformat {\chapter}
