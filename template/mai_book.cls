@@ -15,9 +15,6 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{graphicx}
-\RequirePackage{tikz}
-\RequirePackage{wrapfig}
-
 \RequirePackage[left=0.5cm,right=0.5cm,top=2cm,bottom=0.5cm]{geometry}
 
 \RequirePackage{atbegshi}
@@ -65,8 +62,14 @@ language=C
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 
+%\fancyhead[LE,RO]{\thepage}
+%\fancyhead[LO,RE]{\sectionname}
+
+\fancyhf{}
 \fancyhead[LE,RO]{\thepage}
-\fancyhead[LO,RE]{LOL AHAHA}
+\fancyhead[LO,RE]{\rightmark}
+\renewcommand{\headrulewidth}{0pt}
+
 
 
 \titleformat {\chapter}
@@ -131,7 +134,3 @@ language=C
 
 \theoremstyle{mai_theorem_style}
 \newtheorem*{beznomera}{}
-
-%\newcounter{thecaption}
-%\addtocounter{thecaption}{1}
-%\renewcommand{caption}[1]{\newline\textbf{Рис. \arabic{thecaption}.} {#1} \stepcounter{thesection}}
