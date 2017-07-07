@@ -39,7 +39,7 @@
 \RequirePackage{multirow}
 
 %шрифт кода
-\setmainfont{Liberation Sans}
+\setmainfont{DejaVuSerif}
 \newfontfamily{\cyrillicfonttt}{Liberation Mono}
 \newfontfamily{\cyrillicfontit}{Liberation Sans}
 \newfontfamily{\cyrillicfontsf}{Liberation Serif}
