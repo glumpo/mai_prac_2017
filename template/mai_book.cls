@@ -40,9 +40,9 @@
 
 %шрифт кода
 \setmainfont{DejaVuSerif}
-%\newfontfamily{\cyrillicfonttt}{Liberation Mono}
-%\newfontfamily{\cyrillicfontit}{Liberation Sans}
-%\newfontfamily{\cyrillicfontsf}{Liberation Serif}
+\newfontfamily{\cyrillicfonttt}{DejaVuSansMono}
+\newfontfamily{\cyrillicfontit}{DejaVuSerif-Italic}
+\newfontfamily{\cyrillicfontsf}{DejaVuSerif}
 
 \DeclareMathOperator{\Nod}{НОД}
 \DeclareMathOperator{\card}{card}
