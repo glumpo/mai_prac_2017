@@ -9,7 +9,7 @@
 \RequirePackage{polyglossia}
 \RequirePackage{indentfirst}
 \PolyglossiaSetup{russian}{indentfirst=true}
-
+\RequirePackage{amsfonts}
 \RequirePackage{amsmath}
 \RequirePackage{amsthm}
 \RequirePackage{amsfonts}
@@ -68,10 +68,19 @@ language=C
 %\fancyhead[LE,RO]{\thepage}
 %\fancyhead[LO,RE]{\sectionname}
 
+\newcommand{\currentsubsection}{}
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[1]{\oldsubsection{#1}\renewcommand{\currentsubsection}{#1}}
+
+\newcommand{\currentsection}{}
+\let\oldsection\section
+\renewcommand{\section}[1]{\oldsection{#1}\renewcommand{\currentsection}{#1}}
+
 \fancyhf{}
 \fancyhead[LE,RO]{\thepage}
-\fancyhead[LO,RE]{\rightmark}
-\renewcommand{\headrulewidth}{0pt}
+\fancyhead[RE]{\Roman{section}\hspace{7pt} \currentsection}
+\fancyhead[LO]{\Roman{subsection}\hspace{7pt} \currentsubsection}
+\renewcommand{\headrulewidth}{0.8pt}
 
 % римские цифры в номерах глав
 \renewcommand\thechapter{\Roman{chapter}}
