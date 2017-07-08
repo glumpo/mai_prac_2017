@@ -50,14 +50,17 @@
 \DeclareMathOperator{\Ker}{Ker}
 
 %для кода
+\newcommand{\listname}{lol}
 \RequirePackage{listings}
 \lstset{
+captionpos={bo},
 basicstyle=\ttfamily,
 frame=single,
 breaklines=true,
 tabsize=3,
 language=C
 }
+
 
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
@@ -70,7 +73,8 @@ language=C
 \fancyhead[LO,RE]{\rightmark}
 \renewcommand{\headrulewidth}{0pt}
 
-
+% римские цифры в номерах глав
+\renewcommand\thechapter{\Roman{chapter}}
 
 \titleformat {\chapter}
 [display]
@@ -80,8 +84,6 @@ language=C
 {} % before-code
 [] % after-code
 
-% римские цифры в номерах глав
-\renewcommand\thechapter{\Roman{chapter}}
 
 \makeatletter
 \@definecounter{chapter}
