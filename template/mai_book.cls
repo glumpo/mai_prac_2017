@@ -74,7 +74,7 @@ language=C
 
 \newcommand{\currentsection}{}
 \let\oldsection\section
-\renewcommand{\section}[1]{\oldsection{#1}\renewcommand{\currentsection}{#1}}
+\renewcommand{\section}[1]{\oldsection{#1}\renewcommand{\currentsection}{#1}\renewcommand{\currentsubsection}{#1}}
 
 \fancyhf{}
 \fancyhead[LE,RO]{\thepage}
