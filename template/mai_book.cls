@@ -51,7 +51,6 @@
 \DeclareMathOperator{\Ker}{Ker}
 
 %для кода
-\newcommand{\listname}{lol}
 \RequirePackage{listings}
 \lstset{
 captionpos={bo},
@@ -65,9 +64,6 @@ language=C
 
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
-
-%\fancyhead[LE,RO]{\thepage}
-%\fancyhead[LO,RE]{\sectionname}
 
 \newcommand{\currentsubsection}{}
 \let\oldsubsection\subsection
@@ -123,12 +119,12 @@ language=C
 %для линии, что под словом "доказательство"
 \renewenvironment{leftbar}[1][\hsize]
 {%
-\def\FrameCommand
-{%
-{\vrule width 0.5pt}%
-\hspace{10pt}%must no space.
-}%
-\MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
+	\def\FrameCommand
+	{%
+		{\vrule width 0.5pt}%
+		\hspace{10pt}%must no space.
+	}%
+	\MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
 }
 {\endMakeFramed}
 
@@ -150,6 +146,9 @@ language=C
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{sled}[thm]{Следствие}
+
+\theoremstyle{mai_theorem_style}
+\newtheorem{determ}{Определение}
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{bezpodpisi}[thm]{}
