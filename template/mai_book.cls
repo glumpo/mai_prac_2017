@@ -15,6 +15,7 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{graphicx}
+\RequirePackage{changepage}
 \RequirePackage[left=0.5cm,right=0.5cm,top=2cm,bottom=0.5cm]{geometry}
 
 \RequirePackage{atbegshi}
@@ -108,6 +109,16 @@ language=C
 {\itshape}{}%
 {\bfseries}{}%
 {\newline}{}%
+
+\newenvironment{mynotice}{
+\begin{adjustwidth}{25pt}{25pt}
+	\small
+	\textbf{Замечание.\ }
+}{
+	
+	\end{adjustwidth}
+}
+
 
 %для линии, что под словом "доказательство"
 \renewenvironment{leftbar}[1][\hsize]
