@@ -4,7 +4,7 @@
 \setmainfont{DejaVuSerif}
 \setdefaultlanguage{russian}
 
-\clearpage
+%\clearpage
 \setcounter{page}{270} % ВОТ ТУТ ЗАДАТЬ СТРАНИЦУ
 %\setcounter{thesection}{5} % ТАК ЗАДАВАТЬ ГЛАВЫ, ПАРАГРАФЫ И ПРОЧЕЕ.
 \setcounter{equation}{10}
@@ -241,7 +241,36 @@ $$\frac{1}{q_nK_{n+1}(a_1,...,a_n,a_{n+1}+1)}<\bigg|x-\frac{p_n}{q_n}\bigg|<\fra
 Следовательно,
 $$ K_{n+1}(a_1,...,a_n,a_{n+1}+1)\leqslant K_{n+2}(a_1,...,a_{n+1},a_{n+2})=q_{n+2},$$
 откуда и получается требуемая оценка. Другие неравенства выводятся\linebreak
-немедленно.
-
+немедленно.\newline
+\\
+\hspace*{15pt}\textbf{c.} Зная, что $|x-p_n/q_n|<1/2q_n$ (соотношение (12)), и что\linebreak
+$|p_n/q_n-p/q|\geqslant1/q_n$ (так как $q=q_n$), получаем, что $|x-p/q|>1/2q_n$,
+что и дает искомое неравенство.\newline
+\\
+\hspace*{15pt}\textbf{d.} Матричные соотношения показывают, что матрица 
+$\begin{pmatrix}
+	p_n&  p_{n-1}\\
+	q_n& q_{n-1}\\
+\end{pmatrix}$\linebreak
+обратима над $\mathbb{Z}$. Следовательно, можно записать $p=\alpha p_n+\beta p_{n-1}$ и \linebreak
+$q=\alpha q_n+\beta q_{n-1}$, где $\alpha$ и $\beta$ — целые. Однако $q<q_n$, откуда следует,\linebreak
+что $\beta$ — не нуль и что $\alpha$ и $\beta$ имеют противоположные знаки. Кроме\linebreak
+того, согласно доказанному в вопросе (а), $p_n-xq_n$ и $p_{n-1}-xq_{n-1}$ тоже\linebreak
+имеют противоположные знаки. Отсюда $\alpha(p_n-xq_n)$ и $\beta(p_{n-1}-xq_{n-1}$\linebreak
+одного\:\: знака,\:\: а\:\: потому
+$$|p-xq|=|\alpha(p_n-xq_n)+\beta(p_{n-1}-xq_{n-1})|\geqslant|\beta|\cdot|p_{n-1}-xq_{n-1})|>|p_n-xq_n|$$
+\\
+\noindent\textbf{8. Факториал и простые числа} \newline 
+\\
+\hspace*{15pt}\textbf{a.} Пусть $n=p_1^{\alpha_1}...p_r^{\alpha_r}$  — разложение $n$ на простые множители. \linebreak
+Предположим сначала, что $r>1$. Тогда $p_i^{\alpha_i}<n$ и, следовательно, делит\linebreak
+$(n-1)!$. Если $r=1$, то так как $n$ — непростое, это приводит к тому,\linebreak
+что $\alpha_1>1$. Если $\alpha_1=2$, то числа $p_1$ и $2p_1$ встречаются в разложении\linebreak
+$(n-1)!$, кроме случая $p_1=2$. Если $\alpha_1>2$, то числа $p_1$ и $p_1^{\alpha_1}$ меньше $n$\linebreak
+и, следовательно, появляются в разложении $(n-1)!$.\newline
+\\
+\hspace*{15pt}\textbf{b.} Действительно, очевидно, что всякое целое число $k$ из интервала\linebreak
+$[2, n+1]$ делит $(n+1)!+k$. Отсюда мы нашли те целые числа, которые\linebreak
+искали.\newpage
 
 \end{document}
