@@ -130,7 +130,7 @@ language=C
 {\endMakeFramed}
 
 \newenvironment{myproof}[1][\proofname]{%
-\begin{proof}[#1] $ $\par\nobreak\ignorespaces \begin{leftbar} \noindent
+\begin{proof}[\bfseries #1] $ $\par\nobreak\ignorespaces \begin{leftbar} \noindent
 }{%
 \end{leftbar}\end{proof}
 }
@@ -153,6 +153,9 @@ language=C
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{lemma}[thm]{Лемма}
+
+\theoremstyle{mai_theorem_style}
+\newtheorem{property}[thm]{Свойство}
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{bezpodpisi}[thm]{}
