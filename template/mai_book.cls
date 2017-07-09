@@ -36,6 +36,7 @@
 \makeatother
 
 \RequirePackage{framed}
+\RequirePackage[listings]{tcolorbox}
 
 %для таблицы
 \RequirePackage{multirow}
@@ -61,6 +62,18 @@ breaklines=true,
 tabsize=3,
 language=C
 }
+
+\newtcblisting[auto counter]{namedlisting}[2][]{sharp corners, 
+    listing only, 
+    listing options={basicstyle=\ttfamily,
+					frame=single,
+					breaklines=true,
+					tabsize=3,
+					language=C,
+					showtabs=false,
+					showspaces=false}, 
+    title=Исходный код \thetcbcounter: #2, #1}
+
 
 
 \RequirePackage{fancyhdr}
@@ -156,6 +169,9 @@ language=C
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{property}[thm]{Свойство}
+
+\theoremstyle{mai_theorem_style}
+\newtheorem{note}[thm]{Примечание}
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{bezpodpisi}[thm]{}
