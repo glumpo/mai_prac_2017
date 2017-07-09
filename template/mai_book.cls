@@ -16,7 +16,8 @@
 \RequirePackage{amssymb}
 \RequirePackage{graphicx}
 \RequirePackage{changepage}
-\RequirePackage[left=0.5cm,right=0.5cm,top=2cm,bottom=0.5cm]{geometry}
+%\RequirePackage[left=0.5cm,right=0.5cm,top=2cm,bottom=0.5cm]{geometry}
+\RequirePackage[left=0.5cm,right=0.5cm,top=1.5cm,bottom=1cm]{geometry}
 
 \RequirePackage[perpage]{footmisc}
 \RequirePackage{atbegshi}
