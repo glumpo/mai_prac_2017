@@ -148,7 +148,10 @@ language=C
 \newtheorem{sled}[thm]{Следствие}
 
 \theoremstyle{mai_theorem_style}
-\newtheorem{determ}{Определение}
+\newtheorem{determ}[thm]{Определение}
+
+\theoremstyle{mai_theorem_style}
+\newtheorem{lemma}[thm]{Лемма}
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{bezpodpisi}[thm]{}
