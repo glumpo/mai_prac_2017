@@ -144,7 +144,7 @@ Text
 
 Для примечаний
 '''
-\begin{note}
+\begin{mynote}
 Text
 \end{note}
 '''

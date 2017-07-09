@@ -129,6 +129,16 @@ language=C
 	\end{adjustwidth}
 }
 
+\newenvironment{mynote}{
+\begin{adjustwidth}{25pt}{25pt}
+	\small
+	\textbf{Примечание.\ }
+}{
+	
+	\end{adjustwidth}
+}
+
+
 
 %для линии, что под словом "доказательство"
 \renewenvironment{leftbar}[1][\hsize]
@@ -169,9 +179,6 @@ language=C
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{property}[thm]{Свойство}
-
-\theoremstyle{mai_theorem_style}
-\newtheorem{note}[thm]{Примечание}
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{bezpodpisi}[thm]{}
