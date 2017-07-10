@@ -1,7 +1,6 @@
 \documentclass{../../template/mai_book}
 
 \defaultfontfeatures{Mapping=tex-text}
-\setmainfont{DejaVuSerif}
 \setdefaultlanguage{russian}
 
 \usepackage{dsfont}% for mathds and more
@@ -97,7 +96,7 @@ d = \prod_{j \in J}\: N(\pi_j) = N\Biggl(\prod_{j \in J} \pi_j \Biggr) = u^2 + v
 Откуда следует, что $d$ есть сумма двух квадратов. Так как $u + iv$ является делителем в $\mathds{Z}[i]$ числа $x + iy$, то эта сумма точная.\\
 \end{myproof}
 
-\begin{note}% 1em left, 2em right
+\begin{mynote}% 1em left, 2em right
 \textit{\indent} Зная, что кольцо $\mathds{Z}[\sqrt{—2}] = \mathds{Z} + i\sqrt{2}\mathds{Z} = \{x + \sqrt{—2}у, (x,y) \in \mathds{Z}\times\mathds{Z}\}$ факториально, можно доказать небанальный результат, касающийся сумм $x^2 + 2y^2$ , где $(x,y) \in \mathds{N}\times\mathds{N}$. Это обобщенная точка зрения математика $\dots$
 
 \newpage
@@ -110,7 +109,7 @@ d = \prod_{j \in J}\: N(\pi_j) = N\Biggl(\prod_{j \in J} \pi_j \Biggr) = u^2 + v
 d \in \mathds{Z}, d|x^2 - 2y^2 \Rightarrow \exists u \in \mathds{Z}\text{,}v \in \mathds{Z} \:\text{такие, что } d = u^2 - 2v^2\text{.}
 \end{align*}
 Начнём с определения инволютивного автоморфизма $\mathds{Z}[\sqrt{2}]$ (которое в этом случае уже не связано с операцией сопряжения в $\mathds{C}$), затем введём норму (со значением в $\mathds{Z}$ на этот раз)$\dots$, остерегаясь обратимого элемента $-1 \in \mathds{Z}$. Новая ступень преодолена. \newline \indent Однако аналогичного феномена для сумм вида $x^2 + 3y^2$ в кольце $\mathds{Z}[\sqrt{-3}]$ не наблюдается. Не путайте кольцо $\mathds{Z}[j]$ целых чисел и кольца $\mathds{Q}[\sqrt{-3}]$. Оно не факториально!\\
-\end{note}
+\end{mynote}
 
 Пусть $p \in \mathds{N} \backslash \{2\}$ — простое число, являющееся суммой двух квадратов. Легко проверить, рассматривая $\mathds{Z}/4\mathds{Z}$, что $p \equiv 1\:(mod\:4)$. Вот обратное утверждение: 
 
@@ -433,7 +432,54 @@ $\:$ \newline
 $\:$ \newline
 Алгоритм Евклида для нахождения НОД двух целых чисел адаптируется без изменений для всякого евклидова кольца. Вот точная формулировка:
 
-\textbf{Алгоритм} (алгоритм Евклида кольце).
+
+\begin{algo}[алгоритм Евклида в евклидовом кольце]
+Пусть евклидово деление в кольце $A$ ассоциировано с евклидовым алгоритмом $\phi$ и $a, b$ — элементы из $A$. Алгоритм Евклида заключается в том, чтобы осуществить следующие евклидовы деления (в которых положим $r_0 = a, r_1 = b$) до появления нулевого остатка:
+\end{algo}
+%$\left\{\begin{gathered}
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где},\\
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где},\\
+%\vdots & \vdots & \vdots \\
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где},\\
+%\vdots & \vdots & \vdots \\
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где},\\
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где},\\
+%\end{gathered}\right$
+%
+%\begin{align*}
+%\text{$
+%\begin{cases}
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где},\\
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где},\\
+%\vdots & \vdots & \vdots \\
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где},\\
+%\vdots & \vdots & \vdots \\
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где},\\
+%\text{если}\: r_1 \ne 0, & \text{то}, & \text{где}.
+%\end{cases}$}
+%\end{align*}
+%
+\begin{align*}
+\text{$
+\begin{cases}
+\text{если}\:r_1 \ne 0,&\text{то}\:r_0=r_1 q_1+r_2,\hspace{45pt}\text{где}\:\phi(r_2)<\phi(r_1)\\
+\text{если}\:r_2 \ne 0,&\text{то}\:r_1=r_2 q_2+r_3,\hspace{45pt}\text{где}\:\phi(r_3)<\phi(r_2)\\
+\;\;\;\;\;\;\vdots &\;\;\;\;\;\;\vdots\;\;\;\hspace{115pt}\vdots\\
+\text{если}\:r_i \ne 0, &\text{то}\:r_{i-1}=r_i q_i+r_{i+1},\hspace{29pt}\text{где}\:\phi(r_{i+1})<\phi(r_i)\\
+\;\;\;\;\;\;\vdots &\;\;\;\;\;\;\vdots\;\;\;\hspace{115pt}\vdots\\
+\text{если}\:r_{n-1} \ne 0, &\text{то}\:r_{n-2}=r_{n-1}q_{n-1}+r_n,\hspace{10pt}\text{где}\:\phi(r_n)<\phi(r_{n-1})\\
+\text{если}\:r_n \ne 0, & \text{то}\:r_{n-1}=r_n q_n+r_{n+1},\hspace{20pt}\text{где}\:\phi(r_n) = 0\:\text{и}\:\phi(r_{n+1})<\phi(r_n)\text{.}\\
+\end{cases}$}
+\end{align*}
+
+\begin{predl}
+\textit{\indent}($i$) В евклидовом кольце $A$ алгоритм Евклида, ассоциированный с парой $(a,b) \in A \times A$, находит элемент $r_n \in A$ такой, что $Aa + Ab = Ar_n$ (в частности, $r_n$ является НОД $a$ и $b$).\newline\indent($ii$) Всякое евклидово кольцо $A$ является кольцом Безу.
+\end{predl}
+
+\begin{myproof}
+Оно идентично тому, что имеется во введении. Из равенства
+$r_{i-1} = r_i q_i + r_{i+1}$ с $1 \le i \le n$ выводим, что $Ar_{i - 1} + Ar_i = Ar_i + Ar_{i+1}$ и, в частности, $Aa + Ab = Ar_0+Ar_1=Ar_n+ Ar_{n+1} = Ar_n$.
+\end{myproof}
 
 \newpage
 %//////////////////////////////////////

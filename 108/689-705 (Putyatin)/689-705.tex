@@ -1,0 +1,559 @@
+\documentclass{../../template/mai_book}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont{DejaVuSerif}
+\setdefaultlanguage{russian}
+\usepackage{ dsfont }
+%\clearpage
+%\setcounter{page}{7} % ВОТ ТУТ ЗАДАТЬ СТРАНИЦУ
+%\setcounter{thesection}{5} % ТАК ЗАДАВАТЬ ГЛАВЫ, ПАРАГРАФЫ И ПРОЧЕЕ.
+% Эти счетчики достаточно задать один раз, обновляются дальше сами
+% \newtop{ЗАГОЛОВОК} юзать чтобы вручную поменть заголовок вверху страници
+
+\begin{document}
+\noindent
+что дает $s_0 = 3z_0 , s_1 = 3z_1 , s_2 = 3z_2$. \newline 
+\indent \textbf{c.} Пусть $h(x,y,z)$ --- 3-линейная форма, ассоциированная с цикли­ческой сверткой порядка $n:$ \newline
+\begin{align*}
+&h(x,y,z) = \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} \sum_{k=0}^{n-1} h_{ijk} x_i y_{j} z_k, \\
+\text{где} \; \; \, &h_{i,j,k} = \begin{cases}
+0, & \text{если $i+j = k \: $ (mod n)}, \\
+1, & \text{в противном случае}.
+\end{cases}
+\end{align*}
+Тогда имеем следующее соотношение «симметрии», в котором индексы 
+берутся по модулю $n: h_{i,j,k} = h_{k,n-j,i}$. Следовательно, если $A, B, C$ --- реализация $h$, то матрицы $\acute A = C, \acute B = B$ (в котором переставляются столбцы $j$ и $n - j$) и $\acute C = A$ также образуют некоторую реализацию $h$. В этом случае получаем: \newline
+$\acute A = \frac{1}3 \begin{pmatrix}
+1 & 1 & 1 \\
+1 & 1 & -2 \\         
+1 & -2 & 1\\
+-2 & 1 & 1
+\end{pmatrix} ,
+\acute B = \begin{pmatrix}
+1 & 1 & 1 \\
+1 & -1 & 0 \\         
+-1 & 0 & 1\\
+0 & -1 & 1
+\end{pmatrix} ,
+\acute C = \begin{pmatrix}
+1 & 1 & 1 \\
+1 & 0 & -1 \\         
+-1 & 1 & 0\\
+0 & 1 & -1
+\end{pmatrix} . $ \newline
+Эта реализация выгодна, когда циклическая свертка порядка 3, $z = x\star_3 y$, вычисляется для {\itshape фиксированного} $x$ (достаточно предварительно вычислить вектор $\acute A x$):
+\begin{align*}
+m_1 &= \frac{x_0 + x_1 + x_2}3 (y_0 + y_1 + y_2), &\qquad m_2
+&= \frac{x_0 + x_1 -2x_2}3 (y_0 - y_1),\\
+m3 &= \frac{x_0 -2x_1 + x_2}3 (y_2 - y_0),   &\qquad m_4 &= \frac{-2x_0 + x_1 + x_2}3 (y_2 - y_1).
+\end{align*}
+Далее нужно оптимизировать использование $y_i$, затем вычислить \newline $z_i$: $z_0 = m_1 + m_2 - m_3, \; z_1 = m_1 + m_3 + m_4, \; z_2 = m_1 - m_2 - m_4$. Это вычисление при фиксированном $x$ требует 15 операций, из которых 4 умножения и 11 сложений, что можно выразить в следующей форме:
+\begin{center}
+$
+s_1 \leftarrow y_0 + y_1, \; \;\; \; s_2 \leftarrow s_1 + y_2, \; \;\; \; s_3 \leftarrow y_0 - y_1,
+$
+\end{center}
+\begin{center}
+$s_4 \leftarrow y_2 - y_0 , \; \;\; \; s_5 \leftarrow y_2 - y_1 ,$
+\end{center}
+\begin{center}
+$m_1 \leftarrow \frac{x_0 + x_1 + x_2}{3} * s_2, \; \;\; \; m_2 \leftarrow \frac{x_0 + x_1 - 2x_2}{3} * s_3,$
+\end{center}
+\begin{center}
+$m_3 \leftarrow \frac{x_0 - 2x_1 + x_2}{3} * s_4, \; \;\; \; m_4 \leftarrow \frac{-2x_0 + x_1 + x_2}{3} * s_5,$
+\end{center}
+\begin{center}
+$s_6 \leftarrow m_1 + m_2, \; \;\; \; s_7 \leftarrow s_6 - m_3, \; \;\; \; s_8 \leftarrow m_1 + m_3,$
+\end{center}
+\begin{center}
+$s_9 \leftarrow s_8 + m_4, \; \;\; \; s_{10} \leftarrow m_1 - m_2, \; \;\; \; s_{11} \leftarrow s_{10} - m_4,$ 
+\end{center}
+\begin{center}
+$z_0 = s_7, \; \;\; \; z_1 = s_9, \; \;\; \; z_2 = s_{11}.$
+\end{center}
+\newpage
+\noindent
+\textbf{29. Негациклическая свертка порядка 4} \newline \newline
+\indent Пусть $Z(T) = z_o + z_1 T + z_2 T^2 + z_3 T^3 = X(T)Y(T) \mod (T^4 + 1)$, где \newline \newline \indent $X(T) = x_0 + x_1 T + x_2 T^2 + x_3 T^3, \; \; \; \; \; \; Y(T) = y_0 + y_1 T + y_2 T^2 + y_3 T^3$. \newline
+\newline
+Полагая $a = x_0 + x_1 T, \; b = x_2 + x_3 T, \; c = y_0 + y_1 T, \; d = y_2 + y_3 T$, имеем по модулю $T^4 + 1:$ 
+\begin{align*}
+X(T)Y(T) &= ac + ((a + b)(c + d) - ac - bd)T^2 + bdT^4 = \\
+&= ac - bd + (a + b)(c + d)T^2 - acT^2 - bdT^2.
+\end{align*}
+Любое произведение двух многочленов степени 1,$ac,bd,(a + b)(c + d)$, вычисляется с помощью 3 умножений, что и дает обещанные 9 умно­жений: \newline \newline \indent
+$
+m_1 = x_0 y_0,\qquad m_2 = (x_0 + x_1)(y_0 + y_1), \qquad m_3 = x_1 y_1, \qquad  m_4 = x_2 y_2, $ \newline \indent
+$ m_5 = (x_2 + x_3)(y_2 + y_3), \qquad  m_6 = x_3 y_3, \qquad  m_7 = (x_0 + x_2)(y_0 + y_2), $ \newline \indent
+$m_8 = (x_0 + x_2 + x_1 + x_3)(y_0 + y_2 + y_1 + y_3), \qquad m_9 = (x_1 + x_3)(y_1 + y_3).$
+\newline \newline
+Они позволяют вычислить $X(T)Y(T)$ по модулю $T^4 + 1$: \newline \newline  \indent
+$
+\; \; \; \; \; \; \; \; ac = m_1 + (m_2 - m_1 - m_3)T + m_3 T^2,$ \newline \indent
+$ \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \;\; \; \; \; \; \; \; bd = m_4 + (m_5 - m_4 - m_6)T + m_6 T^2, \\
+$ \indent
+$\; \; \; \; \; \; \; \; acT^2 = -m_3 + m_1 T^2 + (m_2 - m_1 - m_3)T^3,$ \newline \indent
+$\; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; bdT^2 = -m_6 + m_4 T^2 + (m_5 - m_4 - m_6)T^3,$ \newline \indent
+$\; \; \; \; \; \; \; \; \; \; \; \; \; (a + b)(c + d)T^2 = -m_9 + m_7 T^2 + (m_8 - m_7 - m_9)T^3.$ \newline \newline
+Найденная таким образом реализация использует 9 умножений, хотя 
+не позволяет реализовать вычисления с 15 сложениями (слишком много элементов вида $\pm 1$ в матрице С). \newline 
+\begin{center}$A = B = \begin{pmatrix}
+1 & 0 & 0 &0\\
+1 & 1 & 0 &0\\         
+0 & 1 & 0 &0\\
+0 & 0 & 1 &0\\
+0 & 0 & 1 &1\\
+0 & 0 & 0 &1\\         
+1 & 0 & 1 &0\\
+1 & 1 & 1 &1\\
+0 & 1 & 0 & 1
+\end{pmatrix}, \; \; \; \; \; \; \; 
+C = \begin{pmatrix}
+1 & -1 & -1 &1\\
+0 & 1 & 0 & -1\\         
+1 & -1 & 1 & 1\\
+-1 & 1 & -1 & 1\\
+0 & -1 & 0 & -1\\
+1 & 1 & -1 & 1\\         
+0 & 0 & 1 & -1\\
+0 & 0 & 0 & 1\\
+-1 & 0 & 0 & -1
+\end{pmatrix}.
+$
+\end{center}
+\newpage
+\noindent
+Симметризуем задачу, рассматривая 3-линейную форму $h_{i,j,k}$, ассоциированную с негациклической сверткой порядка 4: $h_{i,j,k} = 1$, если $i + j = k, h_{i,j,k} = \\ -1$, если $i + j = 4 + k$, в противном случаем $h_{i,j,k} = 0$. Отсюда выводится свойство симметрии: $h_{i,j,k} = \xi_i \xi_j h_{-k,j,-i}$, где все индексы вычисляются по модулю 4 при $\xi_0 = -1, \xi_i = 1$, если $i = 1,2,3$. Получаем новую реализацию ($\acute A,\acute B,\acute C$), где $\acute B = B$, при этом столбцы $\acute A$ (соответственно, в $\acute C$) получаются перестановками столбцов из $C$ (соответственно, из $A$) со знаком минус для первого столбца. 
+\begin{center}
+$\acute A = \begin{pmatrix}
+-1 & 1 & -1 &-1\\
+ 0 & -1 & 0 &1\\         
+-1 & 1 & 1 &-1\\
+1 & 1 & -1 &1\\
+0 & -1 & 0 &-1\\
+-1 & 1 & -1 &1\\         
+0 & -1 & 1 &0\\
+0 & 1 & 0 &0\\
+1 & -1 & 0 &0
+\end{pmatrix}, \; \; \; \acute B = B, \; \; \; \acute C = \begin{pmatrix}
+-1 & 0 & 0 &0\\
+-1 & 0 & 0 &1\\         
+0 & 0 & 0 &1\\
+0 & 0 & 1 &0\\
+0 & 1 & 1 &0\\
+0 & 1 & 0 &0\\         
+-1 & 0 & 1 &0\\
+-1 & 1 & 1 &1\\
+0 & 1 & 0 &1
+\end{pmatrix}.$ 
+\end{center}
+Окончательный алгоритм использует 15 сложений и 9 умножений (с предвычислениями для $x_i$): \newline
+$
+b_1 = y_0, \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; b_2 = y_0 + y_1, \, \: \; \; \; \; b_3 = y_1,\\
+b_4 = y_2, \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; b_5 = y_2 + y_3, \, \: \; \; \; \; b_6 = y_3,\\
+b_7 = y_0 + y_2,  \; \; \; \; \; \; \; b_8 = b_2 + b_5,  \; \; \; \; \; \; b_9 = y_1 + y_3,
+$
+\newline
+$
+m_1 = (x_0 - x_1 + x_2 + x_3)*b_1, m_2 = (x_1 - x_3)*b_2, \; \; \; m_3 = (-x_0 + x_1 + x_2 -x_3)*b_3, \\ m_4 = (x_0 + x_1 - x_2 + x_3)*b_4, m_5 = (-x_1 - x_3)*b_5, m_6 = (-x_0 + x_1 - x_2 + x_3)*b_6, \\ m_7 = (x_1 - x_2)*b_7, \; \; \; \; \; \; \; \; \;  \; \; \; \; \; \; \; m_8 = -x_1 *b_8, \; \; \; \; \; \;\; \; \; \; \; m_9 = (x_0 - x_1)*b_9,
+$
+\newline
+$
+z_0 = m_1 + m_2 + (m_7 + m_8), \; \; \; \; \; \; z_1 = m_5 + m_6 - (m_8 - m_9), \\
+z_2 = m_4 + m_5 - (m_7 + m_8), \; \; \; \; \; \; z_3 = m_3 - m_2 - (m_8 - m_9). 
+$
+\newline
+\newline 
+\textbf{30. Произведение двух многочленов степени 3} \newline \newline
+\indent Пусть $Z(T) = X(T)Y(T)$, где $X(T) = x_0 + x_1 T + x_2 T^2 + x_3 T^3$ и $Y(T) = y_0 + y_1 T + y_2 T^2 \\ + y_3 T^3$. Полагая $a = x_0 + x_1 T, \; b = x_2 + x_3 T, \; c = y_0 + y_1 T, \; d = y_2 + y_3 T$, имеем: 
+\begin{align*}
+X(T)Y(T) &= ac + ((a + b)(c + d) - ac - bd)T^2 + bdT^4 = \\
+&= ac + (a + b)(c + d)T^2 - acT^2 - bdT^2 + bdT^4.
+\end{align*}
+Любое произведение двух многочленов степени 1,$ac,bd,(a + b)(c + d)$ вычисляется с помощью 3 умножений, откуда получаем 9 умножений: 
+\begin{align*} m_1 = x_0 y_0, \qquad m_2 = (x_0 + x_1)(y_0 + y_1),\qquad m_3 = x_1 y_1, \qquad m_4 = x_2 y_2,
+\end{align*}
+\newpage
+\begin{align*} m_5 = (x_2 + x_3)(y_2 + y_3), \qquad m_6 = x_3 y_3 ,\qquad m_7 = (x_0 + x_2)(y_0 + y_2),
+\end{align*}
+$m_8 = (x_0 + x_2 + x_1 + x_3)(y_0 + y_2 + y_1 + y_3), \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; m_9 = (x_1 + x_3)(y_1 + y_3).
+$ \newline \newline
+\textbf{32. Циклическая свертка порядка 6 и }$DFT_7$  \newline \newline
+\indent \textbf{b}. Имеем: 
+\begin{align*}
+&A[T]/(T^{2n - 1} - 1) \simeq A[T]/(T^n - 1) \oplus A[T]/(T^n + 1) \\
+\text{и} \qquad &A[T]/(T^n + 1) \simeq A[T]/((-T)^n + 1) = A[T]/(T^n - 1),
+\end{align*}
+\begin{center}
+так как $n$ нечетно.
+\end{center}
+Для вычисления $z(T) = x(T)y(T) \mod (T^{2n} - 1)$ достаточно вычислить $z^+ (T) = \\ x(T)y(T) \mod (T^n - 1) \; \; \text{и} \; \; z^- (T) = x(T)y(T) \mod (T^n + 1)$. Это делается посредством равенства $z^- (-T) = x(-T)y(-T) \mod (T^n - 1)$. Тогда $z$ получается по китайской теореме об остатках:
+\begin{center}
+$z(T) = \frac{1}2 (T^n + 1)z^+ (T) + \frac{-1}2 (T^n -1)z^- (T)$.
+\end{center}
+Например, при $n = 3$, вычисляя по модулю $T^3 - 1$, имеем: \newline \newline  \indent
+$\;\;\;\;\;\;\;z^+ (T) = ((x_0 + x_3) + (x_1 + x_4)T + (x_2 + x_5)T^2)\times $ \newline \indent 
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\times ((y_0 + y_3) + (y_1 + y_4)T + (y_2 + y_5)T^2), $ \newline  \indent
+$\;\;\;\;\;\;\;z^- (-T) = ((x_0 - x_3) - (x_1 - x_4)T + (x_2 - x_5)T^2)\times $  \newline 
+\indent 
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\times ((y_0 - y_3) - (y_1 - y_4)T + (y_2 - y_5)T^2).$
+\newline \newline 
+и вычисление $z(T) = \frac{1}2(T^3 + 1)z^+ (T) + \frac{-1}2(T^3 - 1)z^- (T)$ дает, с исполь­зованием очевидных обозначений, следующие равенства.
+\begin{center}
+$2z_0 = z_0^+ + z_0^- , \;\;\; 2z_1 = z_1^+ - z_1^- , \;\;\; 2z_2 = z_2^+ + z_2^-,
+$
+\end{center}
+\begin{center}
+$2z_3 = z_0^+ - z_0^- , \;\;\; 2z_4 = z_1^+ + z_1^- , \;\;\; 2z_5 = z_2^+ - z_2^-.$
+\end{center}
+\textbf{33. Двойственность конечных абелевых групп} \newline \indent
+\textbf{a}. Конструкция $\Omega \rightarrow \widehat{\Omega}$ является контравариантным функтором, т.е. всякий морфизм $f : \Omega_1 \rightarrow  \Omega_2$ пораждает морфизм $\hat f : \hat \Omega_2 \rightarrow  \hat \Omega_1$, с функториальными свойствами. Отсюда легко следует канонический изоморфизм на $\widehat{\Omega_1 \times \Omega_2}$ на $\hat  \Omega_1 \times \hat \Omega_2$. \newline \indent
+\textbf{b}. Исследуем сначала случай, когда $\Omega$ --- циклическая группа поряд­ка $n$. Группа Hom$(\mathds{Z}/n \mathds{Z},U)$ канонически изоморфна подгруппе $U_{(n)}$ в $U$, состоящей из элементов $x \in U$, таких, что $x^n = 1$. Если $U$ --- мультипликативная группа комплексных чисел с единичным модулем, то	
+\newpage
+\noindent
+Подгруппа $U_{(n)}$ --- циклическая группа порядка $n$, следовательно, изоморфна $\mathds{Z}/n\mathds{Z}$. Но это заключение $(U_{(n)} \; \simeq \; \mathds{Z}/n\mathds{Z})$ остается также верным, если $U$ --- циклическая группа, порядок которой делится на $n$. \newline
+\indent Произвольная абелева группа $\Omega$ записывается в виде произведения циклических групп: \newline \newline \indent
+$\; \; \; \; \; \; \Omega \simeq \mathds{Z}_{n_1} \times \mathds{Z}_{n_2} \times \dots \times \mathds{Z}_{n_k}, \; \; \; \; \; \;$ где $\; \; \; n_1 \; | \; n_2 \; | \; n_3 | \; \dots \; | \; n_{k-1} \; | \; n_k$. \newline \newline
+Чтобы получить изоморфизм между группой $\Omega$ и ее дуальной в случае, когда $U$ --- группа комплексных чисел с единичным модулем, достаточно использовать тот факт, что дуальность совместима с произведением. Это заключение остается верным, если $U$ --- циклическая группа порядка, делящегося на $n_k$ (и поэтому на все $n_i$). Целое $n_k$ --- показатель группы $\Omega$, т.е. НОК порядков элементов $\Omega$. \newline \indent
+\textbf{c.}$\;$ Достаточно проделать это для циклической группы, а затем использовать тот факт, что любая конечная абелева группа является произведением циклических групп. \newline \newline
+\textbf{34. Преобразование Фурье на конечной абелевой группе} \newline \newline \indent
+\textbf{a}. $\;$ $DFT_{\Omega}(1) = |\Omega|\delta_1$, где $\delta_1$ --- функция Дирака, т.е. она принимает значение $0$ всюду, кроме $1_{\hat \Omega}$, где она принимает значение $1_A$. Для того, чтобы это обнаружить, достаточно доказать, что $\sum_{\omega \in \Omega} \chi(\omega) = 0$ для всякого характера $\chi \neq 1$. Сначала исследуем случай, когда $\Omega$ --- циклическая группа порядка $n$. Если $\omega$ --- образующий и $u = \chi(\omega)$, то указанная выше сумма $S = \sum_{i = 0}^{n-1}u^i$ и $(1 - u)S = 0$. Далее показываем, что если результат верен для $\Omega_1$ и $\Omega_2$, то он верен и для $\Omega_1 \times \Omega_2$. \newline \indent
+Докажем теперь, что $|\Omega|$ обратим. Напомним, что $|\Omega|$ обратим в $A$ (например, $|U| = \prod_{u \in U - \{1 \}}(1 - u))$. Отсюда следует, что показатель $\Omega$ обратим в $A$(так как является делителем $|\Omega|$ по предположению). Значит, порядок $\Omega$ и показатель $\Omega$ имеют одни и те же простые делители. \newline \indent
+\textbf{b.} $\;$ Вычислим $DFT_{\Omega} \circ DFT_{\Omega}^{-1}(\text{\'a})$ для \'a $\in A \widehat{[\Omega]}$. Если $\widehat{a^{'}} = DFT_{\Omega}^{-1}(\text{\'a})$, то нужно вычислить: \newline \newline \indent
+$\;\;\;\;\;\;\;\;\; \chi \longmapsto \sum \limits_{\omega} \widehat{a^{'}} (\omega)\chi (\omega) = \frac{1}{|\Omega|}\sum \limits_{\omega}(\sum \limits_{\chi^{'}}$\'{$a$}(\'{$\chi$}$)\chi^{'-1}(\omega))\chi(\omega) =$ \newline \indent
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;= \frac{1}{|\Omega|}\sum \limits_{\chi^{'}}$\'{$a$}(\'{$\chi$})$\sum \limits_{\omega}(\chi \chi^{'-1})(\omega).$ \newline \newline\newline
+Но внутренние суммы все равно равны нулю, кроме случая $\chi^{'} = \chi$, и поэтому $DFT_{\Omega} \circ DFT_{\Omega}^{-1}(\text{\'a}) = \text{\'a}$. Для вычисления $DFT_{\Omega}^{-1} \circ DFT_{\Omega}(a)$ при
+\newpage
+\noindent
+$a \in A[\Omega]$ можно использовать свойство $\sum_{\chi}\chi (\omega) = 0$, при $\omega \neq 1$, являющееся двойственным к свойству $\sum_{\omega}\chi (\omega) = 0$ при $\chi \neq 1$. Это свойство может быть доказано, либо используя равенство $\sum_{\chi}\chi (\omega) = \sum_{\chi}(\omega^{-1})$ и канонический изоморфизм между $\Omega$ и ее бидуальной группой (см.предыдущее упражнение), либо рассматривая циклическую группу, а затем прямое произведение циклических групп. Сторонники дуальности могут вывести прямо, что $DFT_{\Omega}^{-1} \circ DFT_{\Omega}(a) = a$ при $a \in A[\Omega]$, ибо, как только $\Omega$ отождествляется со своей бидуальной, так обратное преобразование Фурье $DTF_{\Omega}^{-1}$ есть не что иное, как $DTF_{\hat \Omega}$ (с точностью до обратимого множителя $|\Omega|^{-1}$). Конечно, следующее вычисление(где $\hat a = DTF_{\Omega}(a)$) тоже дает результат $DFT_{\Omega}^{-1} \circ DFT_{\Omega}(a) = a$: \newline \newline \indent
+$\;\;\;\;\;\;\;\;\;\; \omega \longmapsto \sum \limits_{\chi} \hat a (\chi) \chi^{-1}(\omega) = \frac{1}{|\Omega|}\sum \limits_{\chi}(\sum \limits_{\alpha}a(\alpha)\chi(\alpha))\chi^{-1}(\omega) =$ \newline \indent
+$\;\;\;\;\;\;\;\;\;\;\,\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;= \frac{1}{|\Omega|}\sum \limits_{\alpha}a(\alpha)\sum \limits_{\chi}\chi(\alpha \omega^{-1})$ \newline \newline
+(внутренняя сумма равна нулю, кроме случая, когда $\alpha = \omega$). \newline \newline \indent
+\textbf{c.} $\;$ Для $a,b \in A[\Omega]$ свойство $DTF(a) \cdot DTF(b) = DTF(A \star B)$ легко доказывается. Из него следует $DTF^{-1}(a^{'} \cdot b^{'}) = DTF^{-1}(a^{'}) \star DTF^{-1}(b^{'})$ для $a^{'},b^{'} \in A \widehat{[\Omega]}$. Можно использовать бидуальность, для того чтобы из этого вывести, что $DTF(a) \star DTF(b) = |\Omega|DTF(a \cdot b)$, что эквивалентно $DTF^{-1}(a^{'}) \cdot DTF^{-1}(b^{'}) = |\Omega| \\ DTF^{-1}(a^{'} \cdot b^{'})$, или еще раз проделать вычисление: \newline \newline \indent
+$\;\;\;\; \chi \longmapsto \frac{1}{|\Omega|}\sum \limits_{\chi^{'}}\hat a (\chi^{'})\hat b (\chi \chi^{'-1}) = \frac{1}{|\Omega|}\sum \limits_{\alpha , \beta}a(\alpha)b(\beta)\chi (\beta)\sum \limits_{\chi^{'}}\chi^{'}(\alpha \beta^{-1}),$ \newline \newline\newline 
+используя, разумеется, тот факт, что внутренняя сумма равна нулю, за исключением случая, когда $\alpha = \beta$. \newline \newline
+\textbf{35.  Преобразование Фурье на конечной абелевой группе \newline \indent (продолжение)} \newline \newline \indent
+\textbf{a.} $\;$ Задание элемента порядка $n$ из $U$ определет канонический изоморфизм из $\mathds{Z}_n$ на $\widehat{\mathds{Z}_n}$. \newline \newline \indent
+\textbf{b.} $\;$ Обозначим $U_{(k)} = \{\alpha \in U, \alpha^{k} = 1\}$. Задать морфизм $\chi$ на $\mathds{Z}_p \times \mathds{Z}_q$ со значениями в $U$ все равно, что задать элемент $\alpha_1 \in U_{(p)}$, элемент $\alpha_2 \in U_{(q)}$ и соответствие в одну сторону: $\chi_{\alpha_1 , \alpha_2} : \mathds{Z}_p \times \mathds{Z}_q \ni (i_1 , i_2) \longmapsto \alpha_1^{i_1}\alpha_2^{i_2} \in U$, и в другую: \newline \newline \indent
+$\widehat{\Omega} \ni \chi \longmapsto (\alpha_1 \alpha_2) \in U_{(p)} \times U_{(q)}, \;\;\;\;\;$ где $\;\;\;\;\;\; \alpha_1 = \chi (1,0)$ и $\alpha_2 = \chi (0,1)$.
+\newpage
+\noindent
+Два отображения $U_{(p)} \times U_{(q)} \ni (\alpha_1 , \alpha_2) \longmapsto \chi_{\alpha_1 , \alpha_2} \in \widehat{\Omega}$ и $\widehat{\Omega} \ni \chi \rightarrow (\chi (1,0) , \chi (0,1)) \in U_{(p)} \\ \times U_{(q)}$ являются взаимно обратными изоморфизмами. Дуальная группа из
+$\mathds{Z}_p \times \mathds{Z}_q$, следовательно, {\itshape канонически изоморфна} $U_{(p)} \times U_{(q)}$ и преобразование Фурье тогда записывается в следующем виде: \newline \newline \indent
+$\;\;\;\;\;\;\;\;\;\;\;\; A[\Omega] = A[\mathds{Z}_p \times \mathds{Z}_q] \ni a \longmapsto \hat a \in A \widehat{[\Omega]} = A[U_{(p)} \times U_{(q)}]$, \newline \newline \indent
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\:$ где $\;\: \hat a_{\alpha_1 , \alpha_2} = \sum \limits_{\substack{0 \le i_1 < p \\ 0 \le i_2 < q}}a_{i_1 , i_2} \alpha_1^{i_1} \alpha_2^{i_2}.$ \newline \newline \newline 
+Заметим, что $U_{(p)}$ --- циклическая группа порядка $p$, изоморфна $\mathds{Z}_p$, \textbf{но, не каноническим образом} (это зависит от выбора образующего $U_{(p)}$). Анологичный результат получаем для $U_{(q)}$. Следовательно, выбор элемента $\omega_1$ порядка $p$ и элемента $\omega_2$ порядка $q$ реализует изоморфизм $U_{(p)} \times U_{(q)} = \widehat{\Omega}$ на $\mathds{Z}_p \times \mathds{Z}_q$. Тогда преобразование Фурье записывается следующим образом: \newline \newline \indent
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;A[\mathds{Z}_p \times \mathds{Z}_q] \ni a \longmapsto \hat a \in A[\mathds{Z}_p \times \mathds{Z}_q],$ \newline \newline \indent
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;$ где $\:\;\: \hat a_{i_1 , i_2} = \sum \limits_{\substack{0 \le i_1 < p \\ 0 \le i_2 < q}}a_{i_1 , i_2} \omega_1^{i_1 j_1} \omega_2^{i_2 j_2},$ \newline \newline \newline
+и эту формулу можно рассматривать как вычисление значения многочлена двух переменных: \newline \newline \indent
+$\;\;\;\;\;\;\;\;\hat a_{j_1 , j_2} = P(\omega_1^{j_1},\omega_2^{j_2})\;\;\;$ при $\;\;\; 0 \le j_1 < p, 0 \le j_2 < q,$ \newline \newline \indent
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;$где $\;\;\,P(X,Y) = \sum \limits_{\substack{0 \le i_1 < p \\ 0 \le i_2 < q}}a_{i_1 , i_2}X^{i_1}Y^{i_2}$. \newline \newline 
+В примере, где $p = 4$ и $q = 2$, имеем: $\Omega = \mathds{Z}_4 \times \mathds{Z}_2.$ Обозначим через $i$ корень 4-й степени из единицы, через --$1$ --- корень квадратный из единицы. Элемент $a \in A[\mathds{Z}_4 \times \mathds{Z}_2]$ является двумерной последовательностью: \newline \newline \indent
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;a = (a_{0,0},\;a_{0,1},\;a_{1,0},\;a_{1,1},\;a_{2,0},\;a_{2,1},\;a_{3,0},\;a_{3,1}),$ \newline \newline
+с которой ассоциируется многочлен $P(X,Y):$ \newline \newline 
+$P(X,Y) = a_{0,0} + a_{1,0}X + a_{2,0}X^2 + a_{3,0}X^3 + (a_{0,1} + a_{1,1}X + a_{2,1}X^2 + a_{3,1}X^3)Y.$ \newline \newline
+Преобразование Фурье для $a$ есть двумерная последовательность $\hat a,$
+\newpage
+\noindent
+определенная следующим образом: \newline \newline \indent
+$\;\;\:\hat a_{0,0} = P(1,1) = a_{0,0} + a_{1,0} + a_{2,0} + a_{3,0} + a_{0,1} + a_{1,1} + a_{2,1} + a_{3,1},$ \newline \indent
+$\hat a_{0,1} = P(1,-1) = a_{0,0} + a_{1,0} + a_{2,0} + a_{3,0} - a_{0,1} - a_{1,1} - a_{2,1} - a_{3,1},$ \newline \indent
+$\;\;\:\hat a_{1,0} = P(i,1) = a_{0,0} + a_{1,0}i - a_{2,0} - a_{3,0}i + a_{0,1} + a_{1,1}i - a_{2,1} - a_{3,1}i,$ \newline \indent
+$\hat a_{1,1} = P(i,-1) = a_{0,0} + a_{1,0}i - a_{2,0} - a_{3,0}i - a_{0,1} - a_{1,1}i + a_{2,1} + a_{3,1}i,$ \newline \indent
+$\;\;\:\hat a_{2,0} = P(-1,1) = a_{0,0} - a_{1,0} + a_{2,0} - a_{3,0} + a_{0,1} - a_{1,1} + a_{2,1} - a_{3,1},$ \newline \indent
+$\hat a_{2,1} = P(-1,-1) = a_{0,0} - a_{1,0} + a_{2,0} - a_{3,0} - a_{0,1} + a_{1,1} - a_{2,1} + a_{3,1},$ \newline \indent
+$\;\;\:\hat a_{3,0} = P(-i,1) = a_{0,0} - a_{1,0}i + a_{2,0} + a_{3,0}i + a_{0,1} - a_{1,1}i + a_{2,1} + a_{3,1}i,$ \newline \indent
+$\hat a_{3,1} = P(-i,-1) = a_{0,0} - a_{1,0}i + a_{2,0} + a_{3,0}i - a_{0,1} + a_{1,1}i - a_{2,1} - a_{3,1}i.$ \newline \newline
+\textbf{36.} FFT \textbf{на конечной абелевой группе} \newline \newline \indent
+\textbf{a.} $\;$ Так как $\hat \Omega$ --- группа порядка $n$, то число умножений равно $n^2.$ \newline \indent
+\textbf{b.} $\;$ Используя соотношение $\chi (\alpha) = \chi (\alpha_1 + \alpha_2) = \chi (\alpha_1)\chi (\alpha_2),$ можно записать сумму $\hat a (\chi)$ таким образом:
+\begin{center}
+$\hat a (\chi) = \sum \limits_{\alpha_1 \in \Omega_1}\chi(\alpha_1)(\sum \limits_{\alpha_2 \in \Omega_2}a_{\alpha_1 + \alpha_2}\chi(\alpha_2)).$
+\end{center} 
+Для $\chi_2 : \Omega_2 \rightarrow U(A)$ и $\alpha_1 \in \Omega_1$ определим: $b_{\alpha_1 , \chi_2} = \sum_{\alpha_2 \in \Omega_2}a_{\alpha_1 + \alpha_2}\chi_2 (\alpha_2),$ так что: 
+\begin{align}
+\hat a (\chi) = \sum \limits_{\alpha_1 \in \Omega_1}\chi (\alpha_1)b_{\alpha_1 , \chi_2} \tag{13},
+\end{align}
+где через $\chi_2$ обозначаем ограничение $\chi$ на $\Omega_2$. Этих $b_{\alpha_1 , \chi_2}$ всего $pq = n$, каждое вычисление $b_{\alpha_1 , \chi_2}$ требует $q$ умножений, и поэтому выисление всех $b_{\alpha_1 , \chi_2}$ требует $nq$ умножений. Наконец, надо вычислить $n$ значений $\hat a (\chi)$, что требует $np$ умножений: действительно, для вычисления $\hat a (\chi)$ по формуле (36.) необходимо $p$ умножений. Всего, таким образом, использовали $n(p + q)$ умножений вместо ожидаемых $n^2$. \newline \indent
+\textbf{c.} $\;$ Достаточно рассмотреть подгруппу $\Omega_2 = p \mathds{Z}_n,$ где $\mathds{Z}_n = \mathds{Z}/ n \mathds{Z},$ имеющую порядок $q.$ \newline \newline
+\textbf{37. Тензорные произведения и устойчивые схемы} \newline \newline \indent
+\textbf{a.} $\;$ Если записать 
+\begin{center}
+$\begin{pmatrix}
+a & b & c \\
+d & a & b \\         
+e & d & a
+\end{pmatrix} = \begin{pmatrix}
+a & b & c \\
+c & a & b \\         
+b & c & a
+\end{pmatrix} + \begin{pmatrix}
+0 & 0 & 0 \\
+d - c & 0 & 0 \\         
+e - b &d - c & 0
+\end{pmatrix},$
+\end{center}
+то вычисление в $(x_1 , x_2 , x_3)$ первой матрицы (являющейся матрицей циклической сверстки на 3 точках) реализуется с помощью 4 умножений	
+\newpage
+\noindent
+(см. упражнение 28), а вычисление второй матрицы осуществляется с помощью 3 умножений. \newline \newline \indent
+В общем случае наивное вычисление $\, A \cdot x \,$ требует $\, p^2 \,$ умножений и $p(p - 1)$ сложений. Пусть $X_1 , X_2 , \dots , X_p$ --- $q$-векторы. Если положить $Y^i = BX_i, \, \\ 1 \le i \le p,$ то \newline
+\begin{center}
+$(A \otimes B) \begin{pmatrix}
+X_1 \\
+\vdots \\
+X_p
+\end{pmatrix} = \begin{pmatrix}
+a_{11}B & \dots & a_{1p}B \\
+\vdots & \ddots & \vdots \\
+a_{p1}B & \dots & a_{pp}B
+\end{pmatrix} \begin{pmatrix}
+X_1 \\
+\vdots \\
+X_p
+\end{pmatrix} = \begin{pmatrix}
+Z_1 \\
+\vdots \\
+Z_q
+\end{pmatrix},$
+\end{center}
+\begin{center}
+где $\;\;Z_j = A\begin{pmatrix}
+Y_j^1 \\
+Y_j^2 \\
+\vdots \\
+Y_j^p
+\end{pmatrix}.$
+\end{center} 
+Имеются $p$ векторов $Y^i$ и $q$ векторов $Z_j$, которые надо вычислить:
+$Y^i$ требует $\mathcal{A}(B)$ сложений и $\mathcal{M}(B)$ умножений, тогда как $Z_j$ требует $\mathcal{A}(A)$ сложений и $\mathcal{M}(A)$ умножений. Если $A$ и $B$ вычисляются наивным образом, то получаем сложность для $A \bigotimes B$ порядка $pq(p + q)$ (вместо $p^2 q^2$). \newline \newline \indent
+\textbf{c.} $\;$ Если $f$ имеет в качестве матрицы $(f_{ij})_{\substack{1 \le i \le n \\ 1 \le j \le m}}$, то расширение $f$ имеет следующий вид: 
+\newline \newline \indent
+$(X_1 , X_2 , \dots , X_m) \longmapsto (\sum \limits_{j} f_{1i} X_j , \sum \limits_{j} f_{2i} X_j , \dots , \sum \limits_{j} f_{ni} X_j), \;\;\; X_j \in E.$
+\newline \newline \newline \newline
+Легко показать, что расширение суммы есть сумма расширений и т.д. Можно сказать, что функтор «$f \longmapsto $ расширение $f$» является хорошим функтором, который коммутирует с любой разумной операцией: расширение чего-то есть что-то от расширения! Если $E$ --- пространство $K^q$, то расширение $f$ --- не что иное, как $f \otimes Id_{K^q}$. В свою очередь, $Id_{K^q} \otimes f$ есть отображение $(K^m)^q \ni (X_1 , X_2 , \dots , X_q) \longmapsto (f \cdot X_1 , f \cdot X_2 , \dots , f \cdot X_q) \in (K^n)^q$. Действительно, вычисление, ассоциированное с методом Гуда, получается с помощью равенства $A \otimes B = (A \otimes Id_q) \circ (Id_p \otimes B)$. \newline \newline \indent
+\textbf{d.} $\;$ Если $X_1 , X_2 , \dots , X_p$ --- $q$-векторы и $Y = (B \cdot X_1 , B \cdot X_2 , \dots , B \cdot X_p),$
+\newpage
+\noindent
+то: \newline \newline 
+$(A \otimes B)\begin{pmatrix}
+X_1 \\
+\vdots \\
+X_p
+\end{pmatrix} = (A \otimes Id_q)\begin{pmatrix}
+B \cdot X_1 \\
+\vdots \\
+B \cdot X_p
+\end{pmatrix} =$ \newline \newline \newline \indent
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\,= \begin{pmatrix}
+\varphi_1 \otimes Id_q (\lambda_1 (f_1 \otimes Id_q) \cdot Y, & \dots , & \lambda_{\mu} (f_{\mu} \otimes Id_q) \cdot Y) \\
+\vdots & \ddots & \vdots \\
+\varphi_p \otimes Id_q (\lambda_1 (f_1 \otimes Id_q) \cdot Y, & \dots , & \lambda_{\mu} (f_{\mu} \otimes Id_q) \cdot Y)
+\end{pmatrix}
+$ \newline \newline \newline
+и теперь важно заметить, что $(f_k \otimes Id_q)(B \cdot X_1 , B \cdot X_2 , \dots , B \cdot X_p) = B(f_k \otimes Id_q) \cdot X$. Следовательно, положив $Z_k = \lambda_k B(f_k \otimes Id_q) \cdot X,$ получим:
+\begin{align}
+(A \otimes B)\begin{pmatrix}
+X_1 \\
+X_2 \\
+\vdots \\
+X_p
+\end{pmatrix} = \begin{pmatrix}
+(\varphi_1 \otimes Id_q)(Z_1 , Z_2 , \dots , Z_{\mu})\\
+(\varphi_2 \otimes Id_q)(Z_1 , Z_2 , \dots , Z_{\mu})\\
+\vdots \\
+(\varphi_p \otimes Id_q)(Z_1 , Z_2 , \dots , Z_{\mu})\\
+\end{pmatrix} \tag{14}.
+\end{align}
+Вычисление $f_k \otimes Id_q) \cdot X$ требует $q \times \mathcal{A}(f_k)$ сложений, и, следовательно, вычисление каждого $Z_k$ требует $q \times \mathcal{A}(f_k) + \mathcal{A}(B)$ сложений и $\mathcal{M}(B)$ умножений. Тогда аддитивная цена вычисления (37.) будет равна: 
+\begin{align*}
+\sum \limits_{1 \le k \le \mu}q \mathcal{A}(f_k) + \mathcal{A}(B) + q \mathcal{A} (\varphi_k) &= q \mathcal{A}(A) + \mu \mathcal{A} (B) = \\
+&= \mathcal{M}(A) \times \mathcal{A} (B) + \dim B \times \mathcal{A} (A),
+\end{align*}
+тогда как мультипликативная цена есть $\mu \times \mathcal{M} (B) = \mathcal{M} (A) \times \mathcal{M} (B).$
+\newpage
+\hfill \break
+\hfill \break
+\begin{center}
+  {\huge \textbf{Литература}}
+\end{center}
+[1] Ано A.V., Hopcroft J.E., Ullman J.D. {\itshape The design and analysis of computer algorithms,} Addison-Wesley, 1974. [Русский перевод: Ахо A., Хонкрофт Дж, Ульман Дж. {\itshape Построение и анализ вычислительных алгоритмов.} — М.: Мир, 1979.] \newline
+[2] Akritas A.G. “A simple proof of the validity of the reduced PRS algorithm”, {\itshape Computing,} vol. 38, 1987, pp. 369-372. \newline
+[3] Akritas A.G. {\itshape Elements of computer algebra,} John Wiley \&  Sons, 1989. [Русский перевод: Акритас А. {\itshape Основы компьютерной алгебры с приложениями.} — М.: Мир, 1994.] \newline
+[4] Akritas A.G. “Exact algorithms for the matrix-triangularization subresultant PRS method”, {\itshape Computers and Mathematics, Springer Verlag,} 1989. \newline
+[5] Andrews G. {\itshape Ramanujan Revisited,} Academic Press, 1988. \newline
+[6] Arsac J. {\itshape Les bases de la programmation,} Dumod, 1983. \newline
+[7] Arsac J. “Algorithmes pour v\'{e}rifier la conjecture de Syracuse”, {\itshape RAIRO Informatique Th\'{e}orique et Applications, } vol. 21, n° 1, 1987, pp. 3-9. \newline
+[8] Atkinson L.D., Lloyd S “Bounds on the ranks of some 3-Tensors”, {\itshape Linear Algebra Appl.,} vol. 31, 1980, pp. 19-31. \newline
+[9] Atkinson L.D. Stephens N.M. “On the maximal multiplicative complexity of a family of bilinear forms”, {\itshape Linear Algebra Appl.,} vol. 27, 1979,
+pp. 1-8. \newline
+[10] Auslander L., Tolimieri R ., Winogred S. “Hecke’s Theorem in Quadratic Reciprocity, Finite Nilpotent Groups and the Cooley-Tukey Algorithm”, {\itshape Advances in Math.,} vol. 43, n° 2, 1982. p. 122.\newline
+[11] Auslander L., Tolimieri R. “Algebraic structures for $\bigoplus_{n\geqslant1}L^2(Z_{n})$ compatible with the finite Fourier transform”, {\itshape Trans. Amer. Math. Soc.,} vol. 244, 1978, pp. 263-272. \newline
+[12] Auslander L., Tolimieri R. “Is computing with the finite Fourier transform pure or applied mathematics ?”, {\itshape Bull. Amer. Math. Soc. (New Series),} vol. 1, n° 6, 1979, pp. 847-897. \newline
+[13] Bareiss E.H. “Sylvester’s identity and multistep integer-preserving Gaussian elimination”, {\itshape Math. Comp.,} vol. 22, 1968, pp. 565-578.\newline
+[14] Barnes J.P. {\itshape Programming in Ada,} Addison Wesley, 1981. \newline
+[15] Batut C. {\itshape Aspects algorithmiques du syst\`{e}me de calcul arithm\'{e}tique en multipr\'{e}cision PARI,} Th\`{e}se de $3^{\circ}$-cycle Univ. Bordeaux 1, 1989. \newline
+\newpage
+\noindent
+[16] Beckenbach  E.F. {\itshape Applied combinatorial mathematics,} John Wiley and Sons, 1964. [Русский перевод: {\itshape Прикладная комбинаторная математика.} Под ред. Э. Беккенбаха. — М.: Мир, 1968.] \newline 
+[17] Bellanger М. {\itshape Traitement num\'{e}rique du signal,} Masson, 1981. \newline
+[18] Berge C. {\itshape Graphes et hypergraphes,} Dunod, 1970. \newline 
+[19] Berge C. {\itshape Principes de combinatoire,} Dunod, 1968.  \newline 
+[20] Bergland G.D. “The Fast Fourier Transform Recursive Equations for Arbit- \newline rary Lenght Records”, {\itshape Math. Comp.,} vol. 21, n° 198, 1967, pp. 236-238. \newline 
+[21] Berlekamp E.R . “Factoring polynomials over finite fields”, {\itshape Bell Syst. Tech. J.,} vol. 56, 1967, pp. 1853-1859. \newline 
+[22] Berlekamp E.R. “Factoring polynomials over large finite fields”, {\itshape Math. Comp.,} vol. 24, n° 111, 1970, pp. 713-735. \newline 
+[23] Beth T. {\itshape Verfahren der schnellen Fourier Transformation,} Masson, 1892.  \newline
+[24] Blair W.D., Lacampagne C.B., Selfridge J.L. “Factoring large
+numbers on a pocket calculator”, {\itshape Amer. Math. Monthly,} vol. 93, 1986, pp. 802-808. \newline
+[25] Boehm C., Jacopini G. “Flow diagrams, Turing machines, and languages
+with only two formation rules”, {\itshape Comm. ACM,} vol. 9, n° 3, 1966,
+pp. 366-371. \newline
+[26] Booch G. {\itshape Ing\'{e}nierie du logiciel avec Ada,} InterEditions, 1988. \newline 
+[27] Booch G. {\itshape Software components with Ada,} Benjamin/Cummings, 1987. \newline
+[28] Borevitch Z.I., Chavarevitch I.R . {\itshape Th\'{e}orie des nombres,} GauthiersVillars Paris, 1967. \newline
+[29] Borodin A., Munro I. {\itshape The computational complexity of algebraic and numeric problems,} Elsevier Publishing Company, 1975. \newline
+[30] Bougaut B. “Anneaux Quasi-Euclidiens”, {\itshape C.R. Acad. Sc.,} t. 284, p. 17, janvier 1977. \newline
+[31] Bougaut B. {\itshape Anneaux quasi-euclidiens,} Th\`{e}se de $3^{\circ}$-cycle Universite de Poitiers, 1976. \newline
+[32] Bourbaki N. {\itshape Livre XXXI: Alg\`{e}bre commutative ; Chapitre 7: Diviseurs,} Hermann, 1965. [Русский перевод: БУРБАКИ H. {\itshape Коммутативная алгебра.} — М.: Мир, 1971.] \newline
+[33] Bourbaki N. {\itshape El\'{e}ments d’histoire des math\'{e}matiques,} Herman, Paris, 1969. [Русский перевод: БУРБАКИ H. {\itshape Очерки по истории математики.} — М.: Ил, 1963.] \newline
+[34] Bourbaki N. {\itshape Livre II : Alg\`{e}bre ; Chapitre 7 : Modules sur les anneaux principaux,} Hermann, 1981. [Русский перевод: БУРБАКИ H. {\itshape Алгебра, модули, кольца, формы.} — М.: Наука, 1966.] \newline
+[35] Bradley G.H. “Algorithms for Hermite and Smith normal matrices and
+linear Diophantine equations”, {\itshape Math. Comp.,} 1971, vol. 25, n° 116. \newline
+\newpage
+\noindent
+[36] Brent R.P. “Succint proofs of primality for the factors of some Fermat sumbers”, {\itshape Math. Comp.,} vol. 38, n° 157, 1982, pp. 253-254. \newline
+[37] Brent R.P., Pollard J.M. “Factorization of the eighth Fermat number”
+, {\itshape Math. Comp.,} vol. 36, n° 154, 1981, pp. 253-254. \newline
+[38] Bresenham J.E. “A linear algorithm for incremental display of circular arcs”, {\itshape Comm. ACM.,} vol. 20, n° 2, 1977, pp. 100-106. \newline
+[39] Brigham E.O. {\itshape The fast Fourier transformation,} Prentice Hall, 1974. \newline
+[40] Brocket R.W., Dobkin D. “On the optimal evaluation of a set of
+bilinear forms”, {\itshape Linear Algebra Appl.,} vol. 19, 1978, pp. 207-235. \newline
+[41] Brown W.S. “On Euclid’s algorithm and the computation of polynomial
+greatest common divisors”, {\itshape J. ACM,} vol. 18, n° 4, 1971, pp. 478-504. \newline
+[42] Brown W.S., Traub J.F. “On Euclid’s algorithm and the theory of
+subresul- \newline tants”, {\itshape J. ACM,} vol. 18, n° 4, 1971, pp. 505-514. \newline
+[43] Cantor G.C., Zassenhaus H. “A new algorithm for factoring polynomials
+over finite fields”, {\itshape Math. Comp.,} vol. 36, n° 154, 1981, pp. 587-592. \newline
+[44] Carroll L. {\itshape The complete illustrated works,} Chancellor Press, 1982. \newline
+[45] Cartier P. “Sur une g\'{e}n\'{e}ralisation des symboles de Legendre-Jacobi”, {\itshape L’enseignement Math\'{e}matique,} t. 16, 1970, pp. 31-48. \newline
+[46] Childs L. {\itshape A Concrete introduction to higher algebra,} 1979. \newline
+[47] Chor B.Z. {\itshape Two issues in public key cryptography : RSA bit security and a new knapsack type system,} MIT Press, 1986. \newline
+[48] Cleyet-Michaud M. {\itshape Lenombre d’or,} PUF, Que sais-je ?, 1973. \newline
+[49] Cohen H. “Factorisation, primalit\'{e} et cryptographic : l’utilisation des cour- \newline bes elliptiques”, {\itshape Journ\'{e}e annuelle de la S.M.F.,} 1987. \newline
+[50] Cohen H., Lenstra H.W . “Primality testing and Jacobi sums”, {\itshape Math. Comp.,} vol. 42, n° 165, 1984, pp. 297-330. [Русский перевод: В сб. Кибернетический сборник. Новая серия. Вып. 24, с. 101-146. — М.: Мир,
+1987.] \newline
+[51] Collins G.E. “Polynomial remainder sequences and determinants”,
+{\itshape Amer. Math. Monthly,} vol. 73, n° 2, 1966, pp. 708-712. \newline
+[52] Collins G.E. “Subresultants and reduced polynomial remainder sequences”, {\itshape J. ACM,} vol. 14, 1967, pp. 128-142. \newline
+[53] Colquitt W.N., Welsh J.R. “A new Mersenne prime”, {\itshape Math. Comp.,} vol. 56, n° 194, 1991, pp. 867-870. \newline
+[54] Cooke G.E. “A weakening of the euclidean property for integral domains and applications to algebraic number theory. I”, {\itshape Journal fur die reine und angewandte Mathematik,} vol. 282, 1976, pp. 133-156. \newline
+[55] Cooley J.W., Tuckey J .W . “An algorithm for the Machine Calculation
+of Complex Fourier Series”, {\itshape Math. Comp.,} vol. 19, 1965, pp. 297-301. \newline
+\newpage
+\noindent
+[56] Creutzburg R., Tasche M. “Parameter Determination for Complex
+Number-Theoric Transforms Using Cyclotomic Polynomials”, {\itshape Math. Comp.,} vol. 52, n° 185, 1989. \newline
+[57] Curtis C.W., Reiner I. {\itshape Representation theory Of finite groups and associative algebras,} Interscience Publishers, 1966. [Русский перевод: Кэртис Ч., Райнер И. {\itshape Теория представлении конечных групп и ассоци­ативных алгебр.} — М.: Наука, 1969.] \newline
+[58] Dahl O.J., Dijkstra E.W., Hoare C.A.R. {\itshape Structured programming,} Academic Press, 1972. [Русский перевод: Дал У., Дейкстра Э.,
+Хоор К. {\itshape Структурное программирование.} — М.: Мир, 1975.] \newline
+[59] Davenport J.H ., Siret Y., Tournier E. {\itshape Calcul formei, Systemes et algorithmes de manipulations algebriques,} Masson, 1986. [Русский перевод: Дэвенпорт Дж., Сирэ И., Турнье Э. {\itshape Компьютерная
+алгебра. Системы и алгоритмы алгебраических вычислении.} — М.:
+Мир, 1991.] \newline
+[60] Delezoide Р. {\itshape “R\'{e}sultats li\'{e}s aux invariants alg\'{e}briques de $f \in \mathcal{L}(E)$”, Revue de Math\'{e}matiques Sp\'{e}ciales,} n° 4, 1985. \newline
+[61] Dickson L.E. {\itshape History of the theory of numbers, Chelsea Publishing Company,} New York, 1952. \newline
+[62] Dieudonn\'{e} J. {\itshape Abr\'{e}g\'{e} d’histoire des math\'{e}matiques, 1700-1900, }Vol. 1 {\itshape : Alg\`{e}bre, analyse classique, th\'{e}orie des nombres,} Hermann, 1978. \newline
+[63] Dieudonn\'{e} J. {\itshape Panorama des math\'{e}matiques pures. Le cboix bourbachique,} Gauthiers-Villars, 1977. \newline
+[64] DiffieW., Hellman M.E. “New directions in cryptography”, {\itshape IEEE Trans. Inform. Theory,} vol. IT-22, 11 1976, pp. 644-654. \newline
+[65] Dijkstra E.W. “Go to statement considered harmful”, {\itshape Comm. ACM,} vol. 11, n° 3, 1968. \newline
+[66] Dijkstra E.W. “Thehumble programmer”, {\itshape Comm. ACM,} vol. 15, n° 10, 1972. \newline
+[67] Dixon J.D. “Factorization and primality tests”, {\itshape Amer. Math. Monthly,} vol. 91, 1974, pp. 333-352. \newline
+[68] Do D. {\itshape Reference manual for the Ada programming language,} Alsys, 1986. \newline
+[69] Donzelle L.O., Olive V., Rouillard J. {\itshape Ada avecle sourire,} Presses Polytech- \newline niques Romandes, 1989. \newline
+[70] Drake S. {\itshape Galil\'{e}e} перевод J.P. Schneidecker, Actes Sud, 1986. \newline
+[71] Floyd J.W. “Assigning meaning to programs”, {\itshape Proc. Symp. in applied \newline Mathematics, Math. Aspects Comp. Science, Amer. Math. Soc.,} vol. 19, 1967, pp. 19-32. \newline
+[72] Gantmacher F.R. {\itshape Theory of matrices,} Interscience Publishers, 1954. \newline
+[73] G\aa rding L., Tambour T. {\itshape Algebra for computer science,} Springer-Verlag, 1988. \newline
+\newpage
+\noindent
+[74] Gehani N. Ada : {\itshape An Advanced Introduction,} Prentice-Hall, 1982. \newline
+[75] Gentleman W.M. “Optimal multiplication chains for computing a
+power of a symbolic polynomial”, {\itshape Math. Comp.,} vol. 26, n° 120, 1972, pp. 935-939. \newline
+[76] Godement R. {\itshape Cours d’alg\`{e}bre,} Hermann, 1966. \newline
+[77] Good I.J. “The interaction of algorithm and practical Fourier series”, {\itshape J. Roy. Statis. Soc. Ser.,} vol. 20, 1958, pp. 361-372. \newline
+[78] Gregory R.T. {\itshape Error-free computation,} E. Krieger Publishing Company, 1980. \newline
+[79] Gunji H., Arnon D. {\itshape On polynomial factorization over Unite fields, Math. Comp.,} vol. 36, n° 153, 1981, pp. 281-287. \newline
+[80] Hardy G.H., Wright E.M. {\itshape An introduction to the theory of numbers,} Claren- \newline don Press-Oxford, 1965. \newline
+[81] Harel D. {\itshape Algorithmics : The spirit of computing,} Addison-Wesley, 1988. \newline
+[82] Hartley B., Hawkes T.O. {\itshape Rings, modules and linear algebra,} Chapman and Hall, 1970. \newline
+[83] Havas G., Sterling L.S. “Integer matrices and abelian groups”, {\itshape Symbolic and Algebraic Computation, L.N.C.S.,} n° 72, 1979, pp. 431-451. \newline
+[84] Herstein I.N. {\itshape Topics in algebra,} Xerox College Publishing, 1964. \newline
+[85] Hiblot J.J. “Des anneaux euclidiens dont le plus petit algorithme n’est
+pas \`{a} valeurs finies”, {\itshape C.R. Acad. Sc.,} vol. 281, 1975, pp. 411-414. \newline
+[86] Hoare C.A.R. “An axiomatic basis of computer programming”, {\itshape Comm. ACM 12, 10,} 1969, pp. 576-580, 583. \newline
+[87] Hodges A. {\itshape Alan Turing ou I’\'{e}nigme de I’intelligence,} Payot, 1988. \newline
+[88] Hofstadter D. {\itshape G\"odel, Escher, Bach : les brins d’une guirlande \'{e}ternelle,} InterEditions, 1985. \newline
+[89] Howel T.D. “Global properties of tensor rank”, {\itshape Linear Algebra Appl.,} vol. 22, 1978, pp. 9-23. \newline
+[90] Howell J.A. “An algorithm for the exact reduction of a matrix to Frobenius form using modular arithmetic”, {\itshape Math. Comp.,} vol. 27, n° 124, 1973, pp. 887-920. \newline
+[91] Ichbiah J., Barnes J.G.P., Firth R.J., Woodgee M. {\itshape Rationale
+for the design of the Ada programming language,} Alsys, 1984. \newline
+[92] Jacobson N. {\itshape Lectures in Abstract Algebra, Vol. III — Theory of Fields and Galois Theory,} D. Van Nostrand Company, Inc., 1964. \newline
+[93] Jacobson N. {\itshape Basic Algebra I,} W.H. Freeman and Company, 1980. \newline
+[94] Jaeschke G. “The Carmichael numbers to $10^{12}$”, {\itshape Math. Comp.,} vol. 55, n° 191, 1990, pp. 383-389. \newline
+[95] Kaltofen E., Watt S.M. {\itshape Computers and Mathematics,} Springer-Verlag, 1989. \newline
+\newpage
+\noindent
+[96] Kannan R., Вachem A. “Polynomial algorithms for computing the
+Smith and Hermite normal forms of an integer matrix”, {\itshape Siam J. Comput.,} vol. 8, n° 4, 1979, pp. 499-507. \newline
+[97] Knuth D.E., Graham R., Patashnik O. {\itshape Concrete mathematics,} Addison-Wesley, 1988. [Русский перевод: Грэхем P., Кнут Д., Паташник О. {\itshape Конкретная математика.} — М.: Мир, 1998.] \newline
+[98] Knuth D.E. “Literate programming”, {\itshape Computer J.,} vol. 27, n° 2, 1984, pp. 97-111. \newline
+[99] Knuth D.E. “Structured programming with goto statements”, {\itshape J. ACM,} 1973. \newline
+[100] Knuth D.E. {\itshape The Art Of Computer Programming, Volume 1: Fundamental Algorithms,} Addison-Wesley, 1968. [Русский перевод: Кнут Д.
+{\itshape Искусство программирования для ЭВМ,} т. 1. — М.: Мир, 1976.] \newline
+[101] Knuth D.E. {\itshape The Art Of Computer Programming, Volume 2: Seminumerical Algorithms,} Addison-Wesley, 1973. [Русский перевод: Кнут Д.
+{\itshape Искусство программирования для ЭВМ,} т. 2. — М.: Мир, 1977.] \newline
+[102] Knuth D.E. {\itshape The Art Of Computer Programming, Volume 3: Sorting and Searching,} Addison-Wesley, 1973. [Русский перевод: Кнут Д. {\itshape Искусство программирования для ЭВМ,} т. 3. — М.: Мир, 1978.] \newline
+[103] Knuth D.E. {\itshape The \TeX book,} Addison-Wesley, 1986. [Русский перевод: Кнут Д. {\itshape Все про \TeX} — М.: Протвино, 1993.] \newline
+[104] Koblitz N. {\itshape A course in Number Theory and Cryptography,} Springer-Verlag, 1987. \newline
+[105] Kronsj\"o L. {\itshape Algorithms : their complexity and efficiency,} John Wiley \& Sons, 1986. \newline
+[106] Kruskal J. “Three-ways arrays : rank and uniqueness of trilinear decom- \newline positions, with applications to arithmetic complexity and statictics”, {\itshape Linear Algebra Appl.,} vol. 18, n° 1, 1977, pp. 95-138. \newline
+[107] Lafon J.C. “Optimum computation of p bilinear forms”, {\itshape Linear Algebra Appl.,} vol. 10, 1975, pp. 225-240. \newline
+[108] Lagarias J.C. “The $3x + 1$ problem and its generalizations”, {\itshape Amer. Math. Monthly,} 1985, pp. 3-21.  \newline
+[109] Lam\'{e} G. “Complexit\'{e} de l’algorithme d’Euclide”, {\itshape C.R. Acad. Sc.,} 1844.  \newline
+[110] Lang S. {\itshape Linear algebra,} Addison-Wesley, 1967.  \newline
+[111] Lang S. {\itshape Algebra,} Addison-Wesley, 1971. [Русский перевод: Ленг С. {\itshape Алгебра.} — М.: Мир, 1977.]  \newline
+[112] Lazard D. “Le meilleur algorithme d’Euclide pour $K[X]$ et $\mathds{Z}$”, {\itshape C.R. Acad. Sc.,} t. 284, 1977. \newline
+[113] Le Lionnais F. {\itshape Les nombres remarquables,} Masson, 1980. \newline
+[114] L’Ecuyer P . “Efficient and portable combined random number generators”, {\itshape Comm. ACM,} vol. 31, n° 6, 1988, pp. 742-774. \newline
+\newpage
+\noindent
+[115] Ledgard H.F. {\itshape Proverbes de programmation (traduction de J. Arsac),} Dunod, 1978. \newline
+[116] Van Leeuwen J., Van Emde Boas P. “Some elementary proofs of
+lower bounds in complexity theory”, {\itshape Linear Algebra Appl.,} vol. 19, 1978, pp. 63-80. \newline
+[117] Lenstra H.W. “Primality testing algorithms”, {\itshape S\'{e}minaire N. Bourbaki,} n° 576, 06 1981. \newline
+[118] Lenstra H.W. “Factoring integers with elliptic curves”, {\itshape Annals of Math.,} vol. 126, 1987, pp. 649-673. \newline
+[119] Leveque W.J. “Topics in number theory”, {\itshape Addison-Wesley,} 1955. \newline
+[120] Lidl R., Niederreiter H. {\itshape Introduction to finite fields and their applications,} Cambridge University Press, 1986. \newline
+[121] Liffermann J. {\itshape Th\'{e}orie et applications de la transformation de Fourier rapide,} Masson, 1977. \newline
+[122] Van Lint J.H. {\itshape Introduction to coding theory, Graduate Texts in Mathematics,} vol. 86, Springer-Verlag, 1982. \newline
+[123] Lipson J.D. {\itshape Algebra and Algebraic Computing,} Benjamin/Cummings \newline Publishing Company, Inc., 1981. \newline
+[124] McCarthy D.P. “The optimal algorithm to evaluate $x^n$ using elementary multiplication methods”, {\itshape Math. Comp.,} vol. 31, n° 137, 1977, pp. 251-256. \newline
+[125] Martzloff J.C. {\itshape Histoire des math\'{e}matiques chinoises,} Masson, 1988. \newline
+[126] M\'{e}nadier J. {\itshape Structure des ordinateurs,} Larousse, 1975. \newline
+[127] Merkle R.C., Hellman M.E. “Hiding information and signatures in
+trap-door knapsacks”, {\itshape IEEE Trans. Inform. Theory,} vol. IT-24, 09 1978, pp. 525-530. \newline
+[128] Mignote M. “How to share a secret”, {\itshape Proc. Worksho,} 1982, pp. 371-375. \newline
+[129] Mignotte M . {\itshape Math\'{e}matiques pour le calcul formel,} Puf, 1989. \newline
+[130] Minc H. {\itshape Permanents (Encyclopedia Of Math. And its applications),} Addison-Welsey, 1978. [Русский перевод: Минк X. {\itshape Перманенты.} — М.: Мир, 1982.] \newline
+[131] Morain F., Olivos J. “Speeding up the computations on an elliptic
+curve using addition-subtraction chains”, {\itshape Rairo, Inf. Th. App.,} vol. 24, n° 6, 1990, pp. 531-544. \newline
+[132] Muller J. {\itshape Arithm\'{e}tique des ordinateurs,} Masson, 1989. \newline
+[133] Mutafian C. {\itshape Equations alg\'{e}briques et th\'{e}orie de Galois,} Vuibert, 1980. \newline
+[134] Mutafian C. {\itshape Le D\'{e}fi Alg\'{e}brique, Tome 1,} Vuibert, 1976. \newline
+[135] Nievergelt J., Farrar J.C., Reingold E.W. {\itshape Computer approaches to \newline mathematical problems,} Prentice-Hall, 1974. [Русский перевод: Нивергельт Ю., Фаррар Дж., Рейнгольд Э. {\itshape Машинный подход к решению математических задач.} — М.: Мир, 1977.] \newline
+\newline 
+\newline 
+\newline 
+\newline 
+\newline
+{\footnotesize 45 1017} 
+\end{document}
