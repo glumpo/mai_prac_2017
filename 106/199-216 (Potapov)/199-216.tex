@@ -242,7 +242,7 @@ $(Q,\: R) \in K[X] \times K[X] \: Quotient\_ Euclidien (A,\: B \in K[X])\{$
   $R(0\: ..\: n)\: \textbf{\textit{и}}\: Q()\: ..\: n - m)\: \textbf{\textit{два массива с компонентами в }} K.$
   $R(0\: ..\: n)\: \leftarrow\: A(0\: .. \: n)$;
   $Q(0\: .. \: n - m) \: \leftarrow\: 0$;
-  $\textbf{for}(k = n-m;\:k \geq 0;\: k = k - 1)\{$  //$\textbf{\textit{A = BQ + R(0 .. m+k), Q(0 .. k) = 0}}$
+  $\textbf{for}(k = n-m;\:k \geq 0;\: k = k - 1)\{$//$\textbf{\textit{A = BQ + R(0 .. m+k), Q(0 .. k) = 0}}$
     $Q(k)\: \leftarrow \: R(m+k)\slash B(m)$;
     $R(k\: ..\: m+k-1)\: \leftarrow\: R(k\: ..\: m+k-1) - Q(k)B(0\: ..\: m - 1)$;
   $\}$
