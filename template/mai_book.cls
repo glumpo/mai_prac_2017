@@ -59,7 +59,7 @@
 \lstset{
 captionpos={bo},
 basicstyle=\ttfamily,
-frame=single,
+frame=lrtb,
 breaklines=true,
 tabsize=3,
 language=C
@@ -75,7 +75,6 @@ language=C
 					showtabs=false,
 					showspaces=false}, 
     title=Исходный код \thetcbcounter: #2, #1}
-
 
 
 \RequirePackage{fancyhdr}

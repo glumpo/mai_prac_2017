@@ -56,9 +56,9 @@ int main() {
   $ MATH $
   \end{lstlisting}
 ```
-Чтбы дать название Lol листингу
+Чтбы дать название Lol листингу и убрать рамку
 ```
-\begin{lstlisting}[mathescape=true, caption=Lol]
+\begin{lstlisting}[mathescape=true, caption=Lol, frame=none]
     $K\longleftarrow1;$ $K'\longleftarrow a_n$;
     for (int i=n-1; i>=0; i=i-1){
         $(K',K)\longleftarrow(a_iK'+K,K')$;
