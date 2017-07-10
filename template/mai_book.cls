@@ -38,6 +38,7 @@
 \makeatother
 
 \RequirePackage{framed}
+
 \RequirePackage[listings]{tcolorbox}
 
 %для таблицы
@@ -62,8 +63,12 @@ basicstyle=\ttfamily,
 frame=lrtb,
 breaklines=true,
 tabsize=3,
-language=C
+language=C,
+showtabs=false,
+showspaces=false
 }
+
+\definecolor{mycolor}{rgb}{0.8, 0.85, 1}
 
 \newtcblisting[auto counter]{namedlisting}[2][]{sharp corners, 
     listing only, 
