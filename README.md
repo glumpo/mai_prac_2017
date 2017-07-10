@@ -105,6 +105,14 @@ Text
 \end{lemma}
 ```
 
+Для алгоритмов
+```
+\begin{algo}
+Text
+\end{algo}
+```
+
+
 Для свойств
 ```
 \begin{property}

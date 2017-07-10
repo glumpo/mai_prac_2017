@@ -89,7 +89,7 @@ language=C
 \let\oldsection\section
 \renewcommand{\section}[1]{\oldsection{#1}\renewcommand{\currentsection}{#1}\renewcommand{\currentsubsection}{#1}}
 
-\newcommand{\cleartop}{\fancyhf{}}
+%\newcommand{\cleartop}{\fancyhf{}}
 
 \fancyhf{}
 \fancyhead[LE,RO]{\thepage}
@@ -114,7 +114,7 @@ language=C
 \makeatother
 \renewcommand{\thesection}{\arabic{section}}
 
-\renewcommand{\lstlistingname}{Алгоритм}
+\renewcommand{\lstlistingname}{\textbf{Алгоритм}}
 %\renewcommand{\qedsymbol}{\blacksquare}
 \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 
@@ -180,6 +180,9 @@ language=C
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{lemma}[thm]{Лемма}
+
+\theoremstyle{mai_theorem_style}
+\newtheorem{algo}[thm]{Алгоритм}
 
 \theoremstyle{mai_theorem_style}
 \newtheorem{property}[thm]{Свойство}
