@@ -10,7 +10,7 @@
 
 \begin{document}
 \section{Секция}
-
+\cleartop
  
 \begin{mynotice}
 Тут замечание.
@@ -38,14 +38,18 @@ Lol
 Lol
 \end{thm}
 
-\colorbox{mycolor}{Here some Text}
 
-\begin{lstlisting}[caption=My Code]
-int main(int argc, char **argv) {
-    return 0;
+\begin{frame}[fragile]{Test}
+\begin{lstlisting}[frame=none]
+public class Main {
+     int counter;
+     public static void main(String[] args) {
+         for (counter = 0; counter < 10; counter++)
+             System.out.println('HelloWorld');
+     }
 }
 \end{lstlisting}
-
+\end{frame}
 
 \begin{mynotice}
 Тут замечание.\footnote{Lol}
@@ -91,7 +95,6 @@ manual for the Ada\footnote{Heh, ADA} programming language 1 ).
 несколько пополнить представление о программировании на языке Ада.
 
 \section{Введение в алгоритмику}
-
 Прежде чем приступить к описанию любого алгоритма, нужно ого­
 ворить общепринятые соглашения, используемые в работе. В инфор­
 матике чаще, чем в любой другой дисциплине, встречается взаимное
