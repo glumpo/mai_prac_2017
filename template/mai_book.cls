@@ -16,6 +16,8 @@
 \RequirePackage{amssymb}
 \RequirePackage{graphicx}
 \RequirePackage{changepage}
+\RequirePackage{tikz}
+\RequirePackage{wrapfig}
 \RequirePackage[left=0.5cm,right=0.5cm,top=1.5cm,bottom=1cm]{geometry}
 
 \RequirePackage[perpage]{footmisc}
@@ -86,6 +88,8 @@ language=C
 \newcommand{\currentsection}{}
 \let\oldsection\section
 \renewcommand{\section}[1]{\oldsection{#1}\renewcommand{\currentsection}{#1}\renewcommand{\currentsubsection}{#1}}
+
+\newcommand{\cleartop}{\fancyhf{}}
 
 \fancyhf{}
 \fancyhead[LE,RO]{\thepage}
