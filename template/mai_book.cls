@@ -40,6 +40,7 @@
 \RequirePackage{framed}
 
 \RequirePackage[listings]{tcolorbox}
+\RequirePackage{multicol}
 
 %для таблицы
 \RequirePackage{multirow}
