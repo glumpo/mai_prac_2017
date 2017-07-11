@@ -96,7 +96,7 @@ showspaces=false
 \newcommand{\newtopre}[1]{\fancyhead[RE]{#1}}
 \newcommand{\newtoplo}[1]{\fancyhead[LO]{#1}}
 
-\newcommand{\cleartop}{\fancyhf{}, \renewcommand{\headrulewidth}{0pt}}
+\newcommand{\cleartop}{\fancyhf{} \renewcommand{\headrulewidth}{0pt}}
 \newcommand{\restoretop}{
 	\cleartop
 	\fancyhead[LE,RO]{\thepage}
