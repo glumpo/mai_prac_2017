@@ -39,8 +39,11 @@
 \captionsetup[lstlisting]{font={bf}}
 
 \begin{wrapfigure}{r}{7cm}
-\centering
-\begin{lstlisting}[language=C, basicstyle=\small, linewidth=7cm, mathescape=true, caption=Вычисление перманента]
+\begin{lstlisting} [language=C,
+					basicstyle=\small,
+					linewidth=7cm, 
+					mathescape=true, 
+					caption=Вычисление перманента]
 S[1] = a[1][succ($n$)]; P = S[1];
 for (int i = 2; i <= n; ++i)
 	S[i] = a[i][succ($n$)]; P *= S[i];
@@ -123,11 +126,40 @@ S_i(\omega) = (a_{in} + \omega_1 a_{i1} + \cdots + \omega_{n - 1} a_{in - 1})/2,
 \end{equation}
 
 \noindent
-Если $j$ является индексом, по которому различаются два слова $\omega$ и $\omega'$, то сумма $S_i(\omega')$ вычисляется, исходя из $S_i(\omega)$, через $S_i(\omega') = S_i(\omega) - a_{ij}$, если $\omega_j = 1$, и через $S_i(\omega') = S_i(\omega) + a_{ij}$, если $\omega_j = -1$. \newline
+Если $j$ является индексом, по которому различаются два слова $\omega$ и $\omega'$, то сумма $S_i(\omega')$ вычисляется, исходя из $S_i(\omega)$, через $S_i(\omega') = S_i(\omega) - a_{ij}$, если $\omega_j = 1$, и через $S_i(\omega') = S_i(\omega) + a_{ij}$, если $\omega_j = -1$.
 
-\textit{// here goes some code}
+\renewcommand{\figurename}{Алгоритм}
 
-\subparagraph{Алгоритм 13.} Вычисление перманента в кольце, где 2 обратимо \newline
+\setlength{\abovecaptionskip}{-10pt}
+\setlength{\belowcaptionskip}{-50pt}
+
+\begin{figure}[htp]
+\centering
+\begin{tabular}{c}
+\begin{lstlisting} [language=C,
+					basicstyle=\small,
+					linewidth=10cm, 
+					mathescape=true, 
+					caption=Вычисление перманента в кольце\, где 2 обратимо]
+for (int i = 1; i <= n; ++i)
+	S[i] = (a[i][1] + ... + a[i][n]) / 2;
+$\sum$ = S[1] * ... * S[n]; $\epsilon$ = {0, ..., 0}; sgn = 1;
+while ($\epsilon$ != $\epsilon_{max}$) {
+	$\epsilon^{'}$ = succ($\epsilon$); sgn = -sgn; j = $\epsilon$ $\Delta$ $\epsilon^{'}$;
+	if ($\epsilon_j$ == 0)
+		for (int i = 1; i <= n; ++i)
+			S[i] -= a[i][j];
+	else // $\epsilon_j$ == 1
+		for (int i = 1; i <= n; ++i)
+			S[i] += a[i][j];
+	$\sum$ += sgn * S[1] * ... * S[n]; $\epsilon$ = $\epsilon^{'}$;
+}
+return 2 * $\sum$;
+\end{lstlisting}
+\end{tabular}
+\end{figure}
+
+\textbf{Алгоритм 13.} Вычисление перманента в кольце, где 2 обратимо \newline
 
 С практической точки зрения для генерации адекватного перебора \linebreak $\{-1, 1\}^{n - 1}$, выбираем соответствие между $\{0, 1\}$ и $\{-1, 1\}$ вида $\epsilon \mapsto (-1)^\epsilon$ и классическую генерацию кода Грея на $\{0, 1\}^{n - 1}$, что достигается с помощью алгоритма 13. Мультипликативная сложность получается, если заметить, что нужно вычислить $2^n - 1$ членов ${\sum}_\omega$ , каждый из которых требует $n - 1$ перемножений (см. формулу (8)), значит, всего $2^{n - 1}(n - 1)$ произведений, к которым нужно добавить последнее умножение на 2. С точки зрения сложений первоначальный член ${\sum}_{(1,...,1)}$ требует $n(n - 1)$ сложений и $n$ делений на 2, тогда как общий член ${\sum}_\omega$ вычисляется, исходя из предыдущего, с помощью $n$ сложений; наконец, нужно сложить все эти члены, что требует в целом $n(n - 1) + (2^{n - 1} - 1)(n + 1)$ сложений и $n$ делений на 2. Заметим относительно предыдущего упражнения, что сложность была приблизительно разделена на 2.
 
