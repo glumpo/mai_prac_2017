@@ -5,6 +5,9 @@
 \setdefaultlanguage{russian}
 
 % === move to mai_book.cls===
+\usepackage{caption}
+\usepackage[justification=centering]{caption}
+\usepackage[labelsep=period]{caption}
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
@@ -32,9 +35,28 @@
 \noindent
 где $k$ — элемент из [1, $n$], который не принадлежит образу $\alpha$, и хорошо видно, что внутренний член (сумма по $\epsilon_k$) равен нулю; это доказывает, что $\mu_\alpha$ в этом случае равно нулю. Второе искомое выражение (суммы которого записываются на множествах) просто выводится из первого, исключением ненулевых $\epsilon_i$, появляющихся в сумме.
 
-\subparagraph{b.} Возвратный код Грея из $n$ разрядов является выражением линейного порядка на множестве всех частей $E$ из [1, $n$], наименьший элемент которого есть 0̸  и наибольший, $E_{max}$, исходное множество. Если $E'$ является последователем для $E$, то симметрическая разность $E \Delta E'$ сводится к одному элементу, а это означает, что $E'$ получается, исходя из $E$, добавлением или удалением одного элемента. Введем несколько обозначений: \linebreak $E'$ = succ($E$), ${\sum}_E = {\sum}_{F \leqslant E} (-1)^{\abs{F}} {\prod}_{1 \leqslant i \leqslant n} S_i (F)$, где $S_i (E) = {\sum}_{j \in E} a_{ij}$. Вычисляемый перманент является, значит, суммой $(-1)^n {\sum}_{E_{max}}$. Эта сумма получается вычислением последовательных значений ${\sum}_E$ и, тогда, итерируя, имеем: \newline
+\setcounter{lstlisting}{11}
+\captionsetup[lstlisting]{font={bf}}
 
-\textit{// here goes some code}
+\begin{wrapfigure}{r}{7cm}
+\centering
+\begin{lstlisting}[language=C, basicstyle=\small, linewidth=7cm, mathescape=true, caption=Вычисление перманента]
+S[1] = a[1][succ($n$)]; P = S[1];
+for (int i = 2; i <= n; ++i)
+	S[i] = a[i][succ($n$)]; P *= S[i];
+$\sum$ = -P; E = succ($n$);
+while (E != E$_{max}$) {
+	j = E $\Delta$ E$^{'}$; S[1] $\pm$= a[1][j];
+	P = pow(-1, abs(E$^{'}$)) * S[1];
+	for (int i = 2; i <= n; ++i)
+		S[i] $\pm$= a[i][j]; P *= S[i];
+	$\sum$ += P; E = E$^{'}$;
+}
+return pow(-1, n) * $\sum$;
+\end{lstlisting}
+\end{wrapfigure}
+
+\subparagraph{b.} Возвратный код Грея из $n$ разрядов является выражением линейного порядка на множестве всех частей $E$ из [1, $n$], наименьший элемент которого есть 0̸  и наибольший, $E_{max}$, исходное множество. Если $E'$ является последователем для $E$, то симметрическая разность $E \Delta E'$ сводится к одному элементу, а это означает, что $E'$ получается, исходя из $E$, добавлением или удалением одного элемента. Введем несколько обозначений: $E'$ = succ($E$), ${\sum}_E = {\sum}_{F \leqslant E} (-1)^{\abs{F}} {\prod}_{1 \leqslant i \leqslant n} S_i (F)$, где $S_i (E) = {\sum}_{j \in E} a_{ij}$. Вычисляемый перманент является, значит, суммой $(-1)^n {\sum}_{E_{max}}$. Эта сумма получается вычислением последовательных значений ${\sum}_E$ и, тогда, итерируя, имеем:
 
 \setcounter{equation}{6}
 
