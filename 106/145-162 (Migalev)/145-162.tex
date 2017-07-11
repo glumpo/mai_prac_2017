@@ -42,6 +42,7 @@
 \begin{lstlisting} [language=C,
 					basicstyle=\small,
 					linewidth=7cm, 
+					belowskip=-1em,
 					mathescape=true, 
 					caption=Вычисление перманента]
 S[1] = a[1][succ($n$)]; P = S[1];
@@ -367,11 +368,13 @@ p(\bigcap_{i \in J} X_i) = \sum_{\alpha : [1, n] \rightarrow \overline{J}} a_{1\
 \begin{lstlisting} [language=C,
 					basicstyle=\small,
 					linewidth=7.5cm,
+					aboveskip=-1em,
+					belowskip=-1em,
 					mathescape=false,
 					frame=l]
 					
-for (int i = 1; i <= arrlen(P); ++i)
-	for (int j = 1; j <= arrlen(Q); ++j)
+for (int i = 0; i < arrlen(P); ++i)
+	for (int j = 0; j < arrlen(Q); ++j)
 		R[i + j] += P[i] * Q[j];
 \end{lstlisting}
 \end{wrapfigure}
@@ -384,6 +387,21 @@ for (int i = 1; i <= arrlen(P); ++i)
 
 \lhead{\small\textit{Решения упражнений}}
 \rhead{153}
+
+\begin{wrapfigure}{l}{7.8cm}
+\begin{lstlisting} [language=C,
+					basicstyle=\small,
+					linewidth=7.8cm,
+					belowskip=-1em,
+					mathescape=false,
+					caption=Перемножение многочленов]
+for (int i = 0; i < arrlen(P); ++i)
+	if (P(i) != 0)
+		for (int j = 0; j < arrlen(Q); ++j)
+			if (Q(j) != 0)
+				R[i + j] += P[i] * Q[j]
+\end{lstlisting}
+\end{wrapfigure}
 
 \noindent
 называют число его ненулевых коэффициентов, но в этом алгоритме, который не учитывает случай нулевых коэффициентов, можно рассматривать высоту многочлена как число всех коэффициентов. Значит, возможно улучшить предыдущий алгоритм, исключив все ненужные перемножения: это сделано в алгоритме 17. В противовес тому, что можно было бы подумать, эта оптимизация вовсе не смехотворная и активно применяется при умножении разреженных многочленов.
