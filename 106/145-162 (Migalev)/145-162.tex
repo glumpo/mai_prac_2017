@@ -564,16 +564,44 @@ $\bullet$ \textit{Is-Null} — булевская переменная, исти
 
 \textit{В действительности эти и другие ограничения на реализуемые с вышеописанными примитивами действия делают невозможным испортить структуру (цепочки связи или компоненты), как мы увидим после описания реализации.}
 
-Вот возможная спецификация для управляющего списком настраиваемого пакета, содержащего примитивы, которые были только что представлены: \newline
+Вот возможная спецификация для управляющего списком настраиваемого пакета, содержащего примитивы, которые были только что представлены:
 
-\textit{// here goes some code}
+\begin{lstlisting} [language=C,
+					linewidth=10cm,
+					aboveskip=3em,
+					mathescape=true,
+					frame=none]
+	#ifndef LIST_HANDLER_H
+	#define LIST_HANDLER_H
+	
+	#include <stdbool.h>
+
+	typedef struct Element;
+	typedef struct Item;
+	typedef struct List;
+	
+	const $\textit{List}$ Null_List = NULL;
+\end{lstlisting}
 
 \newpage
 
 \lhead{\small\textit{Решения упражнений}}
 \rhead{159}
 
-\textit{// here goes some code} \newline
+\begin{lstlisting} [language=C,
+					morekeywords={bool},
+					linewidth=14cm,
+					belowskip=3em,
+					mathescape=true,
+					frame=none]
+	
+	$\textit{Element}$ Head($\textit{List}$ Of_The_List);
+	$\textit{List}$ Tail($\textit{List}$ Of_The_List);
+	$\textit{List}$ Construct($\textit{Element}$ The_Element, $\textit{List}$ And_The_List);
+	bool Is_Null($\textit{List}$ The_List);
+
+	#endif
+\end{lstlisting}
 
 К этой спецификации добавлена константа \textit{Null\_List}, обозначающая пустой список. Определение этой константы раскрывается в предыдущей части. На первый взгляд есть одно исключение \textit{List\_Is\_Null}, которое указывает при случае, что требуемая операция невозможна в случае отсутствия списка. С другой стороны, в предыдущей части производилась работа с определением неполного типа (которое пополнялось в теле пакета с помощью определения $\blacktriangleright$ \textbf{type} \textit{Item} \textbf{is record} \textit{Element : Element; Next : List;} \textbf{end record} $\blacktriangleleft$ ).
 
