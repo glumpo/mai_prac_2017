@@ -135,7 +135,7 @@ S_i(\omega) = (a_{in} + \omega_1 a_{i1} + \cdots + \omega_{n - 1} a_{in - 1})/2,
 \begin{tabular}{c}
 \begin{lstlisting} [language=C,
 					basicstyle=\small,
-					linewidth=10cm, 
+					linewidth=9.3cm, 
 					mathescape=true, 
 					caption=Вычисление перманента в кольце\, где 2 обратимо]
 for (int i = 1; i <= n; ++i)
@@ -174,7 +174,7 @@ return 2 * $\sum$;
 \begin{tabular}{c}
 \begin{lstlisting} [language=C,
 					basicstyle=\small,
-					linewidth=10cm, 
+					linewidth=9.3cm, 
 					mathescape=true, 
 					caption=Вычисление перманента для характеристики\, 							отличной от 2]
 for (int i = 1; i <= n; ++i)
@@ -204,7 +204,7 @@ return $\sum$/($2^{n - 1}$);
 \begin{leftbar}
 \begin{lstlisting} [language=C,
 					basicstyle=\small,
-					linewidth=7cm, 
+					linewidth=6.8cm, 
 					mathescape=true, 
 					frame=none]
 { a[1], ..., a[n] } = { 0, ..., 0 }
@@ -230,13 +230,41 @@ $\bullet$ затем помещаем $n - 1$ в массив $\alpha$, оста
 
 $\bullet$ продолжаем, зная, что на $k$-м этапе этого процесса $k - 1$ величин уже размещены в массиве, следовательно, в массиве $\alpha$ остается $n - k$ свободных мест, и, с другой стороны, величина $\alpha_{n - k}$ строго меньше, чем $n - k$. \newline
 
-\textit{// here goes some code} \newline
+\noindent
+\begin{figure}[htp]
+\centering
+\begin{tabular}{c}
+\begin{lstlisting} [language=C,
+					basicstyle=\small,
+					linewidth=7cm, 
+					mathescape=true, 
+					caption=Генерация перестановок]
+{ $\alpha$[1], ..., $\alpha$[n] } = { 1, ..., 1 }
+for (int k = 2; k <= n; ++k) {
+	j = n; i = 0;
+	do {
+		if (a$_j$ == 1) // (#1)
+			i++;
+		j--;
+	} while (i != 1 + a$_k$); // (#2)
+	$\alpha_{j + 1} = k;$
+}
+\end{lstlisting}
+\end{tabular}
+\end{figure}
+
+\begin{leftbar}
+\noindent
+\#1: \quad $i$ есть число свободных индексов > $j$
+\\
+\#2: \quad $i$ = 1 + a$_k$, то $j$ свободен
+\end{leftbar}
 
 В алгоритме 15 использована оптимизация: свободные места в массиве, представляющем перестановку $\alpha$, отмечены числами 1, что позволяет не помещать это последнее значение в массив, представляющий $\alpha$, в конце алгоритма.
 
 \paragraph{24. Перебор перестановок транспозициями $(i, i + 1)$}
 
-\subparagraph{a.} Рассуждаем индукцией по $n$, при этом случаи $n = 1$ и $n = 2$ очевидны. С помощью перестановки $\sigma$ интервала [1, $n$] можно построить $n + 1$ перестановок $\sigma^1, \sigma^2, \text{ ... } , \sigma^{n + 1}$ интервала [1, $n + 1$], где перестановка $\sigma^i$ получается включением в $\sigma$ элемента $n + 1$ на $i$-ое место; например,
+\subparagraph{a.} Рассуждаем индукцией по $n$, при этом случаи $n = 1$ и $n = 2$ очевидны. С помощью перестановки $\sigma$ интервала [1, $n$] можно построить $n + 1$ перестановок $\sigma^1, \sigma^2, \text{ ... } , \sigma^{n + 1}$ интервала [1, $n + 1$], где перестановка $\sigma^i$ получается включением в $\sigma$ элемента $n + 1$ на $i$-ое место; например, если \linebreak
 
 \newpage
 
@@ -244,7 +272,7 @@ $\bullet$ продолжаем, зная, что на $k$-м этапе этог
 \rhead{\small\textit{$I$ \quad Алгоритмика и программирование на языке Ада}}
 
 \noindent
-если $\sigma = (5 2 4 1 3)$, то
+$\sigma$ = (5 2 4 1 3), то
 
 \begin{equation*}
 	\begin{split}
