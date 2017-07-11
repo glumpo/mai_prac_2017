@@ -93,6 +93,9 @@ showspaces=false
 \let\oldsection\section
 \renewcommand{\section}[1]{\oldsection{#1}\renewcommand{\currentsection}{#1}\renewcommand{\currentsubsection}{#1}}
 
+\newcommand{\newtopre}[1]{\fancyhead[RE]{#1}}
+\newcommand{\newtoplo}[1]{\fancyhead[LO]{#1}}
+
 \newcommand{\cleartop}{\fancyhf{}, \renewcommand{\headrulewidth}{0pt}}
 \newcommand{\restoretop}{
 	\cleartop
