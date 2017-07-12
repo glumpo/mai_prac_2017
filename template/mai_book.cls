@@ -23,6 +23,8 @@
 \RequirePackage[perpage]{footmisc}
 \RequirePackage{atbegshi}
 \RequirePackage{titlesec}
+\RequirePackage{caption}
+
 
 %эпиграф
 \RequirePackage{epigraph}
@@ -32,9 +34,14 @@
 \makeatletter
 % Taken and updated from http://mirrors.ctan.org/macros/latex/contrib/epigraph..
 \renewcommand{\@epitext}[1]{%
-\begin{minipage}{\epigraphwidth}\begin{\textflush} \hspace*{20pt}#1\\
+\begin{minipage}{\epigraphwidth}\begin{\textflush} \hspace*{20pt} {\sffamily\footnotesize \indent \textit{#1}} \\
 \ifdim\epigraphrule>\z@ \@epirule \else \vspace*{-.5\baselineskip} \fi
 \end{\textflush}\end{minipage}}
+
+\renewcommand{\@episource}[1]{%
+\begin{minipage}{\epigraphwidth}\begin{\sourceflush} {\sffamily\footnotesize #1 } \end{\sourceflush}
+\end{minipage}}
+
 \makeatother
 
 \RequirePackage{framed}
@@ -93,6 +100,30 @@ showspaces=false
 \let\oldsection\section
 \renewcommand{\section}[1]{\oldsection{#1}\renewcommand{\currentsection}{#1}\renewcommand{\currentsubsection}{#1}}
 
+%-----------
+\newcommand{\currentchapter}{}
+\let\oldchapter\chapter
+\renewcommand{\chapter}[2][1]{\oldchapter{#2}\renewcommand{\currentchapter}{#1}\renewcommand{\currentsection}{#2}}
+
+\newcommand{\chaptertop}{
+\fancyhf{}
+\fancyhead[LE,RO]{\footnotesize\thepage}
+\fancyhead[RE]{\footnotesize\Roman{chapter}\hspace{7pt} \selectfont\itshape{\currentchapter}}
+\fancyhead[LO]{\footnotesize\Roman{chapter}-\arabic{section}\hspace{7pt} \selectfont\itshape{\currentsection}}
+\renewcommand{\headrulewidth}{0.8pt}
+
+}
+\newcommand{\sectiontop}{
+\fancyhf{}
+\fancyhead[LE,RO]{\footnotesize\thepage}
+\fancyhead[RE]{\footnotesize\Roman{chapter}-\arabic{section}\hspace{7pt} \selectfont\itshape{\currentsection}}
+\fancyhead[LO]{\footnotesize\Roman{chapter}-\arabic{section}.\arabic{subsection}\hspace{7pt} \selectfont\itshape{\currentsubsection}}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.8pt}
+}
+
+%-----------
+
 \newcommand{\newtopre}[1]{\fancyhead[RE]{#1}}
 \newcommand{\newtoplo}[1]{\fancyhead[LO]{#1}}
 
@@ -107,8 +138,8 @@ showspaces=false
 
 \fancyhf{}
 \fancyhead[LE,RO]{\thepage}
-\fancyhead[RE]{\Roman{section}\hspace{7pt} \currentsection}
-\fancyhead[LO]{\Roman{subsection}\hspace{7pt} \currentsubsection}
+\fancyhead[RE]{\Roman{section}\hspace{7pt} \textit{\currentsection}}
+\fancyhead[LO]{\Roman{subsection}\hspace{7pt} \textit{\currentsubsection}}
 \renewcommand{\headrulewidth}{0.8pt}
 
 % римские цифры в номерах глав
@@ -117,10 +148,10 @@ showspaces=false
 \titleformat {\chapter}
 [display]
 {\bfseries\Huge}
-{Глава \ \thechapter}
+{Глава \ \Roman{chapter}}
 {2ex} % sep
 {} % before-code
-[] % after-code
+[\thispagestyle{empty}] % after-code
 
 
 \makeatletter
@@ -137,6 +168,13 @@ showspaces=false
 {\itshape}{}%
 {\bfseries}{}%
 {\newline}{}%
+
+\newtheoremstyle{mai_theorem_style_normal}
+{\topsep}{\topsep}%
+{}{}%
+{\bfseries}{}%
+{\newline}{}%
+
 
 \newenvironment{mynotice}{
 \begin{adjustwidth}{25pt}{25pt}
@@ -204,5 +242,5 @@ showspaces=false
 \theoremstyle{mai_theorem_style}
 \newtheorem{bezpodpisi}[thm]{}
 
-\theoremstyle{mai_theorem_style}
+\theoremstyle{mai_theorem_style_normal}
 \newtheorem*{beznomera}{}
