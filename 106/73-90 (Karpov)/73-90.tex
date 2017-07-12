@@ -1,17 +1,7 @@
-\documentclass{../../template/mai_book}
-
-\defaultfontfeatures{Mapping=tex-text}
-\setdefaultlanguage{russian}
-
-
-%\clearpage
- % ТАК ЗАДАВАТЬ ГЛАВЫ, ПАРАГРАФЫ И ПРОЧЕЕ.
-% Эти счетчики достаточно задать один раз, обновляются дальше сами
-
-
-% \section{ЗАГОЛОВОК}  юзать чтобы вручную поменть заголовок вверху страници
-
-\begin{document}
+%\documentclass{../../template/mai_book}
+%\defaultfontfeatures{Mapping=tex-text}
+%\setdefaultlanguage{russian}
+%\begin{document}
 мы говорили. На распечатке спецификации можно увидеть определения
 типов, которые должны быть представлены в личной части.
 Все это может показаться невероятно сложным и неэффективным.
@@ -364,8 +354,6 @@ inline void sucsessor_of(bijection bij, signature sig);
 цов имеют то т же тип. Когда этот выбор сделан, нужно конкрети­
 зировать оба настраиваемых пакета по оперированию с матрицами и
 
-\newpage
-
 вступить в диалог с пользователем. Именно это делает первый модуль
 программы, представленный здесь:
 
@@ -374,6 +362,13 @@ inline void sucsessor_of(bijection bij, signature sig);
 typedef unsigned int index;
 typedef long long int coefficient;
 void compute_determ
+
+while (true){
+	size_t size;
+	scanf("%d", &size);
+	matrix mat;
+	get_all(mat);
+}
 \end{lstlisting}
 
 Начинают, таким образом, с построения матричного типа и его
@@ -786,7 +781,6 @@ Descending\_Index = q\\
 \}\\
 \end{tabular}}\\
 \end{tabular}
-\pagebreak
 
 Нужно заметить, что это последнее преобразование перестановки \textit{Sigma}
  сделано через транспозиции, и поэтому отсюда можно вывести 
@@ -841,4 +835,4 @@ for(int i = First\_Index; i \textless q; i++)\\
  имеет два параметра: исходная биекция и ее сигнатура, и 
 эта процедура вычисляет следующую биекцию и ее сигнатуру.
 
-\end{document}
+%\end{document}
