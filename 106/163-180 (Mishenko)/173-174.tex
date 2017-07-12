@@ -1,0 +1,105 @@
+%                                  173
+\noindent
+получаем:
+\begin{center}
+$\delta=\hat{q}-q\leqslant\dfrac{u}{v_mb^m}-\dfrac{u}{v}+1=\dfrac{u}{v}\dfrac{v-v_mb^m}{v_mb^m}+1\leqslant\dfrac{u}{v}\dfrac{b^m}{v_mb^m}+1$,
+\end{center}
+откуда $\delta{v_m\leqslant{\dfrac{u}{v}}+v_m}$ и, следовательно,
+\begin{center}
+$\delta{v_m}\leqslant\left[\dfrac{u}{v}\right]+v_m=\hat{q}-\delta+v_m\leqslant{b-1-\delta+v_m}$.
+\end{center}
+Отсюда получаем окончательно $\delta\leqslant(b+v_m-1)/(v_m+1)$.\newline
+\hspace*{15pt}Эффективная реализация деления требует уже использования деле-\linebreak
+ния числа из двух цифр на число из одной цифры.\\
+
+\textbf{b.} Записав: $u=u_{m+1}b^{m+1}+u_mb^m+u_{m-1}b^{m-1}+\alpha, v=v_mb^m+$\linebreak
+$v_{m-1}b^{m-1}+\beta$ с $\alpha<b^{m-1}$ и $\beta<b^{m-1}$, получаем:
+\begin{center}
+$u-\hat{q}v=((u_{m+1}b+u_m-\hat{q}v_m)b+u_{m-1}-\hat{q}v_{m-1})b^{m-1}+\alpha-\hat{q}\beta=$
+\end{center}
+\hspace*{80pt}$=(\hat{r}b+u_{m-1}-\hat{q}v_{m-1})b^{m-1}+\alpha-\hat{q}\beta$.\newline
+В случае $(i)$ $\hat{r}b+u_{m-1}-\hat{q}v_{m-1}\leqslant-1$, что дает:
+\begin{center}
+$u-\hat{q}v\leqslant-b^{m-1}+\alpha-\hat{q}\beta\leqslant-b^{m-1}+\alpha<-b^{m-1}+b^{m-1}=0$,
+\end{center}
+а неравенство $u-\hat{q}v<0$ дает $q\leqslant\hat{q}-1$. В случае $(ii)$ $\hat{r}b+u_{m-1}-\hat{q}v_{m-1}\geqslant{0}$\linebreak
+и, следовательно,
+\begin{center}
+$u-\hat{q}v\geqslant\alpha-\hat{q}\beta\geqslant-\hat{q}\beta\geqslant-b\times{b^{m-1}}\geqslant-v_mb^m\geqslant-v$.
+\end{center}
+Тогда неравенство $u-(\hat{q}-1)v\geqslant0$ дает $q\geqslant\hat{q}-1$. Алгоритм, изобра-\linebreak
+\begin{multicols}{2}
+\noindent
+женный справа, показывает, как ин-\linebreak
+терпретировать случаи $(i)$ и $(ii)$ во-\linebreak
+проса \textbf{b}: они позволяют быстро кор-\linebreak
+ректировать (вычисления, которые\linebreak
+здесь участвуют, относятся к числам
+из двух цифр) \textbf{начальную} оценку
+способом получения \textbf{исправленной}\linebreak
+\columnbreak
+\begin{lstlisting}[mathescape=true, frame=l]
+$\hat{q}\leftarrow$ min $\left(\left[\frac{u_{m+1}+u_m}{v_m}\right], b-1\right)$;
+$\hat{r}\leftarrow{u_{m+1}}b+u_m-\hat{q}v_m$;
+while ($q\leqslant\hat{q}$) {
+  if ($\hat{q}v_{m-1}\leqslant{b}\hat{r}+u{m-1}$)  break;
+  //$q\leqslant\hat{q}-1$
+  $\hat{q}\leftarrow\hat{q}-1$; $\hat{r}\leftarrow\hat{r}+v_m$;
+}
+//$q=\hat{q}\text{ или даже }q=\hat{q}-1$
+\end{lstlisting}
+\end{multicols}
+\noindent
+оценки $\hat{q}$, где $q\in\{\hat{q},\hat{q}-1\}$. К приме-\linebreak
+ру, зафиксируем $b=10, m=2, u=(u_3u_200)_{10}$ и $(q+1)v_1\leqslant10(10u_3+u_2-$\linebreak
+$(q+1)v_2$, тогда исправленная оценка равна начальной оценке, которая\linebreak
+равна $q+1$ (вместо $q$). Например, если $u=5000$, то возможные значения\linebreak
+$v$, для которых исправленная оценка равна $q+1$, следующие:
+\begin{center}
+626, 627, 628, 629, 715, 716, 717, 718, 719, 834, 835, 836, 837, 838, 839.
+\end{center}
+\newpage
+%                                174
+\textbf{c.} Если $r$ обозначает остаток от деления $u$ на $v$, то имеем\linebreak
+$0\leqslant{r}<b^{m+1}$, откуда следует, что достаточно определить $r$ mod\linebreak
+$b^{m+1}$. Упражнение 36, для чисел $u$ и $\hat{q}$ веса $\leqslant m+1$, позволяет ре-\linebreak
+ализовать одновременно вычисление проверки $u\geqslant\hat{q}v$ и вычисление\linebreak
+$(u-\hat{q}v)$ mod $b^{m+2}$, следовательно и вычисление $(u-\hat{q}v)$ mod $b^{m+1}$. Кро-\linebreak
+ме того, хотя участвующие числа удовлетворяют соотношениям для\linebreak
+весов $\leqslant{m+1}$, внимательное изучение показывает, что можно вычи-\linebreak
+слить $(u-\hat{q}v)$ mod $b^{m+1}$ в массиве $\rho=(\rho_m,\rho_{m-1},...,\rho_0)$ и реализовать\linebreak
+проверку $u\geqslant\hat{q}v$. Тогда $(q,r)$ можно определить следующим образом\\
+
+\noindent
+\hspace*{40pt}если $u\geqslant\hat{q}v$,\hspace{20pt}$q=\hat{q}$\hspace{45pt}$r=\rho$;\newline
+\hspace*{40pt}если $u<\hat{q}v$,\hspace{20pt}$q=\hat{q}-1$,\hspace{25pt}$r=(\rho+v)$ mod $b^{m+1}$.\\
+
+\noindent
+Получили алгоритм 23.
+\begin{lstlisting}[mathescape=true, caption={Частные и остатки от деления $(u_{m+1}...u_0)$ на $(v_m...v_0)$, где $u/v<b. n\geqslant1$}]
+if $u_{m+1}=v_m$  $\hat{q}\leftarrow{b-1}$; else  $\hat{q}\leftarrow\left[\frac{u_{m+1}b+u_m}{v_m}\right]$;
+$\hat{r}\leftarrow{u_{m+1}}b+u_m-\hat{q}v_m$;
+for (;;) {
+  if ($\hat{q}v_{m+1}\leqslant{b}\hat{r}+u_{m-1}$)  break;
+  $\hat{q}\leftarrow\hat{q}-1$; $\hat{r}\leftarrow\hat{r}+v_m$;
+}
+$\text{Одновременное вычисление }$$\rho=(u-\hat{q}v)$$\text{ mod }$$b^{m+1}$$\text{ и проверка }$$u\geqslant\hat{q}v$
+if ($u\geqslant\hat{q}v$)
+  $(q,r)\leftarrow(\hat{q},\rho)$;
+else
+  $(q,r)\leftarrow(\hat{q}-1, (\rho+v)$ mod $b^{m+1}$;
+\end{lstlisting}
+\textbf{39. Деление: операция нормализации}\\
+\hspace*{15pt}\textbf{a.} Известно, что $0\leqslant\hat{q}-q\leqslant(b+v_m-1)/(v_m+1)$. Для получения\linebreak
+$\hat{q}-q\leqslant2$ достаточно иметь $(b+v_m-1)/(v_m+1)<3$, что, после проверки\linebreak
+эквивалентно $v_m\geqslant[b/2]-1$.\\
+
+\textbf{b.} Исправленная оценка $\hat{q}$ удовлетворяет соотношению $\hat{q}v_{m-1}\leqslant{b}\hat{r}+$\linebreak
+$u_{m-1}$. т.е.:
+\begin{center}
+$\hat{q}v_{m-1}\leqslant{b}(u_{m+1}b+u_m-\hat{q}v_m)+u_{m-1}$,
+\end{center}
+что влечет: $(v_mb+v_{m-1})\hat{q}\leqslant{u_{m+1}}b^2+u_mb+u_{m-1}\leqslant{u}$. Отсюда следует:\linebreak
+\begin{center}
+$u-\hat{q}v\geqslant{u(1-\dfrac{v}{v_mb^m+v_{m-1}b^{m-1}})}$.
+\end{center}
