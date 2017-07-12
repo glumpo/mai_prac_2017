@@ -40,6 +40,7 @@
 \RequirePackage{framed}
 
 \RequirePackage[listings]{tcolorbox}
+\RequirePackage{multicol}
 
 %для таблицы
 \RequirePackage{multirow}
@@ -92,14 +93,17 @@ showspaces=false
 \let\oldsection\section
 \renewcommand{\section}[1]{\oldsection{#1}\renewcommand{\currentsection}{#1}\renewcommand{\currentsubsection}{#1}}
 
-\newcommand{\cleartop}{\fancyhf{}, \renewcommand{\headrulewidth}{0pt}}
+\newcommand{\newtopre}[1]{\fancyhead[RE]{#1}}
+\newcommand{\newtoplo}[1]{\fancyhead[LO]{#1}}
+
+\newcommand{\cleartop}{\fancyhf{} \renewcommand{\headrulewidth}{0pt}}
 \newcommand{\restoretop}{
 	\cleartop
 	\fancyhead[LE,RO]{\thepage}
 	\fancyhead[RE]{\Roman{section}\hspace{7pt} \currentsection}
 	\fancyhead[LO]{\Roman{subsection}\hspace{7pt} \currentsubsection}
 	\renewcommand{\headrulewidth}{0.8pt}
- }
+}
 
 \fancyhf{}
 \fancyhead[LE,RO]{\thepage}
