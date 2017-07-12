@@ -1,0 +1,89 @@
+\noindent состоит в том, что надо заменить $p^1$ в предыдущем алгоритме на $p^k$ и рассмотреть $k$ как параметр алгоритма.
+\newline \newline \indent
+\textbf{f.} Используя алгоритмы восстановления в $\mathds{Z}_{p^{a+k}}$ для нулей по мо­дулю $p^\alpha$, можно сконструировать алгоритм подъема корней из $\mathds{Z}_p$ в $\mathds{Z}_{p^n}$, минимизирующий количество промежуточных этапов. Как и вы­ше, определим корни по модулю $p$, что делается очень просто, если $p$ — простое число, — подстановкой последовательно всех точек из $\mathds{Z}_p$. Это первичное исследование заканчивается, когда будут найдены все
+корни многочлена $P$, их число равно степени НОД$(P,X^p - X)$. Далее поднимаем эти корни в $\mathds{Z}_{p^2}$, $\mathds{Z}_{p^4}$, $\dots$, каждый раз удваивая показатель $p$. Этот процесс заканчивается, когда будет получена достаточно большая степень $p$, не превосходящая $p^n$, и далее надо применить алгоритм
+для значения $k$, которое не обязательно максимально. Например, для
+перехода от $\mathds{Z}_p$ к $\mathds{Z}_{p^57}$ вычисляются решения по модулям $p^2$, $p^4$, $p^8$, $p^16$, $p^32$ и, наконец, $p^57$ при $k = 25$.
+\newline \newline
+\textbf{35. Циклическая перестановка элементов массива}
+\newline \newline \indent
+\textbf{a.} Алгоритм является простым обобщением классического алгорит­
+ма обмена значениями двух переменных.
+\begin{lstlisting}[mathescape=true]
+$Aux \longleftarrow T(n-1)$
+for (unsigned int i = n - 1; n$--$ > 1;) {
+    $T(i) \longleftarrow T(i - 1)$
+}
+$T(0) \longleftarrow Aux$;
+\end{lstlisting}
+\textit{\indent} \textbf{b.} Можно показать, что если $i + kp = i + k'p\:mod\:n$, то $k -k'$ делится на $n/d$, где $d$ есть НОД $n$ и $p$ . Следовательно мощность множества
+индексов есть $n/d$.
+\newline \indent
+Ротация (т.е. циклическая перестановка) элементов массива это, в действительности, сдвиги индексов и, по доказанному выше, эти сдви­ги определяют \textit{орбиты}, являющиеся общими инвариантами трансля­ций, длины $n/d$, элементы которых находятся на расстоянии $p$. Следо­вательно, осуществление ротации массива проходит по-орбитно. Это дает нам алгоритм:
+\begin{lstlisting}[mathescape=true]
+$Aux \longleftarrow T(n-1)$
+for (unsigned int Orbite = 0; Orbite < n; Orbite++) {
+    $Index \longleftarrow (Orbite - p)\:mod\:n; Aux \longleftarrow T(Index);$
+    for (unsigned int $k$ = 1; $k$ < $n/d$; k++) {
+        $T(Index) \longleftarrow T((Index - p)\:mod\:n); Index \longleftarrow (Index - p)\:mod\:n;$
+    }
+    $T(Index) \longleftarrow Aux;$
+}
+\end{lstlisting}
+\newpage
+Сложность полученного алгоритма, следовательно, составляют $n + \text{НОД}(n,p)$ присваиваний элементов массива, что дает $pn$ или $(n - p)n$ необходимых присваиваний, если повторно применять алгоритм из во­проса \textbf{а}.
+\newline \newline \indent
+\textbf{c.} Обмен двух участков (дополнительных) массива сводится к по­вороту таблицы в лучшую сторону в смысле некоторого числа позиций. Теперь достаточно применить предыдущий алгоритм.
+\newline \newline
+\textbf{36. Элементарные операции в арифметике повышенной точности}
+\newline \newline \indent
+\textbf{a.} Алгоритм $20-A$ получается непосредственно. Важным моментом
+является управление переносом.
+\begin{multicols}{2}
+\begin{center}
+\textbf{A.} Сложение
+\end{center}
+{\begin{lstlisting}[mathescape=true]
+$carry \longleftarrow 0$;
+for (unsigned i = 0; i <= m; i++) {
+    $aux \longleftarrow u_i + v_i + carry$;
+    if (aux < b) {
+        $w_i \longleftarrow aux$; $carry \longleftarrow 0$;   
+    } else {
+        $w_i \longleftarrow aux - b$; $carry \longleftarrow 1$;
+    }
+}
+if (carry == 1) { //$u + v \geq b^{m+1}$
+   $w_{m+1} \longleftarrow 1$
+}
+\end{lstlisting}}
+\columnbreak
+\begin{center}
+\textbf{B.} Вычитание
+\end{center}
+{\begin{lstlisting}[mathescape=true]
+$carry \longleftarrow 0$;
+for (unsigned i = 0; i <= m; i++) {
+    $aux \longleftarrow u_i - v_i - carry$;
+    if (aux < 0) {
+        $w_i \longleftarrow aux + b$; $carry \longleftarrow 1$;   
+    } else {
+        $w_i \longleftarrow aux$; $carry \longleftarrow 0$;
+    }
+}
+if (carry == 1) {
+   $u < v$ и $w = b^{m+1} + u - v$
+}
+\end{lstlisting}}
+\end{multicols}
+\begin{center}
+\textbf{Алгоритм 20.} Вычисление $(u_m \dots u_0)_b \pm (v_m \dots v_0)_b$
+\end{center}
+$\:$ \newline
+\textit{\indent}\textbf{b.} В полном алгоритме $20-B$, если $u \geq v$, то легко доказать по ин­дукции, что $carry = 0$ или $1$ и $0 \geq (u_i - v_i - carry) + b < 2b$.
+\newline \indent Что делать, если $u < v$? В этом случае можно проверить, что вычисляемое число представляет $b^{m+1} + u — v$ и то, что $u < v$ может быть обнаружено после цикла проверкой текущего значения; до того, как цикл будет проверять текущее значение.
+\newline \newline \indent
+\textbf{c.} Алгоритм 21 основывается на следующем соотношении:
+\begin{align*}
+(u_{i+1} \dots u_0) \times v = (u_i \dots u_0) \times v + u_{i+1} v b^{i+1}.
+\end{align*}
