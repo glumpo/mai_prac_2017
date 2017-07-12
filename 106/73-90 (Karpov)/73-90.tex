@@ -306,7 +306,28 @@ $\delta = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 \\ 2 & 4 & 5 & 1 & 3 \end{pmatrix} $
 следования (соответственно, предшествования). Вот описание настра­
 иваемого пакета, определяющего такой генератор.
 
-% TODO: code
+\begin{lstlisting}
+
+typedef enum {
+\\ ...
+} source;
+
+typedef enum {
+\\ ...
+} target;
+
+typedef enum {
+\\ ...
+} signature;
+
+typedef target bijetion[RANGE];
+bijection min_bij(source s_min,
+				  source s_max, 
+				  target t_min,
+				  target t_max);
+inline void sucsessor_of(bijection bij, signature sig);
+
+\end{lstlisting}
 \newpage
 % TODO: code
 
