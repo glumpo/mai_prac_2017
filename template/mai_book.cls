@@ -126,6 +126,18 @@ showspaces=false
 \renewcommand{\headrulewidth}{0.8pt}
 }
 
+\newcommand{\currentsubsubsection}{}
+\let\oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}[1]{\oldsubsubsection{#1}\renewcommand{\currentsubsubsection}{#1}}
+\newcommand{\subsectiontop}{
+\fancyhf{}
+\fancyhead[LE,RO]{\footnotesize\thepage}
+\fancyhead[RE]{\footnotesize\Roman{chapter}-\arabic{section}\hspace{7pt} \selectfont\itshape{\currentsection}}
+\fancyhead[LO]{\footnotesize\Roman{chapter}-\arabic{section}.\arabic{subsection}.\arabic{subsubsection}\hspace{7pt} \selectfont\itshape{\currentsubsubsection}}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.8pt}
+}
+
 %-----------
 
 \newcommand{\newtopre}[1]{\fancyhead[RE]{#1}}
