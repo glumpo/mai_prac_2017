@@ -103,7 +103,7 @@ showspaces=false
 	\fancyhead[RE]{\Roman{section}\hspace{7pt} \currentsection}
 	\fancyhead[LO]{\Roman{subsection}\hspace{7pt} \currentsubsection}
 	\renewcommand{\headrulewidth}{0.8pt}
- }
+}
 
 \fancyhf{}
 \fancyhead[LE,RO]{\thepage}
