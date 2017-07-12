@@ -11,6 +11,7 @@
 % \newtop{ЗАГОЛОВОК} юзать чтобы вручную поменть заголовок вверху страници
 
 \begin{document}
+%\setcounter{page}{689}
 \noindent
 что дает $s_0 = 3z_0 , s_1 = 3z_1 , s_2 = 3z_2$. \newline \newline
 \indent \textbf{c.} Пусть $h(x,y,z)$ --- 3-линейная форма, ассоциированная с цикли­ческой сверткой порядка $n:$ \newline
@@ -60,6 +61,7 @@ $\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;s_9 \leftarrow s_8 + m_
 $\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;z_0 = s_7, \; \;\; \; z_1 = s_9, \; \;\; \; z_2 = s_{11}.$
 \end{lstlisting}
 \newpage
+%\setcounter{page}{690}
 \noindent
 \textbf{29. Негациклическая свертка порядка 4} \newline \newline
 \indent Пусть $Z(T) = z_o + z_1 T + z_2 T^2 + z_3 T^3 = X(T)Y(T) \mod (T^4 + 1)$, где \newline \newline \indent $X(T) = x_0 + x_1 T + x_2 T^2 + x_3 T^3, \; \; \; \; \; \; Y(T) = y_0 + y_1 T + y_2 T^2 + y_3 T^3$. \newline
@@ -110,6 +112,7 @@ C = \begin{pmatrix}
 $
 \end{center}
 \newpage
+%\setcounter{page}{691}
 \noindent
 Симметризуем задачу, рассматривая 3-линейную форму $h_{i,j,k}$, ассоциированную с негациклической сверткой порядка 4: $h_{i,j,k} = 1$, если $i + j = k, h_{i,j,k} = \\ -1$, если $i + j = 4 + k$, в противном случаем $h_{i,j,k} = 0$. Отсюда выводится свойство симметрии: $h_{i,j,k} = \xi_i \xi_j h_{-k,j,-i}$, где все индексы вычисляются по модулю 4 при $\xi_0 = -1, \xi_i = 1$, если $i = 1,2,3$. Получаем новую реализацию ($\acute A,\acute B,\acute C$), где $\acute B = B$, при этом столбцы $\acute A$ (соответственно, в $\acute C$) получаются перестановками столбцов из $C$ (соответственно, из $A$) со знаком минус для первого столбца. 
 \begin{center}
@@ -162,6 +165,7 @@ X(T)Y(T) &= ac + ((a + b)(c + d) - ac - bd)T^2 + bdT^4 = \\
 \begin{align*} m_1 = x_0 y_0, \qquad m_2 = (x_0 + x_1)(y_0 + y_1),\qquad m_3 = x_1 y_1, \qquad m_4 = x_2 y_2,
 \end{align*}
 \newpage
+%\setcounter{page}{692}
 \begin{align*} m_5 = (x_2 + x_3)(y_2 + y_3), \qquad m_6 = x_3 y_3 ,\qquad m_7 = (x_0 + x_2)(y_0 + y_2),
 \end{align*}
 $m_8 = (x_0 + x_2 + x_1 + x_3)(y_0 + y_2 + y_1 + y_3), \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; \; m_9 = (x_1 + x_3)(y_1 + y_3).
@@ -198,6 +202,7 @@ $2z_3 = z_0^+ - z_0^- , \;\;\; 2z_4 = z_1^+ + z_1^- , \;\;\; 2z_5 = z_2^+ - z_2^
 \textbf{a}. Конструкция $\Omega \rightarrow \widehat{\Omega}$ является контравариантным функтором, т.е. всякий морфизм $f : \Omega_1 \rightarrow  \Omega_2$ пораждает морфизм $\hat f : \hat \Omega_2 \rightarrow  \hat \Omega_1$, с функториальными свойствами. Отсюда легко следует канонический изоморфизм на $\widehat{\Omega_1 \times \Omega_2}$ на $\hat  \Omega_1 \times \hat \Omega_2$. \newline \indent
 \textbf{b}. Исследуем сначала случай, когда $\Omega$ --- циклическая группа поряд­ка $n$. Группа Hom$(\mathds{Z}/n \mathds{Z},U)$ канонически изоморфна подгруппе $U_{(n)}$ в $U$, состоящей из элементов $x \in U$, таких, что $x^n = 1$. Если $U$ --- мультипликативная группа комплексных чисел с единичным модулем, то	
 \newpage
+%\setcounter{page}{693}
 \noindent
 Подгруппа $U_{(n)}$ --- циклическая группа порядка $n$, следовательно, изоморфна $\mathds{Z}/n\mathds{Z}$. Но это заключение $(U_{(n)} \; \simeq \; \mathds{Z}/n\mathds{Z})$ остается также верным, если $U$ --- циклическая группа, порядок которой делится на $n$. \newline
 \indent Произвольная абелева группа $\Omega$ записывается в виде произведения циклических групп: \newline \newline \indent
@@ -212,6 +217,7 @@ $\;\;\;\;\;\;\;\;\; \chi \longmapsto \sum \limits_{\omega} \widehat{a^{'}} (\ome
 $\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;= \frac{1}{|\Omega|}\sum \limits_{\chi^{'}}$\'{$a$}(\'{$\chi$})$\sum \limits_{\omega}(\chi \chi^{'-1})(\omega).$ \newline \newline\newline
 Но внутренние суммы все равно равны нулю, кроме случая $\chi^{'} = \chi$, и поэтому DFT{\scriptsize $\Omega$}$ \; \circ \; $DFT{\scriptsize $\Omega$}$^{-1}(\text{\'a}) = \text{\'a}$. Для вычисления DFT{\scriptsize $\Omega$}$^{-1} \; \circ \;$ DFT{\scriptsize $\Omega$}$(a)$ при
 \newpage
+%\setcounter{page}{694}
 \noindent
 $a \in A[\Omega]$ можно использовать свойство $\sum_{\chi}\chi (\omega) = 0$, при $\omega \neq 1$, являющееся двойственным к свойству $\sum_{\omega}\chi (\omega) = 0$ при $\chi \neq 1$. Это свойство может быть доказано, либо используя равенство $\sum_{\chi}\chi (\omega) = \sum_{\chi}(\omega^{-1})$ и канонический изоморфизм между $\Omega$ и ее бидуальной группой (см.предыдущее упражнение), либо рассматривая циклическую группу, а затем прямое произведение циклических групп. Сторонники дуальности могут вывести прямо, что DFT{\scriptsize $\Omega$}$^{-1} \; \circ \; $ DFT{\scriptsize $\Omega$}$(a) = a$ при $a \in A[\Omega]$, ибо, как только $\Omega$ отождествляется со своей бидуальной, так обратное преобразование Фурье DTF{\scriptsize $\Omega$}$^{-1}$ есть не что иное, как DTF{\scriptsize${\hat \Omega}$} (с точностью до обратимого множителя $|\Omega|^{-1}$). Конечно, следующее вычисление(где $\hat a = \: $DTF{\scriptsize $\Omega$}$(a)$) тоже дает результат DFT{\scriptsize $\Omega$}$^{-1}  \;\circ \; $DFT{\scriptsize $\Omega$}$(a) = a$: \newline \newline \indent
 $\;\;\;\;\;\;\;\;\;\; \omega \longmapsto \sum \limits_{\chi} \hat a (\chi) \chi^{-1}(\omega) = \frac{1}{|\Omega|}\sum \limits_{\chi}(\sum \limits_{\alpha}a(\alpha)\chi(\alpha))\chi^{-1}(\omega) =$ \newline \indent
@@ -225,6 +231,7 @@ $\;\;\;\; \chi \longmapsto \frac{1}{|\Omega|}\sum \limits_{\chi^{'}}\hat a (\chi
 \textbf{b.} $\;$ Обозначим $U_{(k)} = \{\alpha \in U, \alpha^{k} = 1\}$. Задать морфизм $\chi$ на $\mathds{Z}_p \times \mathds{Z}_q$ со значениями в $U$ все равно, что задать элемент $\alpha_1 \in U_{(p)}$, элемент $\alpha_2 \in U_{(q)}$ и соответствие в одну сторону: $\chi_{\alpha_1 , \alpha_2} : \mathds{Z}_p \times \mathds{Z}_q \ni (i_1 , i_2) \longmapsto \alpha_1^{i_1}\alpha_2^{i_2} \in U$, и в другую: \newline \newline \indent
 $\widehat{\Omega} \ni \chi \longmapsto (\alpha_1 \alpha_2) \in U_{(p)} \times U_{(q)}, \;\;\;\;\;$ где $\;\;\;\;\;\; \alpha_1 = \chi (1,0)$ и $\alpha_2 = \chi (0,1)$.
 \newpage
+%\setcounter{page}{695}
 \noindent
 Два отображения $U_{(p)} \times U_{(q)} \ni (\alpha_1 , \alpha_2) \longmapsto \chi_{\alpha_1 , \alpha_2} \in \widehat{\Omega}$ и $\widehat{\Omega} \ni \chi \rightarrow (\chi (1,0) , \chi (0,1)) \in U_{(p)} \\ \times U_{(q)}$ являются взаимно обратными изоморфизмами. Дуальная группа из
 $\mathds{Z}_p \times \mathds{Z}_q$, следовательно, {\itshape канонически изоморфна} $U_{(p)} \times U_{(q)}$ и преобразование Фурье тогда записывается в следующем виде: \newline \newline \indent
@@ -242,6 +249,7 @@ $\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;a = (a_{0,0},\;a_{0,1},\;a_{1,0},\;a_{1,1},\;
 $P(X,Y) = a_{0,0} + a_{1,0}X + a_{2,0}X^2 + a_{3,0}X^3 + (a_{0,1} + a_{1,1}X + a_{2,1}X^2 + a_{3,1}X^3)Y.$ \newline \newline
 Преобразование Фурье для $a$ есть двумерная последовательность $\hat a,$
 \newpage
+%\setcounter{page}{696}
 \noindent
 определенная следующим образом: \newline \newline \indent
 $\;\;\:\hat a_{0,0} = P(1,1) = a_{0,0} + a_{1,0} + a_{2,0} + a_{3,0} + a_{0,1} + a_{1,1} + a_{2,1} + a_{3,1},$ \newline \indent
@@ -283,6 +291,7 @@ e - b &d - c & 0
 \end{center}
 то вычисление в $(x_1 , x_2 , x_3)$ первой матрицы (являющейся матрицей циклической сверстки на 3 точках) реализуется с помощью 4 умножений	
 \newpage
+%\setcounter{page}{697}
 \noindent
 (см. упражнение 28), а вычисление второй матрицы осуществляется с помощью 3 умножений. \newline \newline \indent
 В общем случае наивное вычисление $\, A \cdot x \,$ требует $\, p^2 \,$ умножений и $p(p - 1)$ сложений. Пусть $X_1 , X_2 , \dots , X_p$ --- $q$-векторы. Если положить $Y^i = BX_i, \, \\ 1 \le i \le p,$ то \newline
@@ -322,6 +331,7 @@ $(X_1 , X_2 , \dots , X_m) \longmapsto (\sum \limits_{j} f_{1i} X_j , \sum \limi
 Легко показать, что расширение суммы есть сумма расширений и т.д. Можно сказать, что функтор «$f \longmapsto $ расширение $f$» является хорошим функтором, который коммутирует с любой разумной операцией: расширение чего-то есть что-то от расширения! Если $E$ --- пространство $K^q$, то расширение $f$ --- не что иное, как $f \otimes Id_{K^q}$. В свою очередь, $Id_{K^q} \otimes f$ есть отображение $(K^m)^q \ni (X_1 , X_2 , \dots , X_q) \longmapsto (f \cdot X_1 , f \cdot X_2 , \dots , f \cdot X_q) \in (K^n)^q$. Действительно, вычисление, ассоциированное с методом Гуда, получается с помощью равенства $A \otimes B = (A \otimes Id_q) \circ (Id_p \otimes B)$. \newline \newline \indent
 \textbf{d.} $\;$ Если $X_1 , X_2 , \dots , X_p$ --- $q$-векторы и $Y = (B \cdot X_1 , B \cdot X_2 , \dots , B \cdot X_p),$
 \newpage
+%\setcounter{page}{698}
 \noindent
 то: \newline \newline 
 $(A \otimes B)\begin{pmatrix}
@@ -360,6 +370,7 @@ X_p
 \end{align*}
 тогда как мультипликативная цена есть $\mu \times \mathcal{M} (B) = \mathcal{M} (A) \times \mathcal{M} (B).$
 \newpage
+%\setcounter{page}{699}
 \hfill \break
 \hfill \break
 \begin{center}
@@ -382,6 +393,7 @@ pp. 1-8. \newline
 [14] Barnes J.P. {\itshape Programming in Ada,} Addison Wesley, 1981. \newline
 [15] Batut C. {\itshape Aspects algorithmiques du syst\`{e}me de calcul arithm\'{e}tique en multipr\'{e}cision PARI,} Th\`{e}se de $3^{\circ}$-cycle Univ. Bordeaux 1, 1989. \newline
 \newpage
+%\setcounter{page}{700}
 \noindent
 [16] Beckenbach  E.F. {\itshape Applied combinatorial mathematics,} John Wiley and Sons, 1964. [Русский перевод: {\itshape Прикладная комбинаторная математика.} Под ред. Э. Беккенбаха. — М.: Мир, 1968.] \newline 
 [17] Bellanger М. {\itshape Traitement num\'{e}rique du signal,} Masson, 1981. \newline
@@ -408,6 +420,7 @@ pp. 366-371. \newline
 [35] Bradley G.H. “Algorithms for Hermite and Smith normal matrices and
 linear Diophantine equations”, {\itshape Math. Comp.,} 1971, vol. 25, n° 116. \newline
 \newpage
+%\setcounter{page}{701}
 \noindent
 [36] Brent R.P. “Succint proofs of primality for the factors of some Fermat sumbers”, {\itshape Math. Comp.,} vol. 38, n° 157, 1982, pp. 253-254. \newline
 [37] Brent R.P., Pollard J.M. “Factorization of the eighth Fermat number”
@@ -438,6 +451,7 @@ over finite fields”, {\itshape Math. Comp.,} vol. 36, n° 154, 1981, pp. 587-5
 [55] Cooley J.W., Tuckey J .W . “An algorithm for the Machine Calculation
 of Complex Fourier Series”, {\itshape Math. Comp.,} vol. 19, 1965, pp. 297-301. \newline
 \newpage
+%\setcounter{page}{702}
 \noindent
 [56] Creutzburg R., Tasche M. “Parameter Determination for Complex
 Number-Theoric Transforms Using Cyclotomic Polynomials”, {\itshape Math. Comp.,} vol. 52, n° 185, 1989. \newline
@@ -462,6 +476,7 @@ Number-Theoric Transforms Using Cyclotomic Polynomials”, {\itshape Math. Comp.
 [72] Gantmacher F.R. {\itshape Theory of matrices,} Interscience Publishers, 1954. \newline
 [73] G\aa rding L., Tambour T. {\itshape Algebra for computer science,} Springer-Verlag, 1988. \newline
 \newpage
+%\setcounter{page}{703}
 \noindent
 [74] Gehani N. Ada : {\itshape An Advanced Introduction,} Prentice-Hall, 1982. \newline
 [75] Gentleman W.M. “Optimal multiplication chains for computing a
@@ -489,6 +504,7 @@ for the design of the Ada programming language,} Alsys, 1984. \newline
 [94] Jaeschke G. “The Carmichael numbers to $10^{12}$”, {\itshape Math. Comp.,} vol. 55, n° 191, 1990, pp. 383-389. \newline
 [95] Kaltofen E., Watt S.M. {\itshape Computers and Mathematics,} Springer-Verlag, 1989. \newline
 \newpage
+%\setcounter{page}{704}
 \noindent
 [96] Kannan R., Вachem A. “Polynomial algorithms for computing the
 Smith and Hermite normal forms of an integer matrix”, {\itshape Siam J. Comput.,} vol. 8, n° 4, 1979, pp. 499-507. \newline
@@ -513,6 +529,7 @@ Smith and Hermite normal forms of an integer matrix”, {\itshape Siam J. Comput
 [113] Le Lionnais F. {\itshape Les nombres remarquables,} Masson, 1980. \newline
 [114] L’Ecuyer P . “Efficient and portable combined random number generators”, {\itshape Comm. ACM,} vol. 31, n° 6, 1988, pp. 742-774. \newline
 \newpage
+%\setcounter{page}{705}
 \noindent
 [115] Ledgard H.F. {\itshape Proverbes de programmation (traduction de J. Arsac),} Dunod, 1978. \newline
 [116] Van Leeuwen J., Van Emde Boas P. “Some elementary proofs of
