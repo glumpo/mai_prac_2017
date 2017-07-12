@@ -25,6 +25,9 @@
 \RequirePackage{titlesec}
 \RequirePackage{caption}
 
+\RequirePackage[justification=centering]{caption}
+\RequirePckage[labelsep=period]{caption}
+\RequirePackage{mathtools}
 
 %эпиграф
 \RequirePackage{epigraph}

@@ -1,0 +1,108 @@
+\documentclass{mai_book}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont{DejaVuSerif}
+\setdefaultlanguage{russian}
+%\clearpage % ВОТ ТУТ ЗАДАТЬ СТРАНИЦУ
+%\setcounter{thesection}{6}% ТАК ЗАДАВАТЬ ГЛАВЫ, ПАРАГРАФЫ И ПРОЧЕЕ.
+% Эти счетчики достаточно задать один раз, обновляются дальше сами
+
+
+% \newtop{ЗАГОЛОВОК}  юзать чтобы вручную поменть заголовок вверху страници
+
+\begin{document}
+\noindent Можно доказать, что в этом алгоритме являются цифрами ввиду
+соотношений: $0\leqslant carry < b\;aux\leqslant(b —1)b < b$. Этот алгоритм легко распространяется на (наивное) умножение двух чисел произвольной
+длины.
+\def\tmpsuka{Вычисление $v\times(u_{m}\ldots u_{0})_b,0\leqslant v<b$}
+
+\begin{lstlisting}[mathescape=true,caption=\tmpsuka]
+carry=0;
+for (i=0; i <= m; ++i){
+	//$\;\;(w_{i-1}+carry\times b'=(u_{i-1}\ldots u_{0})_{b}\times v$
+	aux = v*u$_{i}$+carry;$\;$w$_{i}$=aux%b;$\;$carry=aux/b;
+}
+w$_{m+1}$=carry;
+\end{lstlisting}
+
+\textbf{d.} Остаток $r = (u_{n},\ldots,u_{0})_{b}$ mod $v$, где $v$ — цифра, вычисляется по
+алгоритму Горнера, где полагается $r_{n+1} = 0$ и $r_{i} = (r_{i+1}\times b + u_{i})$ mod $v$
+при $i = n,n—1,\ldots,0$. Искомое значение есть $r_{0}$, что доказывается
+с помощью $r_{i}=(u_{n}\ldots u_{i})_{b}$ mod $v$. Можно видеть, что алгоритм 22-A
+вычисляет частное $\lfloor u/v\rfloor$, а алгоритм 22-B вычисляет остаток $u$ mod $v$.
+Распространение на числа произвольной длины
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\underline{\textbf{A.} Вычисление частного} & \underline{\textbf{B.} Вычисление остатка} \\
+{\begin{lstlisting}[mathescape=true, frame=none]
+r = 0;
+for (j = n;j >= 0; j--){
+	aux = r*b + u$_{n}$;
+	q$_{j}$ = aux/v;
+	r = aux % v;
+}	
+\end{lstlisting}} & 
+{\begin{lstlisting}[mathescape=true, frame=none]
+r = 0;
+for (j = n; j >= 0; j--){
+	r = (r*b + u$_{j}$) % v;
+}
+\end{lstlisting}}	
+\\ \hline
+
+\multicolumn{2}{c}{{\large Деление $(u_{m}\ldots u_{0})_b$ на $v$ при $0\leqslant v<b$}}
+\end{tabular}
+\end{table}
+этих двух операций не является таким простым, как в случае умноже­ния. В действительности, это тема дальнейших упражнений.
+\\\\
+\noindent\textbf{37. Деление в арифметике повышенной точности}
+\\
+
+Предположим, что $v$ имеет \textit{нормализованную } запись (т.е. $v_{m} \neq 0$)
+и, кроме того, $n \geqslant m$ (запись не обязательно нормализованная). Надо
+найти частное и остаток с помощью массива $q = (q_{n-m}\ldots q_{1}q_{0}$ и $r = (r_{m}\ldots r_{1}r_{0})$. Заметим, что условие $u/v < b$ можно записать также в
+виде $(u_{m+1}\ldots u_{1})_{b}<(v_{m}\ldots v_{1}v_{0})_{b}$ В самом деле,
+$$(u_{m+1}\ldots u_{0})/v<b \Leftrightarrow (u_{m+1}\ldots u_{0})/b<v \Leftrightarrow \lfloor(u_{m+1}\ldots u_{0})/b\rfloor<v$$
+\newpage
+\noindent и $\lfloor(u_{m+1}\ldots u_{0})/b\rfloor=(u_{m+1}\ldots u_{1})$. Вот общий алгоритм вычисления пары (частное, остаток):
+
+\begin{leftbar}
+\begin{lstlisting}[frame=none, mathescape=true]
+$(r_{n+1}r_{n}\ldots r_{1}r_{0}\;=\;(0u_{n}\ldots u_{1}u_{0}$;
+for (j = n-m; j >= 0; j--){
+	\\$\;\;u=(q_{n-m}\ldots q_{j+1})\times vb^{j+1}+r\;\;\text{и}\;\;r<vb^{j+1}$
+	q$_{j}$=$(r_{m+j+1}r_{m+j}\ldots r_{j})$/v;
+	$(r_{m+j+1}\ldots r_{j}$ = $(r_{m+j+1}\ldots r_{j})$ - $q_{j}v$;
+}	
+\end{lstlisting}
+\end{leftbar}
+Частное, используемое в цикле, является частным двух чисел, удо­влетворяющих порождающему условию (5) (и, следовательно, каждое
+вычисляемое $q_{j}$ является цифрой!). Чтобы убедиться в этом, достаточно заметить, что перед присваиванием $q_{j}$ имеем:
+$$ r<vb^{j+1}\;\;\;\Longleftrightarrow\;\;\;(r_{m+j+1}\ldots r_{j+1})_{b}<v,$$
+что, по предыдущему замечанию, равносильно $(r_{m+j+1}\ldots r_{j})/v<b$
+\\\\
+\noindent\textbf{38. Вычисление частного методом проб и ошибок}
+\\
+
+\textbf{a.} Предположения (5) включают неравенство $(u_{m+1}\ldots u_{1})_{b}\;<$\linebreak
+$<\;(v_{m}\ldots v_{1}v_{0})_{b}$, откуда u$u_{m+1}\leqslant v_{m}$. Читатель может проверить, что
+тогда:
+$$\text{min}(\lfloor u_{m+1}b+u_{m})/v_{m}\rfloor,\;b-1)=\left\lbrace\begin{array}{ll}
+b-1,&\text{если}\;\;u_{m+1}=v_{m},\\
+\lfloor(u_{m+1}b+u_{m})/v_{m}\rfloor&\text{иначе,}
+\end{array}\right.$$
+и проверка для определения наименьшего из двух чисел сводится к про­верке $u_{m+1}=v_{m}$
+
+Докажем сначала, что $q\leqslant\widehat{q}$. Так как $q\leqslant b — 1$ (предположение (5)),
+можно очевидно предположить, что $\widehat{q}=\lfloor(u_{m+1}b+u_{m})/v_{m}\rfloor$. Запишем:
+$$u=u_{m+1}b^{m+1}+u_{m}b^m+\alpha,\;\;\;\;v=v_{m}b^m+\beta,$$
+с $\beta<b^m$ и $\alpha<b^m$. Тогда получим $u-\widehat{q}v=(u_{m+1}b+u_{m}-\widehat{q}v_{m})b^m+$\linebreak
+$\alpha-\widehat{q}\beta$. По определению $\widehat{q}\;u_{m+1}b+u_{m}<v_{m}(\widehat{q}+1)$ и, следовательно, $u_{m+1}b+u_{m}-u_{m}\widehat{q}\leqslant v_{m}-q$, что влечет
+$$u-\widehat{q}v\leqslant(v_{m}-1)b^m+\alpha-\widehat{q}\beta\leqslant(v_{m}-1)b^m+\alpha\leqslant v_{m}b^m+(\alpha-b^m)<v_{m}b^m\leqslant v,$$
+и неравенство $u-\widehat{q}v<v$ дает $q\leqslant\widehat{q}$.
+
+Для доказательства второго неравенства введем $\delta=\widehat{q}-q$. Используя неравенство для $\widehat{q}$: $\widehat{q}\leqslant\frac{u_{m+1}b+u_{m}}{v_{m}
+}\leqslant\frac{u}{v_{m}b^m}$ и для $q$: $q>\frac{u}{v}-q$,
+\end{document}
