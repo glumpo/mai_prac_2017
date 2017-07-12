@@ -1,3 +1,17 @@
+\documentclass{../../template/mai_book}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setdefaultlanguage{russian}
+
+
+%\clearpage
+ % ТАК ЗАДАВАТЬ ГЛАВЫ, ПАРАГРАФЫ И ПРОЧЕЕ.
+% Эти счетчики достаточно задать один раз, обновляются дальше сами
+
+
+% \section{ЗАГОЛОВОК}  юзать чтобы вручную поменть заголовок вверху страници
+
+\begin{document}
 мы говорили. На распечатке спецификации можно увидеть определения
 типов, которые должны быть представлены в личной части.
 Все это может показаться невероятно сложным и неэффективным.
@@ -28,9 +42,47 @@
 цедур и функций спецификации в терминах массивов. Вместо долгих
 объяснений проще прямо представить тело пакета.
 
-% TODO: code
-\newpage
-% TODO code
+\begin{lstlisting}
+typedef double value_T;
+struct _matrix_T {
+    int n, m;
+    value_T *body;
+}
+typedef struct _matrix_T *matrix_T;
+
+bool set_coefficient(matrix_T mat,
+                     row_T row,
+                     column_T col,
+                     value_T val) {
+    int mat_i = TO_COEFFICIENT(row, col);
+    if (mat_i > mat->max_i) {
+        // Exception Handler...
+        return false;
+    }
+    mat->body[mat_i] = val;
+    return true;
+}
+value_T* last_row(matrix_T mat) {
+    size_t m = mat->m;
+    size_t n = mat->n;
+    return mat->body + (n-1)*m;
+}
+
+value_T* last_col(matrix_T mat) {
+    size_t m = mat->m;
+    size_t n = mat->n;
+    return mat->body + m;
+}
+
+value_T* next_col(matrix_T mat, value_T *cur_col) {
+    return cur_col + mat->m;
+}
+
+value_T* next_row(matrix_T mat, value_T *cur_row) {
+    return cur_row + mat->n;
+}
+
+\end{lstlisting}
 
 Можно сразу отметить простоту кода (нельзя по-настоящему го­
 	ворить об алгоритме), но, тем не менее, нужно уточнить несколько
@@ -131,9 +183,53 @@ Coefficient.
 быть обеспечены предыдущим пакетом. Тогда получится следующая
 полная спецификация:
 
-% TODO: code
-\newpage
-% TODO: code
+\begin{lstlisting}
+bool set_coefficient(matrix_T mat,
+                     row_T row,
+                     column_T col,
+                     value_T val) {
+    int mat_i = TO_COEFFICIENT(row, col);
+    if (mat_i > mat->max_i) {
+        // Exception Handler...
+        return false;
+    }
+    mat->body[mat_i] = val;
+    return true;
+}
+value_T* last_row(matrix_T mat) {
+    size_t m = mat->m;
+    size_t n = mat->n;
+    return mat->body + (n-1)*m;
+}
+value_T* last_col(matrix_T mat) {
+    size_t m = mat->m;
+    size_t n = mat->n;
+    return mat->body + m;
+}
+value_T* next_col(matrix_T mat, value_T *cur_col) {
+    return cur_col + mat->m;
+}
+value_T* next_row(matrix_T mat, value_T *cur_row) {
+    return cur_row + mat->n;
+}
+bool put(matrix_T mat, size_t row, size_t col, value_T val) {
+    int mat_i = TO_COEFFICIENT(row, col);
+    if (mat_i > mat->max_i) {
+        // ERROR HANDLER
+        return false;
+    }
+    mat->body[mat_i] = val;
+    return true;
+}
+value_T get(matrix_T mat, size_t row, size_t col) {
+    int mat_i = TO_COEFFICIENT(row, col);
+    if (mat_i > mat->max_i) {
+        // ERROR HANDLER
+        return mat->body[0];
+    }
+    return mat->body[mat_i];
+}
+\end{lstlisting}
 «Это не упрощает дела!» — сразу скажет читатель. Еще раз по­
 вторим сказанное: только опыт позволит судить об этом, и во время
 заключительного построения будет видно, что описанный способ дей­
@@ -157,12 +253,15 @@ trix, и поскольку он определен как личный тип, 
 типа абстрактных данных Matrix или других тяготеющих к нему мо­
 дулей мало скажутся на этом особом модуле.
 
-\newpage
-
 Приводим реализацию описанной процедуры, которая пока не пред­
 ставляет никакой особой трудности.
-
-% TODO: code
+\begin{lstlisting}
+bool get_all(matrix_T mat) {
+	for (size_t i = 0; i < mat->max_i; ++i)
+		put(mat, m, n, get_val());
+	return true;
+}
+\end{lstlisting}
 
 Отметим способ, с помощью которого здесь используются примити­
 вы работы с матрицами, а также ассоциацию по именам фактических
@@ -715,3 +814,5 @@ for(int i = First\_Index; i \textless q; i++)\\
 между двумя рассматриваемыми интервалами). Кроме того, процеду­ра \textit{Successor}
  имеет два параметра: исходная биекция и ее сигнатура, и 
 эта процедура вычисляет следующую биекцию и ее сигнатуру.
+
+\end{document}
