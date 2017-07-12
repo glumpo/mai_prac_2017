@@ -1,0 +1,1044 @@
+\documentclass{mai_book}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont{DejaVuSerif}
+\setdefaultlanguage{russian}
+
+%\clearpage
+\setcounter{page}{671} % ВОТ ТУТ ЗАДАТЬ СТРАНИЦУ
+\setcounter{thesection}{4} % ТАК ЗАДАВАТЬ ГЛАВЫ, ПАРАГРАФЫ И ПРОЧЕЕ.
+\setcounter{chapter}{5}
+% Эти счетчики достаточно задать один раз, обновляются дальше сами
+\usepackage{fancyhdr} %загрузим пакет
+
+\pagestyle{fancy}  %применим колонтитул
+\fancyhead{}
+\fancyhead[RE,LO]{\thepage}% номер страницы слева сверху на четных и справа на нечетных
+\fancyhead[LO]{\textit{Упражнения}}
+\fancyhead[RO]{\textit{\thepage}}
+\fancyhead[RE]{\textit{V~~~Дискретное преобразование Фурье}}
+\fancyhead[LE]{\textit{\thepage}}
+\fancyfoot{}
+
+
+
+ %\newtop{ЗАГОЛОВОК}  юзать чтобы вручную поменть заголовок вверху страници
+\begin{document}
+\begin{flushleft} $\mathcal{M}(A\otimes B)\leqslant$ dim~\textit{A} $\times~ \mathcal{M}(B)~+$~dim~\textit{B} $\times~ \mathcal{M}(A) $ и аналогичное неравенство \linebreak для сложений. Сравнить с наивным вычислением. \linebreak
+~~~~~~\textbf{b.} ~Схему вычисления $A\cdot x$ называют \textit{линейно устойчивой}, если она \end{flushleft}
+
+\begin{flushleft}
+$ A~
+ \left(\begin{array}{c}
+   x_1 \\
+   x_2 \\
+   \vdots  \\
+   x_p \\
+\end{array}\right)  = 
+ \left(\begin{array}{c}
+  \varphi_{1}(\lambda_{1}f_1(x),\ldots,\lambda_{\mu}f_{\mu}(x)) \\
+  \varphi_{2}(\lambda_{1}f_1(x),\ldots,\lambda_{\mu}f_{\mu}(x)) \\
+  \vdots \\
+    \varphi_{p}(\lambda_{1}f_1(x),\ldots,\lambda_{\mu}f_{\mu}(x)) \\
+\end{array}\right)  
+\qquad \parbox{6cm} {имеет вид,~~ изображенный \linebreak
+                                      слева ,~ где ~~$f_{k},\varphi_{j}$ ~~ ---~ линей-\linebreak
+                                       ные~формы,~~~имеющие~ <<про-\linebreak
+                                     стые>> коэффициенты~ (напри-\\мер, 0,\textpm1,\textpm2) и постоянные \linebreak
+                                     коэффициенты $\lambda_{k}$ (зависящие}
+$
+
+\end{flushleft}
+ от $A$, а не от $x$).~ Предположим, что вычисление~ \textit{любых} $f_{k},~\varphi_{j}$ требует \linebreak
+лишь $\alpha$ \textit{аддитивных} операций (с учетом вида коэффициентов), и, сле-\linebreak
+довательно,мультипликативная сложность схемы измеряется числом $\mu$\linebreak умножений $\lambda_{k}\times f_{k}(x)$. Для простоты положим, $\mathcal{A}(A)=\alpha,~\mathcal{M}(A)=\mu$\linebreak
+(эти числа зависят от схемы, а не только от $A$). Приведем пример, где\linebreak
+ $\mathcal{M}$($A$) = 3 и $\mathcal{A}$($A$) = 5:\linebreak
+$$
+\left(\begin{array}{cc}
+ a~~~~b\\
+  c~~~~ a\\
+\end{array}\right)
+\left(\begin{array}{c}
+  x_1\\
+  x_2\\
+\end{array}\right) = 
+\left(\begin{array}{c}
+ \frac{a+b}{2}(x_1+x_2)+\frac{a-b}{2}(x_1-x_2) \\
+  \frac{a+b}{2}(x_1+x_2)-\frac{a-b}{2}(x_1-x_2) + (c-b)x_1\\
+\end{array}\right).
+$$
+Является ли устойчивой схема вычисления D{\footnotesize FT}$_3$, приведенная в тек-\linebreak сте книги (или в упражнении 24)? Если $A$ допускает схему вычисления,\linebreak являющуюся линейно устойчивой предыдущего вида, то какова слож-\linebreak ность вычисления $\lambda A \cdot x$, где $\lambda$ — фиксированная константа?
+
+\textbf{с.} ~Результат Винограда (относящийся к методу Гуда), приведен-\linebreak ный в книге, можно обобщить. Для этого нужно ввести \textit{естествен-\linebreak ное расширение} линейного отображения $f~:~K^{m}~ \rightarrow~K^{n}:$ оно является\linebreak отображением $E^{m}$ в $E^{n}$ для произвольного $K$-пространства $E$. Таким\linebreak
+образом, если:
+$$f
+\left(\begin{array}{c}
+  x\\
+  y\\
+  z\\
+\end{array}\right)=
+\left(\begin{array}{c}
+  x+y+\lambda z\\
+  x-\beta y+z\\
+\end{array}\right), ~~~\text{то расширение $f$ имеет вид:} 
+$$
+$$
+\left(\begin{array}{c}
+  X\\
+  Y\\
+  Z\\
+\end{array}\right)~\rightarrow ~
+\left(\begin{array}{c}
+  X+Y+\lambda Z\\
+  X-\beta Y+Z\\
+\end{array}\right).
+$$
+Определить точным образом расширение произвольного линейного\linebreak отображения $f~:~K^{m}~\rightarrow K^{n}$. Каким будет расширение $f~\circ ~g?~~ f \times g?\linebreak f + g? ~~\lambda f?$ канонических вложений $K^{m} \rightarrow  
+K^{m} \times K^{n},~  K^{m} \rightarrow K^{n} \times K^{m},$\linebreak канонических проекций $K^{n} \times K^{m} \rightarrow K^{n},  K^{n} \times K^{m} \rightarrow K^{m}?$ Обозначим\linebreak
+ $f~\otimes$ Id$_E$  расширение $E^{m} \rightarrow E^{n}$ отображения $f$: чем объясняется такое \linebreak обозначение? Что может представлять собой Id$_E \otimes f$?
+\newpage
+
+\textbf{d.} ~Предположим, что $A$ и $B$ допускают устойчивые схемы, име-\linebreak ющие сложность $\mathcal{M}(A),~\mathcal{A}(A)~$ и $\mathcal{M}(B),~\mathcal{A}(B)$, ~соответственно. Какова\linebreak
+сложность вычисления $(A\otimes \text{Id}_E)(X_1,\ldots,X_p)$,~ где $X_i \in E$?~ Показать, что\linebreak
+вычисление $(A\otimes B)\cdot X$ может быть выполнено с помощью $\mathcal{M}(A) \times \mathcal{M}(B)$\linebreak
+умножений и dim $B \times \mathcal{A}(A) +~\mathcal{M}(A) \times \mathcal{A}(B)$~ сложений. \linebreak
+\newpage
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+$ф \\
+ ф \\
+ $
+\begin{center}
+{\LARGE \textbf{Решения упражнений}}
+\end{center}
+$  ф \\
+$
+\textbf{2. Интерполяция}
+  $ ф \\
+  $
+
+\textbf{a.}~~Обозначим через $Q_i(X)$ многочлен $\prod$ $^{i-1}_{j=0}(X-x_j)$~~(степени $i$) \linebreak
+и,~ в частности, ~ $Q_0(X)~=~1.$~Многочлен $P(X)$,~записанный в базисе \linebreak
+$\{Q_0,Q_1,\ldots,Q_{n-1}\}~$в виде $P(X)$~=~$\sum p_j Q_j (X),~$ реализует интерполя-\linebreak
+цию $x_j~\rightarrow~y_j,0~\leq~j~<~n,~$ тогда и только тогда,~ когда многочлены \linebreak
+$P_i(X)~~=~~\sum _{j \leq i} p_j Q_j(X)$~~~(степени ~$\leq~~i$)~~ реализуют интерполяцию \linebreak
+$x_j~\rightarrow~y_j,0~~\leq~~j~~\leq~~i.~$~~Тогда имеем $P_0(X)~=~y_0$,~ и для $i~\geq~1$\linebreak
+$P_i(X)~=~p_i Q_i(X)~+~P_{i-1}(X).$~Это последнее равенство определяет $p_i$,\linebreak
+так как $y_i~=~p_i Q_i(x_i)~+~P_{i-1}(x_i)$, и \textit{потому} $P_{i-1}(x_i)~--~ y_i$ делится на \linebreak
+$Q_i(x_i).$~Отсюда получаем:
+$ ф \\
+ $
+
+\newlength{\MYwidth} % новый параметр длины 
+\def\MYvrule#1\par{ 
+\par\noindent 
+\MYwidth=\textwidth\addtolength{\MYwidth}{-7pt} 
+\hbox{\vrule width 1pt\hspace{5pt}\parbox[t]{\MYwidth}{#1}} 
+}
+\MYvrule $Q(X)~\leftarrow~1; P(X)~\leftarrow~y_0;$\\ 
+ for $i$ in 1~..~n loop \\ 
+ $фф$ $Q=Q_{i-1}~=~\prod$ $_{j<i_1}(X-x_j),~P=P_{i-1},~$т.е.~$P(x_j)=y_j,~0\leq j<i $\\
+ $фф$ {\footnotesize num}$\leftarrow y_i~-~P(x_i);~${\footnotesize den}~$\leftarrow~\prod$ $^{i-1}_{j=0}(x_i-x_j);$ \\
+ if {\footnotesize den}=0 or {\footnotesize den} не делится на {\footnotesize num} then \\
+  Интерполяционного полинома нет \\
+  end if ; \\
+  $Q\leftarrow Q * (X-x_{i-1});~P\leftarrow$({\footnotesize num}/{\footnotesize den})~$*$~$Q+P:$ \\
+ end loop; \\
+ return P; \\
+\par
+$ ф \\ $
+\indent Для первого набора данных находим $P_1~=~-2X+1,$~потом $P_2~=~$\\ 
+$2X^2+1$ и,~наконец,~$P=P_3=X^3+2X^2-X+1.~$Для второго набора \\ 
+решения не существует,~так как $P_2(x_3)-y_3=17$ не делится на $(x_3~-~$ \\
+$x_2)(x_3-x_1)(x_3-x_0)=6. $
+\section {\textbf{Число единиц в матрице Вандермонда, определенной\\ с помощью корня из единицы}}
+\indent
+~~\textbf{a.}~Использовать тот факт, что кольцо $\mathbb{Z}_{nm}$ изоморфно $\mathbb{Z}_{n}\times \mathbb{Z}_{m}$, \linebreak
+когда $n$ и $m$ взаимно просты.\\
+\indent
+~\textbf{b.}~Имеем $\nu(n)=\sum$ $^{n-1}_{i=0}|G_i|=\sum$ $_{d|n}\sum$ $_{i,i \wedge n=d}|G_i|$,~ где для $i \in \mathbb{Z}_n,G_i$ \linebreak
+--- множество $\{j \in \mathbb{Z}_n, ij=0\}$. Легко проверить, что $G_i$ --- подгруп-\linebreak
+па в $\mathbb{Z}_n$ и что $G_i=G_d$, если $d = $НОД($i,n$) (использовать тот факт, \linebreak
+
+\noindent {\tiny 43-1017}
+\newpage
+\fancyhead{}
+\fancyhead[RE,LO]{\thepage}% номер страницы слева сверху на четных и справа на нечетных
+\fancyhead[LO]{\textit{Решения упражнений}}
+\fancyhead[RO]{\textit{\thepage}}
+\fancyhead[RE]{\textit{V~~~Дискретное преобразование Фурье}}
+\fancyhead[LE]{\textit{\thepage}}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.5pt}
+что $d \in i \mathbb{Z}+ n\mathbb{Z})$. Значит, $G_d$ является группой из $d$ элементов ($n/d$ \linebreak
+есть порождающий элемент порядка $d$ в $G_d$). Для данного делителя $d$ \linebreak 
+числа $n$ нужно перенумеровать множество $E^n_d$ тех $i,~0 \leq i < n$, для \linebreak
+которых НОД$(i,n)=d.$ Умножение на $d$ дает биекцию $E^{n/d}_1$ на $E^n_d$, и, \linebreak
+следовательно, $E^n_d$ имеет то же число элементов, что $E^{n/d}_1$, т.е. $\varphi(n/d)$. \linebreak  
+\indent \textbf{c.} ~Имеем:
+\begin{gather}
+\nu(p^k)=\sum^k_{q=0}p^q\varphi(p^{k-q})=p^k+\sum^{k-1}_{q=0}p^q p^{k-q-1}(p-1)= {}\nonumber \\
+                                      ффффффф =p^k+k(p-1)p^{k-1}=p^{k-1}(p+k(p-1)). {}\nonumber
+\end{gather}
+
+\section{F{\footnotesize FT} на 6 точках}
+\indent 
+~~~Пусть $P(X)=a_5X^5+\ldots+a_1X+a_0.$ Для разложентя $2\times 3 $ вве-\linebreak
+дем $P_0(Y)~=~a_0+a_2Y+a_4Y^2,~P_1(Y)=a_1+a_3Y+a_5Y^2,$ так что \linebreak
+$P(X)=P_0(X^2)+P_1(X^2)X.$ Положим тогда 
+\begin{gather}
+(x_0,x_1,x_2)=(P_0(1),P_0(\omega^2),P_0(\omega^4)), {}\nonumber \\
+(x_3,x_4,x_5)=(P_1(1),P_1(\omega^2),P_1(\omega^4)). {} \nonumber 
+\end{gather}
+Читатель может, аналогичным образом, рассмотреть разложение $3\times 2$. \linebreak
+Тогда приходим к двум методам:
+
+\[
+ (1)~~~\left\{ \,\,
+   \begin{aligned}
+      x_0 &= a_0+a_2+a_4, ~~~~~~~~~~~~x_3 = a_1+a_3+a_5, \\
+      x_1 &=a_0+a_2\omega^2+a_4\omega^4,~~~~~x_4 = a_1+a_3\omega^2+a_5\omega^4, \\
+      x_2 &=a_0+a_2\omega^4+a_4\omega^2 ,~~~~~ x_5 = a_1+a_3\omega^4+a_5\omega^2, \\
+     \hat{a}_0 &=x_0+x_3,~~~~~~~\hat{a}_1=x_1+x_4\omega_1,~~~\hat{a}_2=x_2+x_5\omega^2, \\
+     \hat{a}_3 &=x_0+x_3\omega^3,~~~~\hat{a}_4=x_1+x_4\omega_4,~~~\hat{a}_5=x_2+x_5\omega^5, \\
+    \end{aligned}
+  \right.
+    \] 
+ \begin{center}
+  13 умножений, ~~~~~18 сложений;
+ \end{center}
+\[
+ (2)~~~\left\{ \,\,
+   \begin{aligned}
+      y_0 &= a_0+a_3,~~~~~~~~y_2 = a_1+a_4,~~~~~~~~~y_4=a_2+a_5, \\
+      y_1 &=a_0+a_3\omega^3,~~~~~y_3 = a_1+a_4\omega^3,~~~~~y_5=a_2+a_5\omega^3, \\
+     \hat{a}_0 &=y_0+y_2+y_4,~~~~~~~~~~~~\hat{a}_1=y_1+y_3\omega^1+y_5\omega^2, \\
+     \hat{a}_2 &=y_0+y_2\omega^2+y_4\omega^4,~~~~~\hat{a}_3=y_1+y_3\omega^3+y_5, \\
+     \hat{a}_4 &=y_0+y_2\omega^4+y_4\omega^2,~~~~~\hat{a}_5=y_1+y_3\omega^5+y_5\omega^4, \\
+    \end{aligned}
+  \right.
+    \] 
+ \begin{center}
+  12 умножений, ~~~~~18 сложений;
+ \end{center}
+\noindent 
+Обычный метод требует $(6-1)^2=25$ умножений и $6\times 5=30$ сложений \linebreak
+(если учитывать все единицы в матрице Вандермонда, то уже будет не \linebreak
+больше 21 умножения).
+\newpage
+\indent
+\textbf{b.}~Вопрос \textbf{a} использует только соотношение $\omega^6=1$. Здесь, кроме \linebreak
+того, имеем $\omega^3=-1$, что дает в первом приближении: 
+ \begin{itemize}
+ \item обычный метод: 16 умножений, 25 сложений, 5 вычитаний;
+ \item метод 1:~12 умножений, 17 сложений, 1 вычитание;
+ \item метод 2:~8 умножений, 14 сложений, 4 вычитания.
+\end{itemize}
+\indent
+~~~Можно еще уменьшить количество операций, учитывая соотноше-\linebreak
+ия $\omega^4=-\omega,~\omega^5=-\omega^2$ и некоторые возможные перегруппировки чле-\linebreak
+нов\ldots
+\section{Два этапа в F{\footnotesize FT}}
+
+\indent ~~~Достаточно \textit{включить} степени $\omega$ в коэффициенты. Итак, если $V_{\omega^5}$\linebreak
+обозначает матрицу Вандермонда, ассоциированную с кубическим кор-\linebreak
+нем $\omega^5$, имеем:
+$$
+\left(\begin{array}{c}
+  \hat{a}_0\\
+  \hat{a}_5\\
+ \hat{a}_{10}\\
+\end{array}\right)=V_{\omega^5}
+  \left(\begin{array}{c}
+  b_0\\
+  b_5\\
+ b_{10}\\
+\end{array}\right)~,~~~~
+\left(\begin{array}{c}
+  \hat{a}_1\\
+  \hat{a}_6\\
+ \hat{a}_{11}\\
+\end{array}\right)=V_{\omega^5}
+ \left(\begin{array}{c}
+  b_1\\
+  b_6\omega^1\\
+ b_{11}\omega^2\\
+\end{array}\right)~, 
+$$
+$$
+\left(\begin{array}{c}
+  \hat{a}_2\\
+  \hat{a}_7\\
+ \hat{a}_{12}\\
+\end{array}\right)=V_{\omega^5}
+ \left(\begin{array}{c}
+  b_2\\
+  b_7\omega^2\\
+ b_{12}\omega^4\\
+\end{array}\right)~.
+$$
+С точки зрения сложности, можно записать тогда схематическое ра-\linebreak
+венство: \\
+
+$
+\text{F{\footnotesize FT}}_{3\times 5,\omega}\equiv 3~ \text{D{\footnotesize FT}}_{5,\omega^3}\oplus(3-1)\times(5-1)~\text{\textbf{Произведений}}\oplus 5 \text{D{\footnotesize FT}}_{3,\omega^5} .
+$
+\setcounter{thesection}{8}
+\section{Примитивные корни из единицы}
+
+\indent ~~~\textbf{a.} Действительно, можно записать: $X^n-1=(X-1)P_1(X),P_1(X)\in$ \linebreak
+$A[X], \text{deg}(P_1)\leq n-1.$ Это равентство, примененное к $\omega^i$, дает $P_1(\omega^i)=0 $\linebreak
+при $1\leq i \leq n-1, $ так как $\omega^i-1$ не является делителем $0$ в $A$. В свою оче-\linebreak
+редь, многочлен $P_1(X)=(X-\omega)P_2(X),P_2(X)\in A[X], \text{deg}(P_2)\leq n-2.$ При- \linebreak
+меняя это равентсво к $\omega^i$ и используя тот факт, что $\omega^i-\omega$ не является \linebreak
+делителем 0 при $2\leq i \leq n-1,$ получим:$P_2(\omega^i)=0~\text{при}~i=2,3,\ldots,n-1. $\linebreak
+Применяя индукцию, немедленно получаем требуемый результат. \\
+\indent
+~~\textbf{b.}~Если разделить на $X-1$ оба члена равенства из $A$, получим: \\
+$X^{n-1}+X^{n-2}+\ldots+X^2+X+1=(X-\omega)(X-\omega^2)\ldots(X-\omega^{n-1}),$\linebreak
+откуда, для $X=1,$ имеем $n=(1-\omega)(1-\omega^2)\ldots(1-\omega^{n-1}). $\\
+
+\noindent {\tiny 43$^*$}
+\newpage
+\indent
+~~~\textbf{c.} Согласно предыдущему свойству, если $\omega$ --- примитивный ква-\linebreak
+дратный корень из единицы, то $\omega=-1$(так как $2=1-\omega$). Достаточно\linebreak
+рассмотреть теперь другие корни из единицы, отличные от $-1.$ Итак, \linebreak
+если $m$ --- произвольное целое число, то классы $2m\pm 1~(\text{mod}~4m)$ --- как\linebreak
+раз и являются такими квадратными корнями из единицы.
+\setcounter{thesection}{10}
+\section{Вычисление циклотомических многочленов}
+
+\indent~~~\textbf{a и c.} Имеем $\Phi_1(0)=-1;$ для доказательства того, что $\Phi_n(0)=1,$\linebreak
+если $n\geq 2,$ используем равенство, данное ниже, в $X=0,$ и воспользу-\linebreak
+емся индукцией по $n$:
+$$
+X^n-1=\Phi_n(X)(X-1)~\prod_{d|n}~\Phi_d(X). \\
+%{\tiny \text{\linebreak$d\neq1,n$}}
+$$
+Если $\omega$ --- примитивный корень $nm$-й степени из $1$, то $\omega^m$ --- прими-\linebreak
+тивный корень $n$-й степени из $1$. Следовательно, многочлен $\Phi_{nm}(X),$\linebreak
+обладающий этими простыми корнями, делит $\Phi_n(X^m)$. \\
+\indent\textbf{d.} Покажем что корень унитарного многочлена $\Phi_n(X^m)$ является\linebreak
+также корнем $\Phi_{nm}(X):~\Phi_{nm}(X)$ --- унитарный многочлен, имеющий\linebreak
+простые корни, являющийся делителем $\Phi_n(X^m)$ и, следовательно, ра-\linebreak
+вен $\Phi_n(X^m)$. Пусть $\omega$ --- корень $\Phi_n(X^m).$ Из $\Phi_n(\omega^m)=0$ получаем\linebreak
+$\omega^{nm}=1.$ Значит, $\omega$ имеет порядок $mn$: если бы это было не так, то\linebreak
+существовало бы простое число $p$, делящее $mn$, такое, что $\omega^{nm/p}=1$.\linebreak
+По предположению об $n$ и $m$, $p$ делит $n$ и тогда ($\omega^m)^{n/p}=1$, что про-\linebreak
+тиворечит $\Phi_n(\omega^m)=0.$ Так как $\omega$ имеет порядок $mn$, то это корень\linebreak
+$\Phi_{nm}(X),$ что и требовалось доказать.\\
+\indent\textbf{f.} Легко проверить, что $\Phi_{p^\alpha}(1)=p$ для простого $p$. Пусть\linebreak
+$n=p^{\alpha_1}_1 p^{\alpha_2}_2 \ldots p^{\alpha_q}_q$ и $I$ --- множество делителей $n$, являющихся степе-\linebreak
+нями простого числа $p_i$. Имеем $X^{n-1}+X^{n-2}+\ldots+X+1=\prod\nolimits_{d\in I}\Phi_d (X) $\linebreak
+$\prod\nolimits_{d\notin I}\Phi_d (X);$ поскольку $\prod\nolimits_{d\in I}\Phi_d (1)= p^{\alpha_1}_1 p^{\alpha_2}_2 \ldots p^{\alpha_q}_q=n,$ то  $\prod\nolimits_{d\notin I}\Phi_d (1)=$\linebreak
+$=1$. В частности, если $n$ не является степенью простого числа, то $n\notin I$\linebreak
+и $\Phi_n(1)=1.$
+\setcounter{thesection}{12}
+\section{Примитивные корни по модулю чисел Ферма и Мерсенна}
+
+\indent~~\textbf{a.} Имеем $(-2)^p=-2^p\equiv -1~(\text{mod}~M_p),(-2)^{2p}\equiv 1~(\text{mod}~M_p)$ и\linebreak
+такие же сравнения по модулю любого простого делителя $\pi$ числа $M_p$. \linebreak
+Сравнение $(-2)^2\equiv 1~(\text{mod}~\pi)$ не имеет места: действительно, отсюда\linebreak
+следовало бы, что $\pi=3.$ Но 3 не делит $M_p$ (так как $p$ --- нечетно, то\linebreak
+$M_p\equiv 1~(\text{mod}~3)).$ Короче говоря , порядок $-2$ по модулю $\pi$ делит $2p$ и \linebreak
+\newpage
+\noindent не делит ни $2$, ни $p$, значит, этот порядок $2p$, что доказывает, что $-2$\linebreak
+является примитивным корнем степени $2p$ из единицы.\\
+\indent\textbf{b.} Полагая $n=2^q,$ получаем сравнение $2^n\equiv -1 (\text{mod}~F_q),$ что дает\linebreak
+$2^{2n}\equiv 1 (\text{mod}~F_q)$. Так как $-1\neq 1,$ то порядок элемента $2$ в $U(\mathbb{Z}_{F_q})$\linebreak
+делит $2n$ и не делит $n$. Так как $n$ --- степень двойки, то этот поря-\linebreak
+док с необходимостью равен $2n$. Если $p$ --- простой делитель $F_q$, то те\linebreak
+же рассуждения показывают , что порядок элемента $2$ в $F_q$ также ра-\linebreak
+вен $2n$.Это доказывает, что 2 --- примитивный корень из единицы по\linebreak
+модулю $F_q$. Если положить $x=2^{\frac{n}{4}}(2^{\frac{n}{2}}-1)$, то простое вычисление пока-\linebreak
+зывает, что $x^2\equiv 2 (\text{mod}~F_q).$ Рассуждения, аналогичные предыдущим, \linebreak
+показывают, что $x=\sqrt{2}$ --- примитивный корень по модулю $4n$. 
+\section{Частный случай теоремы Дирихле}
+\indent~~\textbf{a.} Пусть $x>1$ таково, что все простые делители $x$ делят $n$ (на-\linebreak
+пример, $x=n$ или произведение всех простых делителей $n$). Так как\linebreak
+$|\Phi_n(X)|>1(|\Phi_n(x)|>(x-1)^{\phi(n)})$, то $\Phi_n(x)$ делится на простое число $p$.\linebreak
+Тогда в $\mathbb{Z}/p\mathbb{Z}$ имеем $\Phi_n(x)=0,$ поэтому $x^n-1=0$. Это доказыва-\linebreak
+ет, что $x$ обратим по модулю $p$, и, следовательно, $n$ тоже обратимо по\linebreak
+модулю $p$. Отсюда $x$ --- примитивный корень $n$-й степени из  единицы\linebreak
+в $U(\mathbb{Z}/p\mathbb{Z}).$ \\
+\indent\textbf{b.} Целое число $n$ делит порядок $U(\mathbb{Z}/p\mathbb{Z}),$ т.е. $n$ делит $p-1.$ Обратно,\linebreak
+если $n$ делит $p-1,$ то, так как $U(\mathbb{Z}/p\mathbb{Z})$ циклическая группа порядка\linebreak
+$n-1$, то она содержит элемент порядка n. \\
+\indent\textbf{c.} Пусть $p_1,p_2,\ldots,p_r~ \text{---}~ r$ различных простых чисел, таких, что\linebreak
+$p_i\equiv 1 ~(\text{mod}~n).$ Положим $m=np_1p_2\ldots p_r.$ Тогда существует такое\linebreak
+простое $p$, что $p\equiv 1~ (\text{mod}~m).$ Если положить $p_{r+1}=p$, то $p_i$ попарно\linebreak
+различны и $p_i\equiv 1~ (\text{mod}~n)$ для $i=1,2,\ldots,r+1.$ 
+\section{Загадочная биекция} 
+\indent~~\textbf{a и b.} Если  $E=[0,2^k],$ то существует инволюция, которая перево-\linebreak
+рачивает двоичную запись элемента $i\in [0,2^k].$ Аналогичный результат\linebreak
+получается, если заменить <<двоичную запись>> на <<разложение по осно-\linebreak
+ванию $q$>>.
+\section{Вычисление инволюции, действующей в F{\footnotesize FT}}
+\indent~~\textbf{a.} Пусть $(\hat{s}_0,\hat{s}_1,\ldots,\hat{s}_{k-1})=\hat{s}_0+\hat{s}_1q+\ldots+\hat{s}_{k-1}q^{k-1}$ --- разложение $\hat{s}$\linebreak
+в системе счисления с основанием $q$. Пробегая массив цифр от индекса\linebreak
+$k-1$ до $0$, отыскиваем первую цифру $\hat{s}_i<q-1.$ Для получения раз-\linebreak
+ложения $s+1$ заменим цифры $\hat{s}_j$ с индексами $j>l~(\hat{s}_j=q-1$ в\linebreak 
+\newpage
+\noindent этом случае) на 0 и увеличим на 1 цифру $\hat{s}_i$. Например, если $q=3$,\linebreak
+то $\hat{s}=(\ldots,1,2,2)\rightarrow\widetilde{s+1}=(\ldots,2,0,0).$ Если такое $l$ не существует\linebreak
+(все цифры $\hat{s}_j$ равны $q-1$), то $s$--- последний элемент ($s=q^k-1)$. \\
+\indent\textbf{b.} Если $l$ ---индекс, найденный ранее, то $\widetilde{s+1}=q^l+(\hat{s}~\text{mod}~q^{l+1})$.
+\section{ F{\footnotesize FT} порядка, являющегося степенью целого числа}
+\indent~~Равенство $P(X)=P_0(X^q)+P_1(X^q)X+\ldots+P_{q-1}(X^q)X^{q-1}$, где\linebreak
+deg~$P_i<q^{k-1}$, дает возможность построить рекурсивную схему для\linebreak
+вычисления значений $P(X)$ в точках $\omega^i,0\leq i<q^k:$ достаточно вы-\linebreak
+числить значение каждого $P_i(X)$~(степени < $q^{k-1}$) в $q^{k-1}$ степенях $\omega^q$\linebreak
+(которые являются корнями из единицы степени $q^{k-1}$), и скомбиниро-\linebreak
+вать результуты в соответствии с равенством. Если $\mathcal{M}_{q^k}$ означает чи-\linebreak
+сло операций умножения для вычисления значений $P(X)$, то получим\linebreak
+$\mathcal{M}_{q^k}=q\mathcal{M}_{q^{k-1}}+(q-1)q^k,$ что дает $\mathcal{M}_{q^k}=k(q-1)q^k$ (так как $\mathcal{M}_1=0)$\linebreak
+или же $\mathcal{M}_n=(q-1)n\text{log}_qn.$ Аналогичный результат верен и для сло-\linebreak
+жений.
+\section{Алгоритм  F{\footnotesize FT}$_{q^k}$}
+\indent~~Обозначим через $\omega$ корень $n$-й степени из единицы и через $\theta$ корень\linebreak
+$q$-й степени из единицы $\omega^{q^{k-1}}$. Рекуррентные соотношения для массивов\linebreak
+$F_m$ записываются при $0\leq m<k,0\leq i< q^{k-m-1},0\leq j<q^m$ и $0\leq r<q$ \linebreak
+следующим образом:
+$$ 
+F_{m+1}(iq^{m+1}+rq^m+j)=\sum^{q-1}_{s=0}F_m(iq^{m+1}+sq^m+j)\theta^{sr}\omega^{sjq^{k-m-1}}.
+$$
+\noindent При $q=3$ элемент $\theta=\omega^{3^{k-1}}$ --- кубический корень из единицы и при\linebreak
+$m<k$ массив $F_{m+1}$ может быть вычислен с помощью $F_m$ по формулам:\linebreak
+$$
+\left(\begin{array}{c}
+  F_{m+1}(i3^{m+1}+j)\\
+  F_{m+1}(i3^{m+1}+3^m+j)\\
+  F_{m+1}(i3^{m+1}+2.3^m+j)\\
+\end{array}\right)~~\longleftarrow ффффффффффф
+$$
+
+$$
+\longleftarrow~\left(\begin{array}{ccc}
+  1 ~~1 ~~1\\
+ ~~ 1 ~~\theta~~ \theta^2\\
+ ~ 1~~ \theta^2 ~\theta\\
+\end{array}\right)
+\left(\begin{array}{c}
+  F_{m+1}(i3^{m+1}+j)\\
+  F_{m+1}(i3^{m+1}+3^m+j)\times\omega^{j3^{k-m-1}}\\
+  F_{m+1}(i3^{m+1}+2.3^m+j)\times\omega^{2j3^{k-m-1}}\\
+\end{array}\right),
+$$
+\noindent где $0\leq i<3^{k-m-1}$ и $0\leq j<3^m$. В алгоритме $2$ появляется  D{\footnotesize FT}$_{3,\theta}$\linebreak
+вычисляемое наивным способой. При реализации предпочтительно ис-\linebreak пользовать более эффективную схему вычисления  D{\footnotesize FT}$_{3,\theta}$.
+\newpage
+\indent Приведем список простых $p<10^5$, таких что $v_3(p-1)\geq 7$. Здесь\linebreak
+указан кофактор степени 3 в $p-1$, а, в скобках --- примитивный корень\linebreak
+из единицы по модулю $p$.\\
+
+$87~481-1=40\cdot 3^7~(29),~~~21~871-1=10\cdot 3^7~(6),~~~17~497-1=8\cdot 3^7~(5)$ 
+\begin{center}
+$52~489-1=8\cdot 3^8~(7),~~~39~367-1=2\cdot 3^9~(3).$
+\end{center}
+
+\newenvironment{ramka}[1]{\begin{tabular}{|p{#1}|} \hline}{\\\hline\end{tabular}}
+\begin{ramka}{11cm}
+ function ~\textit{Fast\_Fourier\_Fransform}  ($f~\in~A^{3^k}$)~return $F \in~A^{3^k}$ is \\
+ begin \\
+~~~for $s$ in $[0,3^k]$ loop \\
+~~~~~$F(s)\leftarrow f(\sigma(s));$ \\
+~~~end loop; \\
+~~~\textit{Loop\_On\_m} : for $m$ in 0 .. $k$ - 1 loop \\
+~~~~~for $i$ in $[0,3^{k-m-1}]$ loop \\
+~~~~~~~ $i_0\leftarrow 3*i*3^m;~~i_1 \leftarrow i_0+j;~~i_2 \leftarrow i_1+3^m $ \\
+~~~~~~~for $j$ in $[0,3^m]$ loop \\
+~~~~~~~~~$i\_0\_j\leftarrow~i_0+j;~~i\_1\_j\leftarrow~i_1+j;~~i\_2\_j\leftarrow i_2+j$ \\
+~~~~~~~~~$G_0\leftarrow F(i\_0\_j);~~G_1\leftarrow F(i\_1\_j)*\omega^{j*3^{k-m-1}}$ \\
+~~~~~~~~~$G_2\leftarrow F(i\_2\_j)*\omega^{2j*3^{k-m-1}}$\\
+~~~~~~~~~$F(i\_0\_j)\leftarrow G_0+G_1+G_2;~~F(i\_1\_j)\leftarrow G_0+\theta G_1+\theta^2 G_2$ \\
+~~~~~~~~~$F(i\_2\_j)\leftarrow G_0+\theta^2 G_1+\theta G_2$ \\
+~~~~~~~end loop; \\
+~~~~~~end loop; \\
+~~~~~end loop \textit{Loop\_On\_m};\\
+~~~~end \text{Fast\_Fourier\_Transform}; 
+\end{ramka} 
+\begin{center}
+\textbf{Алгоритм 2.} Быстрое преобразование Фурье в кольце $A$
+\end{center}
+\section{Итерация метода Кули --- Тьюки} 
+\indent~~~Для простоты возьмем $k=4$, хотя все дальнейшее верно для любо-\linebreak
+го k. Представим $i$ и $j$ в системах счисления $\pi_{{\Large .}}$ и $\pi^\cdot$ : \\
+
+$
+~~~~~~~i=i_0\pi_0+i_1\pi_1+i_2\pi_2+i_3\pi_3+i_4\pi_4, \\
+\indent~~~~~~~~~~~~~~~~~~~~~~~~0\leq i_0<n_0,~0\leq i_1<n_1,\ldots,~0\leq i_4<n_4, \\
+\indent~~~~~~~j=j_0\pi^0+j_1\pi^1+j_2\pi^2+j_3\pi^3+j_4\pi^4, \\
+\indent~~~~~~~~~~~~~~~~~~~~~~~~0\leq j_0<n_4,~0\leq j_1<n_3,\ldots,~0\leq j_4<n_0. \\,
+$
+
+\indent Используя треугольное выражение справа, получим:  \\
+
+$
+\indent~~~\hat{f}(j) = \sum_{i_0}\omega^{j_4\pi^4(i_0)}~\sum_{i_1}\omega^{j_3\pi^3(i_1i_0)}~\sum_{i_2}\omega^{j_2\pi^2(i_2i_1i_0)} \times \\
+\indent~~~~~~~~~~~~~~~~~~~~~~\times \sum_{i_3}\omega^{j_1\pi^1(i_3i_2i_1i_0)}~\sum_{i_4}\omega^{j_0\pi^0(i_4i_3i_2i_1i_0)}~f(i), \\
+$
+
+\newpage
+\noindent где набор $\langle i_4i_3i_2i_1i_0\rangle$ относится к базису~~~$\{\pi_0,\pi_1,\pi_2,\pi_3,\pi_4\}$ \\
+$\langle i_4i_3i_2i_1i_0\rangle=i_4\pi_4+i_3\pi_3+i_2\pi_2+i_1\pi_1+i_0\pi_0.$ \\
+
+\indent Тогда получим следующие формулы: \\
+
+$
+\noindent~~~~~~~~~~~~~F_1\langle \text{\textbf{j}}_0i_3i_2i_1i_0\rangle = \sum_{i_4}f(i)\omega^{j_0\pi^0\langle i_4i_3i_2i_1i_0\rangle} ,\\
+\indent~~~~~~~~~~~~~F_2\langle j_0\text{\textbf{j}}_1i_2i_1i_0\rangle = \sum_{i_3}F_1\langle j_0 \text{\textbf{i}}_3i_2i_1i_0\rangle~\omega^{j_1\pi^1\langle i_3i_2i_1i_0\rangle} ,\\
+\indent~~~~~~~~~~~~~F_3\langle j_0j_1\text{\textbf{j}}_2i_1i_0\rangle = \sum_{i_2}F_2\langle j_0 j_1\text{\textbf{i}}_2i_1i_0\rangle~\omega^{j_2\pi^2\langle i_2i_1i_0\rangle} ,\\
+\indent~~~~~~~~~~~~~F_4\langle j_0j_1j_2\text{\textbf{j}}_3i_0\rangle = \sum_{i_1}F_3\langle j_0 j_1j_2\text{\textbf{i}}_1i_0\rangle~\omega^{j_3\pi^3\langle i_1i_0\rangle} ,\\
+\indent~~~~~~~~~~~~~F_5\langle j_0j_1j_2j_3\text{\textbf{j}}_4\rangle = \sum_{i_0}F_4\langle j_0 j_1j_2j_3\text{\textbf{i}}_0\rangle~\omega^{j_4\pi^4\langle i_0\rangle} ,\\
+$
+
+В этом случае, чтобы получить $\hat{f}$, нужно применить финальную пере-\linebreak
+становку (тогда как использование левого выражения ведет к приме-\linebreak
+нению начальной перестановки как это видно из раздела $4.2.2$): $\hat{f}(j)=$\linebreak
+$F_5\langle j_0j_1j_2j_3j_4\rangle,$ т.е. совпадает с $\hat{f}(j_4\pi^4+j_3\pi^3+\ldots)=F_5(j_0\pi^4+j_1\pi^3+\ldots)$.\linebreak
+В общем случае получаются следующие формулы при $0\leq m \leq k:$  \\
+
+$
+\indent~~~~F_{m+1}\langle j_0\ldots j_{m-1}\text{\textbf{j}}_mi_{k-m-1}\ldots i_0\rangle = \\
+\indent~~~~~~~~~~~~~~~~~~~~~~=\sum_SF_m\langle j_0\ldots j_{m-1}s~i_{k-m-1}\ldots i_0\rangle \omega^{j_m\pi^m\langle s\ldots i_1i_0\rangle}.
+$
+
+\section{Метод Кули --- Тьюки: пример $12=4\times 3 $ } 
+
+\indent~~~ Введем следующие 4 многочлена:\\
+
+$\indent~~~P_0(Y)=a_0+a_4Y+a_8Y^2, ~~~P_1(Y)=a_1+a_5Y+a_9Y^2, \\
+\indent~~~~~~~~P_2(Y)=a_2+a_6Y+a_10Y^2, ~~~P_3(Y)=a_3+a_7Y+a_11Y^2, \\
+$
+
+\noindent и имеем: \\
+
+$ \indent~~~P(X)=P_0(X^4)+P_1(X^4)X+P_2(X^4)X^2+P_3(X^4)X^3, \\
+\indent~~~~~~~~~~~~\text{и}~~~\hat{a}_j=P_0(\omega^{4j})+P_1(\omega^{4j})\omega^j+P_2(\omega^{4j})\omega^{2j}+P_3(\omega^{4j})\omega^{3j}.\\
+$
+\noindent
+
+Организуем вычисления $P_0(\omega^{4j}),P_1(\omega^{4j}),P_2(\omega^{4j}),P_3(\omega^{4j})$ следующим\linebreak
+образом: \\
+
+$
+\noindent b_0=P_0(1),~~b_1=P_0(\omega^4),~~b_2=P_0(\omega^8),~~b_3=P_1(1),~~b_4=P_1(\omega^4),~~b_5=P_1(\omega^8), \\
+\indent b_6=P_2(1),~~b_7=P_2(\omega^4),~~b_8=P_2(\omega^8),~~b_9=P_3(1),~~b_{10}=P_3(\omega^4),~~b_{11}=P_3(\omega^8).\\
+$
+
+
+\newpage
+\noindent Это дает формулы: 
+
+{\footnotesize
+ \noindent \\
+$
+b_0=a_0+a_4+a_8,~~~~~~~~b_3=a_1+a_5+a_9,~~~~~~~~~~~~b_6=a_2+a_6+a_{10},~~~~~~~~~~~~~~~b_9=a_3+a_7+a_{11}, \\
+b_1=a_0+a_4\omega^4+a_8\omega^8,~b_4=a_1+a_5\omega^4+a_9\omega^8,~~~~~~b_7=a_2+a_6\omega^4+a_{10}\omega^8,~~~~~~~b_{10}=a_3+a_7\omega^4+a_{11}\omega^8, \\
+b_2=a_0+a_4\omega^8+a_8\omega^4,~b_5=a_1+a_5\omega^8+a_9\omega^4,~~~~~~b_8=a_2+a_6\omega^8+a_{10}\omega^4,~~~~~~~b_{11}=a_3+a_7\omega^8+a_{11}\omega^4, \\
+ффф\\
+\hat{a}_0=b_0+b_3+b_6+b_9,~~~~~~~~~~~~~~~~\hat{a}_1=b_1+b_4\omega+b_7\omega^2+b_{10}\omega^3,~~~~~~\hat{a}_2=b_2+b_5\omega^2+b_8\omega^4+b_{11}\omega^6, \\
+\hat{a}_3=b_0+b_3\omega^3+b_6\omega^6+b_9\omega^9,~~~~\hat{a}_4=b_1+b_4\omega^4+b_7\omega^8+b_{10},~~~~~~~~~\hat{a}_5=b_2+b_5\omega^5+b_8\omega^{10}+b_{11}\omega^3, \\
+\hat{a}_6=b_0+b_3\omega^6+b_6+b_9\omega^6,~~~~~~~~\hat{a}_7=b_1+b_4\omega^7+b_7\omega^2+b_{10}\omega^9,~~~~~\hat{a}_8=b_2+b_5\omega^8+b_8\omega^{4}+b_{11} ,\\
+\hat{a}_9=b_0+b_3\omega^9+b_6\omega^6+b_9\omega^3,~~~\hat{a}_{10}=b_1+b_4\omega^{10}+b_7\omega^8+b_{10}\omega^6,~~\hat{a}_{11}=b_2+b_5\omega^{11}+b_8\omega^{10}+b_{11}\omega^9, \\
+$
+}
+
+\noindent что требует 60 сложений и 49 умножений (46, если внутри поискать\linebreak
+единицы).
+{\tiny
+$$
+\left(\begin{array}{c}
+  \hat{a}_0 \\
+  \hat{a}_5 \\
+\hat{a}_{10} \\
+\hat{a}_3 \\
+\hat{a}_8 \\
+\hat{a}_{13} \\
+\hat{a}_6 \\
+\hat{a}_{11} \\
+\hat{a}_1 \\
+\hat{a}_9 \\
+\hat{a}_{14} \\
+\hat{a}_4 \\
+\hat{a}_{12} \\
+\hat{a}_2 \\
+\hat{a}_7 \\
+\end{array}\right)=
+\left(\begin{array}{ccccc}
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} &~~~~~
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} &~~~~~
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} &~~~~~
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} &~~~~~
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} \\
+фф\\
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^1
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^2
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^3
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^4
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi\end{bmatrix}  \\
+фф\\
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^2
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^4
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^1
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^3
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi\end{bmatrix}  \\
+фф\\
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^3
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^1
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^4
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^2
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi\end{bmatrix}  \\
+фф\\
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^4
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^3
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^2
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi \end{bmatrix} & \eta^1
+\begin{bmatrix}1 & 1 & 1 \\1 & \xi & \xi^2 \\ 1 & \xi^2 & \xi\end{bmatrix} \\
+\end{array}\right)
+\left(\begin{array}{c}
+  a_0 \\
+  a_{10} \\
+ a_{5} \\
+a_{6} \\
+a_{1} \\
+a_{11} \\
+a_{12} \\
+a_{7} \\
+a_{2} \\
+a_{3} \\
+a_{13} \\
+a_{8} \\
+a_{9} \\
+a_{4} \\
+a_{14} \\
+\end{array}\right).
+$$
+}
+\indent Таким образом, получаем схему вычисления из двух этапов. Если обо-\linebreak
+значить через $W$ матрицу Вандермонда, ассоциированную с корнем $\xi$,\linebreak
+а через $U$ --- матрицу Вандермонда, соответсвующую корню $\eta$, то на \linebreak
+первом этапе вычисляется 15 членов $b_j$ :  \\
+
+$\indent
+\left(\begin{array}{c}
+ b_0 \\
+ b_1 \\
+ b_2 \\
+\end{array}\right) = W 
+\left(\begin{array}{c}
+ a_0 \\
+ a_{10} \\
+ a_5 \\
+\end{array}\right),~~~~
+\left(\begin{array}{c}
+ b_3 \\
+ b_4 \\
+ b_5 \\
+\end{array}\right) = W 
+\left(\begin{array}{c}
+ a_6 \\
+ a_{1} \\
+ a_{11} \\
+\end{array}\right),~~~
+\left(\begin{array}{c}
+ b_6 \\
+ b_7 \\
+ b_8 \\
+\end{array}\right) = W 
+\left(\begin{array}{c}
+ a_{12} \\
+ a_{7} \\
+ a_{2} \\
+\end{array}\right), \\
+\indent~~~~~~~~~~~~~~~~~~~~~~~~~~
+\left(\begin{array}{c}
+ b_9 \\
+ b_{10} \\
+ b_{11} \\
+\end{array}\right) = W 
+\left(\begin{array}{c}
+ a_{3} \\
+ a_{13} \\
+ a_{8} \\
+\end{array}\right), ~~~
+\left(\begin{array}{c}
+ b_{12} \\
+ b_{13} \\
+ b_{14} \\
+\end{array}\right) = W 
+\left(\begin{array}{c}
+ a_{9} \\
+ a_{4} \\
+ a_{14} \\
+\end{array}\right), 
+$
+\newpage
+\noindent а заключительные члены $\hat{a}_j$ вычисляются по формулам:
+$$
+\left(\begin{array}{c} \hat{a}_0 \\ \hat{a}_3 \\\hat{a}_6 \\ \hat{a}_9 \\ \hat{a}_{12} \\ \end{array}\right) = U~
+\left(\begin{array}{c} b_0 \\ b_3 \\ b_6 \\ b_9 \\ b_{12} \\ \end{array}\right) ,~~
+\left(\begin{array}{c} \hat{a}_5 \\ \hat{a}_8 \\\hat{a}_{11} \\ \hat{a}_{14} \\ \hat{a}_{2} \\ \end{array}\right) = U~
+\left(\begin{array}{c} b_1 \\ b_4 \\ b_7 \\ b_{10} \\ b_{13} \\ \end{array}\right) ,~~
+\left(\begin{array}{c} \hat{a}_{10} \\ \hat{a}_{13} \\\hat{a}_1 \\ \hat{a}_4 \\ \hat{a}_{7} \\ \end{array}\right) = U~
+\left(\begin{array}{c} b_2 \\ b_5 \\ b_8 \\ b_{11} \\ b_{14} \\ \end{array}\right) ,~~
+$$
+\noindent 
+Читатель может проверить справедливость вычислений с помощью\linebreak
+полиномиального тождества, имеющего место в факторкольце $A[X]/$\linebreak
+$X^{15}-1):$ \\
+
+\indent~~~~~~~ $P(X)=(a_0+a_{10}X^{10}+a_5X^5)+(a_6+a_1X^{10}+a_{11}X^5)X^6 + \\
+\indent~~~~~~~~~~~~ +(a_{12}+a_7X^{10}+a_2X^5)X^{12}+(a_3+a_{13}X^{10}+a_8X^5)X^3 +  \\
+\indent~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  +(a_9+a_4X^{10}+a_{14}X^5)X^9, $ \\
+
+\noindent что наводит на мысль положить: \\
+
+$
+\indent ~~~~~~~P_0=a_0+a_{10}X^{10}+a_5X^5,~~~P_1=a_6+a_1X^{10}+a_{11}X^5, \\
+\indent ~~~~~~~~~~~~P_2=a_{12}+a_7X^{10}+a_2X^5,~~~P_3=a_3+a_{13}X^{10}+a_8X^5, \\
+\indent ~~~~~~~~~~~~P_4=a_9+a_4X^{10}+a_{14}X^5. \\
+$
+
+Тогда $b_j$ определяются следующим образом:  \\
+
+$
+\indent b_0=P_0(1),~~~~~~~b_3=P_1(1),~~~~~~~~b_6=P_2(1),~~~~~~~b_9=P_3(1),~~~~~~~b_{12}=P_4(1), \\
+\indent~~~~~ b_1=P_0(\omega^2),~~~~~b_4=P_1(\omega^2),~~~~~~b_7=P_2(\omega^2),~~~~b_{10}=P_3(\omega^2),~~~~~b_{13}=P_4(\omega^2), \\
+\indent~~~~~b_2=P_0(\omega^2),~~~~~b_5=P_1(\omega^1),~~~~~~b_8=P_2(\omega^1),~~~~b_{11}=P_3(\omega^1),~~~~~b_{14}=P_4(\omega^1). \\
+$
+
+\setcounter{thesection}{21}
+\section{Метод Гуда в терминах многочленов}
+
+
+\indent~~~\textbf{a.} Следующие условия необходимы и достаточны: 
+$$ rr`\equiv 1~(\text{mod}~p),~~~r`\equiv 0~(\text{mod}~q),~~~s`\equiv 0~(\text{mod}~p),~~~ss`\equiv 1~(\text{mod}~q). $$
+\noindent Существуют \textbf{несколько} изоморфизмов \textbf{групп} $\mathbb{Z}_n$ на $\mathbb{Z}_p\times\mathbb{Z}_q$, но только\linebreak
+один изоморфизм колец. Он задается по $r=s=1~(\text{mod}~n)$ и соответ-\linebreak
+ствует китайской теореме об остатках. Заметив, что $q$ обратимо по\linebreak
+модулю $p$ и $p$ обратимо по модулю $q$, выберем $r`=q $ и $s`=p.$ Тогда\linebreak
+обратные к $r$ и $s$ даются, соответственно, коэффициентами Безу между\linebreak
+$p$ и $q$. \\
+\indent \textbf{b.} Достаточно определить их посредством равенств: $\theta(X)=Y^SZ^r,$\linebreak
+$\theta`(Y)=X^{S`}$ и $\theta`(Z)=X^{r`}.$ 
+\newpage
+\indent\textbf{c.} Пусть $P(X)=\sum_{0\leq k<n}a_kX^k.$ По модулю $Z^p=1,Y^q=1$ имеем:\linebreak
+
+$\indent~~~~~~~\theta(P)=\sum_ka_kY^{sk}Z^{rk}=\sum_ka_kY^{sk~\text{mod}~q}Z^{rk~\text{mod}~p}=\\
+\indent~~~~~~~~~~~~~~~~~~~=\sum_{0\leq i<p}(\sum_{0\leq j<q}~a_{(js`+ir~)~\text{mod}~n}Y^j)Z^i=~\sum_{0\leq i<p}~P_i(Y)Z^i, \\ 
+$
+
+\noindent и, следовательно, $P(X)\equiv\sum_{0\leq i<p}P_i(X^{s`})(X^{r`})^i~(\text{mod}~X^n-1).$ Если $\omega$\linebreak
+--- корень из $n$-й степени из единицы, то $\omega_1=\omega^{s`}$ --- корень $q$-й степени\linebreak
+из единицы и $\omega_2=\omega^{r`}$ --- корень $p$-й степени из единицы. Указанное\linebreak
+выше тождество сводит вычисление D{\footnotesize FT}$_{n,\omega}$  к $p$ вычислениям D{\footnotesize FT}$_{q,\omega_1}$\linebreak
+сопровождаемым $q$ вычислениями D{\footnotesize FT}$_{p,\omega_2}$. Следует заметить, что вы-\linebreak
+бор $r`=q$ и $s`=p$ просто приводит к $P_i(Y)=\sum_ja_{(pj+qj)~\text{mod}~n}Y^j$,\linebreak
+$\omega_1=\omega^p$ и $\omega_2=\omega^q.$ Например, если $p=3,q=4,$ то для многочлена\linebreak
+$P(X)$ степени < 12 получим тождество по модулю $X^{12}-1:$ \\
+
+$\indent P(X)\equiv(a_0+a_3X^3+a_6X^6+a_9X^9)+(a_4+a_7X^3+a_{10}X^6+a_1X^9)X^4 \\
+\indent~~~~~~~~~~~~~~~+(a_8+a_{11}X^3+a_2X^6+a_5X^9)X^8, \\$
+
+
+\noindent что позволяет схематически записать  D{\footnotesize FT}$_{12,\omega}\simeq $ D{\footnotesize FT}$_{3,\omega^4}\oplus$ D{\footnotesize FT}$_{4,\omega^3}$.
+\section{Циклическая свертка на 2 точках} 
+
+\indent\textbf{a.} Имеем $z_0+z_1=(x_0+x_1)(y_0+y_1),~z_0-z_1~=~(x_0-x_1)(y_0-y_1),$\linebreak
+что требует лишь 2 умножения; если 2 обратимо в кольце, то получаем:\linebreak
+$z_0=\frac{(z_0+z_1)+(z_0-z_1)}{2},z_1=\frac{(z_0+z_1)-(z_0-z_1)}{2}.$ Если матрица-циркулянт фик-\linebreak
+сирована раз и навсегда, то предвычисления $\alpha=\frac{x_0+x_q}{2},\beta=\frac{x_0-x_1}{2}$ дают\linebreak
+возможность найти $z_0=\alpha(y_0+y_1)+\beta(y_0-y_1),z_1=\alpha(y_0+y_1)-\beta(y_0-y_1),$\linebreak
+что требует два умножения и 4 сложения. Это можно выразить следу-\linebreak
+ющей схемой вычислений:\\
+
+\begin{ramka}{11cm}
+$s_1\leftarrow y_0+y_1,~~~~s_2\leftarrow y_0-y_1,~~~~m_1\leftarrow\frac{x_0+x_1}{2}*s_1,~~~m_2\leftarrow\frac{x_0-x_1}{2}*s_2,$ \\
+$ s_3\leftarrow m_1+m_2,~~s_4\leftarrow m_1-m_2,~~~z_0=s_3,~~~~~~~~~~~~~~~~~z_1=s_4 $ 
+\end{ramka}
+
+
+$фф\\$
+\indent\textbf{b.} Так как элемент 2 обратим, то $T+1$ и $T-1$ обязательно взаимно\linebreak
+просты, т.е. $1=\frac{1}{2}(T+1)-\frac{1}{2}(T-1).$ Следовательно, существует изомор-\linebreak
+физм \\
+\noindent $A[T]/(T^2-1)$ в $(A[T]/(T-1)\times A[T]/(T+1),$ который элементу $P$ mod \linebreak
+$(T^2-1)$ ставить в соответствие $(P mod (T-1),~P~\text{mod}~(T+1)).$ \\
+\indent Это означает , что многочлен $P=p_0+p_1T$ степени $\leq 1$ одно-\linebreak
+значно определен по модулю $T^2-1$ своими значениями $P(1)$ и $P(-1):$ \linebreak
+\newpage
+\noindent$p_0=\frac{P(1)+P(-1)}{2},p_1=\frac{P(1)-P(-1)}{2}.$ Вычисляем $(x_0+x_1T)*(y_1+y_0T)$\linebreak
+(mod $T^2-1),$ находя значения этого произведения в точках $1$ и $-1\ldots$ \linebreak
+это объясняет подход, использованный в вопросе \textbf{a}. 
+
+\section{Умножение двух комплексных чисел} 
+
+\indent~ Пусть надо вычислить $(a+ib)(c+id).$ Тот факт, что $\mathbb{C}\simeq\mathbb{R}[T]/$\linebreak
+$(T^2+1),$ наводит нас на мысль положить $m_1=ac,~m_2=bd,~m_3=$ \linebreak
+$(a+b)(c+d).$ Тогда имеем $(a+ib)(c+id)=(m_1-m_2)+i(m_3-m_1-$\linebreak
+$-m_2).$
+
+\section{Дискретное преобразование Фурье на 3 точках} 
+
+\indent~  Воспользуемся циклической сверткой на двух точках и предвычи-\linebreak слениями:  \\
+$ фф\\ фф\\ $
+$\indent~~~~~~~~\left(\begin{array}{c} \hat{a}_1 \\ \hat{a}_2 \end{array}\right) = \left(\begin{array}{c} a_0 \\ a_0 \end{array}\right) + \left(\begin{array}{c} z_1 \\ z_2 \end{array}\right), ~~~ \left(\begin{array}{c} z_1 \\ z_2 \end{array}\right) = 
+\left(\begin{array}{cc} \omega & \omega^2 \\ \omega^2 & \omega \end{array}\right) \left(\begin{array}{c} a_1 \\ a_2 \end{array}\right), \\
+\indent~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\text{где}~~\alpha=\frac{\omega+\omega^2}{2}~\text{и}~\beta=\frac{\omega-\omega^2}{2}. \\$
+
+\indent Можно сэкономить сложения в общем вычислении, заметив, что вы-\linebreak
+числение $a_1+a_2$, необходимое для ($z_1,z_2$), можно использовать в вычи-\linebreak
+слении $\hat{a}_0=a_0+(a_1+a_2)$ и что можно вычислить $\hat{a}_1$ и $\hat{a}_2$ с помощью\linebreak
+вынесения за скобку общего множителя при сложении. Приведем схе-\linebreak
+му, использующую 6 сложений и 2 умножения (вместо 6 сложений и 4\linebreak
+умножений в обычном методе): \\
+$фф \\$ 
+\indent~~~~~~~~~~~\begin{ramka}{9cm}
+$ s_1\leftarrow a_1+a_2,~~~~~~~~~~~~s_2\leftarrow a_1-a_2,~~~~~~~s_3\leftarrow a_0+s_1,$\\
+ $ m_1\leftarrow\frac{\omega+\omega^2}{2}*s_1,~~~~~~m_2\leftarrow\frac{\omega-\omega^2}{2}*s_2,$ \\
+  $s_4\leftarrow a_0+m_1,~~~~~~~~~~~s_5\leftarrow s_4+m_2,~~~~~~s_6\leftarrow s_4 - m_2,$ \\
+ $ \hat{a}_0=s_3,~~~~~~~~~~~~~~~~~~~~\hat{a}_1=s_5,~~~~~~~~~~~~~~\hat{a}_2=s_6  $
+\end{ramka}
+
+\section{Тензорный ранг семейства элементарных билинейных \\
+ форм} 
+
+\indent~~~\textbf{b.}  Если семейство $\{a_1,a_2,a_3,\ldots,a_r\}$ не является свободной систе-\linebreak
+мой образующих, тогда, например, имеем $a_1=x_2a_2+x_3a_3+\ldots+x_ra_r,$\linebreak
+и можно записать:  \\
+
+$\indent~~~~~~~~~~~~~a_1\oplus b_1+a_2\oplus b_2+\ldots+a_r\oplus b_r =$ \\
+$\indent ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=a_2\oplus(b_2+x_1b_1)+\ldots+a_r\oplus(b_r+x_rb_1),$
+
+\newpage
+\noindent что противоречит минимальности $r$. Аналогичный результат, разуме-\linebreak
+ется, справедлив для семейства $\{b_1,b_2,\ldots,b_r\}$. \\
+\indent Пусть $H_g$ --- векторное пространство, состоящее из линейных форм\linebreak
+$h(.,y),y\in F.$ Равенство $h=a_1\oplus b_1+\ldots+a_r\oplus b_r$ доказывается,\linebreak
+что $H_g$ содержится в пространстве, порожденном линейными формами\linebreak
+$a_1,a_2,\ldots,a_r.$ Покажем обратное, доказывая, например, что $a_1\in H_g.$\linebreak
+Так как линейные формы $b_1,b_2,\ldots,b_r$ линейно независимы, то найдет-\linebreak
+ся $y\in F,$ такой, что $b_1(y)=1,b_2(y)=b_3(y)=\ldots=b_r(y)=0,$ что\linebreak
+дает $a_1=h(.,y)\in H_d$ (это соответствует известному факту, что в\linebreak
+произвольной матрице число линейно независимых строк равно числу\linebreak
+линейно независимых столбцов). \\
+\indent Обозначим через $f_1(x),f_2(x),\ldots,f_5(x)$ линейные формы, соответ-\linebreak
+ствующие столбцам матрицы $H$, тогда получаем: $h(x,y)=f_1(x)y_1+$\linebreak
+$f_2(x)y_2+\ldots+f_5(x)y_5$, и достаточно найти выражение $f_i$ в базисе про-\linebreak
+\begin{wraptable}{}{0.35\textwidth} 
+$LH~=~
+\left(\begin{array}{ccccc}
+1 & 0 & 2 & 0 & 1\\
+0 & 1 & 3 & 0 & 2\\
+0 & 0 & 0 & 1 & -2\\
+0 & 0 & 0 & 0 & 0\\
+\end{array}\right)$
+\end{wraptable}
+странства, порожденного элементами $f_i$.\\
+Классическая техника линейной алгебры\\ 
+позволяет найти такую $4\times 4 -$матрицу $L$ с\\
+определителем 1, что матрица $LH$ будет\\
+ступенчатов. К примеру, для матрицы справа можно определить базис $\{x`_1,x`_2,x`_3\}$ пространства \\
+порожденного системой $\{f_1,f_2,\ldots,f_5\}$, удовлетворяющий соотношениям: \\
+
+\indent~~~~~~~~$f_1(x)=x`_1,~~~f_2(x)=x`_2~~~~f_3(x)=2x`_1+3x`_2,$ \\
+ \indent~~~~~~~~~~~~$f_4(x)=x`_3,~~~~f_5(x)=x`_1+2x`_2-2x`_3. $\\
+
+\noindent Отсюда выводим следующее выражения для $h$ ранга 3: \\
+
+$h(x,y)=f_1(x)(y_1+2y_3+y_5)+f_2(x)(y_2+3y_3+2y_5)+f_4(x)(y_4-2y_5).$ \\
+
+\indent\textbf{c.} Запись $z_0=x_0y_0+qx_1y_1,z_1=(x_0+x_1)(y_0+y_1)-x_0y_0+(r-1)x_1y_1$\linebreak
+показывает, что тензорный ранг семейства $\{z_0,z_1\}$ не превосходит 3.\linebreak
+Вместе с тем матрица $-\delta z_0+\beta z_1$ обратима, как как ее определител\linebreak
+равен $\delta^2q-\beta\delta r-\beta^2$ (напомним: многочлен $T^2-rT-q$ не имеет корней).\linebreak
+Равенство $-\delta z_0+\beta z_1=(\beta\gamma-\alpha\delta)a_1\oplus b_1$ показывает, что это матрица\linebreak
+ранга $\leq 1.$ Получили противоречие. \\
+
+\indent\textbf{d.} Предположим, что многочлен $T^2-rT-q$ имеет два \textit{различных}\linebreak
+корня $t`$ и $t``$ в теле. Элементарные вычисления показывают, что две\linebreak
+формы $z_0+t`z_1$ и $z_0+t``z_1$ имеют ранг 1 и потому могут быть записаны\linebreak
+в виде: $z_0+t`z_1=a_1\oplus b_1,z_0+t``z_1=a_2\oplus b_2,$ откуда $z_0=(t``a_1\oplus b_1$ ---\linebreak
+$t`a_2\oplus b_2)/(t``-t`),z_1=(a_1\oplus b_1-a_2\oplus b_2)/(t`-t``).$ Это доказывает, что\linebreak
+rang$_{\oplus}\{z_0,z_1\}=2.$ Тензорный ранг зависит здесь от основного тела $K$, \linebreak
+
+\noindent а именно, от того, имеет или не имеет многочлен $T^2-rT-q$ свои корни\linebreak
+в $K$.
+\section{Тензорный ранг произведения двух многочленов} 
+\indent~~~\textbf{b.} Так как $K$ бесконечно, то $K$ содержит $n+m+1$ различных\linebreak
+точек $t_0,t_1,\ldots,t_{n+m}.$ Формы $\omega_0,\omega_1,\ldots,\omega_{n+m}$ определены через $\omega_i=$\linebreak
+$X(t_i)Y(t_i),$ т.е: 
+
+$$\omega_i=(x_nt_i^n+\ldots+x_1t_i+x_0)\times(y_mt_i^m+\ldots+y_1t_i+y_0) $$
+
+\noindent являются элементарными биленейными формами, и можно выразить $z_0$,\linebreak
+$z_1,\ldots,z_{n+m}$ как линейные комбинации этих $n+m+1$ элементарных\linebreak
+билинейных форм. Матрица $V$, такая, что $V(z_i)=(\omega_i)$, есть матри-\linebreak
+ца для вычисления значений в $n+m+1$ точках $t_0,t_1,\ldots,t_{n+m+1}$ зна-\linebreak
+чений произведений многочленов (это матрица Вандермонда порядка\linebreak
+$(n+m+1)).$ При $n=2,m=3,$ если выбрать $\{0,1,2,3,4,5\}$ в качестве\linebreak
+точек интерполяции, получим: 
+
+$$ 
+\left(\begin{array}{c}
+ X(0)Y(0) \\
+ X(1)Y(1) \\
+X(2)Y(2) \\
+X(3)Y(3) \\
+X(4)Y(4) \\
+X(5)Y(5) \\
+\end{array}\right)= 
+\left(\begin{array}{cccccc}
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 1 & 1 & 1 & 1 \\
+1 & 2 & 4 & 8 & 16 & 32 \\
+1 & 3 & 9 & 27 & 81 & 243 \\
+1 & 4 & 16 & 64 & 246 & 1024 \\
+1 & 5 & 25 & 125 & 625 & 3125 \\
+\end{array}\right)~
+\left(\begin{array}{c}
+z_0 \\
+ z_1 \\
+z_2 \\
+z_3 \\
+z_4 \\
+z_5  \\
+\end{array}\right).~~~~(12) 
+$$
+
+\noindent Тогда можно обратить формулу (26. ), и, таким образом, вычислить\linebreak
+билинейные формы $z_i$ с помощью 6 порождающих умножений. \\
+
+\noindent$\left(\begin{array}{c}
+z_0 \\
+ z_1 \\
+z_2 \\
+z_3 \\
+z_4 \\
+z_5  \\
+\end{array}\right)= V^{-1}
+\left(\begin{array}{c}
+\omega_0 \\
+ \omega_1 \\
+\omega_2 \\
+\omega_3 \\
+\omega_4 \\
+\omega_5  \\
+\end{array}\right)=\frac{1}{120}
+\left(\begin{array}{cccccc}
+120 & 0 & 0 & 0 & 0 & 0 \\
+-274 & 600 & -600 & 400 & -150 & 24 \\
+225 & -770 & 1070 & -780 & 305 & -50 \\
+-85 & 355 & -590 & 490 & -205 & 35 \\
+15 & -70 & 130 & -120 & 55 & -10 \\
+-1 & 5 & -10 & 10 & -5 & 1 \\
+\end{array}\right)~
+\left(\begin{array}{c}
+\omega_0 \\
+ \omega_1 \\
+\omega_2 \\
+\omega_3 \\
+\omega_4 \\
+\omega_5  \\
+\end{array}\right), \\ \indent~~~~~~~~~~~~~~\text{где}~~~
+\left(\begin{array}{c}
+\omega_0 \\
+ \omega_1 \\
+\omega_2 \\
+\omega_3 \\
+\omega_4 \\
+\omega_5  \\
+\end{array}\right)= 
+\left(\begin{array}{c}
+x_0y_0 \\
+ (x_0+x_1+x_2)(y_0+y_1+y_2+y_3) \\
+(x_0+2x_1+4x_2)(y_0+2y_1+4y_2+8y_3)\\
+(x_0+3x_1+9x_2)(y_0+3y_1+9y_2+27y_3) \\
+(x_0+4x_1+16x_2)(y_0+4y_1+16y_2+64y_3) \\
+(x_0+5x_1+25x_2)(y_0+5y_1+25y_2+125y_3) \\
+\end{array}\right).\\
+$
+\indent\textbf{c.} Пусть $Z(T)=z_0+z_1T+z_2T^2+z_3T^3+z_4T^4+z_5T^5$ --- произ-\linebreak
+ведение многочлена $X(T)=x_0+x_1T+x_2T^2$ степени 2 и многочлена\linebreak
+
+\newpage
+\noindent $Y(T)=y_0+y_1T+y_2T^2+y_3T^3$ степени 3.Выбрав 5 точек $0,\pm 1,\pm 2,$\linebreak
+запишем: \\
+
+$X(T)Y(T)=\omega_0+\omega_1T+\omega_2T^2+\omega_3T^3+\omega_4T^4+x_2y_3T(T^2-1)(T^2-4).$ \\
+
+\noindent Можно вычислить билинейные формы $z_4,z_3,z_2,z_1$ и $z_0$ в зависимости\linebreak
+от $z_5,\omega_4,\omega_3,\omega_2,\omega_1$ и $\omega_0$: \\
+
+\indent ~~~~~~~~~~~~~~~~~~~$z_5=x_2y_3,~~~z_4=\omega_4,~~~~z_3=\omega_3-5z_5, $\\
+\indent ~~~~~~~~~~~~~~~~~~~$z_2 =\omega_2,~~~z_1=\omega_1+4z_5,~~~~z_0=\omega_0, $\\
+
+\noindent и выразить $\omega_i$ с помощью интерполяции многочлена 4 на 5\linebreak
+точках $0,\pm 1 ,\pm 2:$  
+
+$$
+\left(\begin{array}{c}
+ X(0)Y(0) \\
+ X(1)Y(1) \\
+X(-1)Y(-1) \\
+X(2)Y(2) \\
+X(2)Y(-2) \\
+\end{array}\right)= 
+\left(\begin{array}{ccccc}
+1 & 0 & 0 & 0 & 0  \\
+1 & 1 & 1 & 1 & 1  \\
+1 & -1 & 1 & -1 & 1  \\
+1 & 2 & 4 & 8 & 16 \\
+1 & -2 & 4 & -8 & 16  \\
+\end{array}\right)~
+\left(\begin{array}{c}
+\omega_0 \\
+ \omega_1 \\
+\omega_2 \\
+\omega_3 \\
+\omega_4 \\
+\end{array}\right).
+$$
+
+\noindent Отсюда получаем $\omega_i$ как линейные комбинации 5 элементарных произ-\linebreak
+ведений: \\
+
+$\indent ~~~~~~~
+\left(\begin{array}{c}
+\omega_0 \\
+ \omega_1 \\
+\omega_2 \\
+\omega_3 \\
+\omega_4 \\
+\end{array}\right)=\frac{1}{24}
+\left(\begin{array}{ccccc}
+24 & 0 & 0 & 0 & 0  \\
+0 & 16 & -16 & -2 & 2  \\
+30 & 16 & 16 & -1 & -1  \\
+0 & -4 & 4 & 2 & 2 \\
+6 & -4 & -4 & 1 & 1  \\
+\end{array}\right) \times \\
+\indent~~~~~~~~~~~~~~~~~~~~\times
+\left(\begin{array}{c}
+x_0y_0 \\
+ (x_0+x_1+x_2)(y_0+y_1+y_2+y_3) \\
+(x_0-x_1+x_2)(y_0-y_1+y_2-y_3)\\
+(x_0+2x_1+4x_2)(y_0+2y_1+4y_2+8y_3) \\
+(x_0-2x_1+4x_2)(y_0-2y_1+4y_2-8y_3) \\
+\end{array}\right).\\
+$
+\section{Тензорный ранг циклической свертки порядка 3} 
+ 
+\indent Пусть $Z(T)=X(T)Y(T)~~(\text{mod}~T^3-1),$ где: \\
+
+\indent~~~~~~~~$X(T)=x_2T^2+x_1T+x_0,~~~~~Y(T)=y_2T^2+y_1T+y_0,$\\
+\indent~~~~~~~~~~~~~~~~~~~~~~~~~$Z(T)=z_2T^2+z_1T+z_0.$ \\
+
+\noindent Имеем $A[T]/(T-1)\times A[T]/(T^2+T+1)\simeq A[T]/(T^3-1).$ Вычисление\linebreak
+$X(T)Y(T)~\text{mod}~(T-1)$ вводит элементарную билинейную форму $m_1=$ \linebreak
+
+\end{document} 
