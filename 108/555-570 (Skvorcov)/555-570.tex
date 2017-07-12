@@ -5,11 +5,11 @@
 
 \setcounter{page} {555}
 
-\begin{document}
-
 \fancyhead[LE,RO]{\thepage}
 \fancyhead[RE]{IV \textit{\small Некоторые методы алгбраической алгоритмики}}
 \fancyhead[LO]{\textit{\small Решения упражнений}}
+
+\begin{document}
 
 \newcounter{exercise}
 \setcounter{exercise} {20}
@@ -150,7 +150,6 @@ $F_{n+k} - 2 =$ $=F_{n+k-1} F_{n+k-2} \ldots F_{n+1}F_n(n-2)$. Следоват�
 \end{equation*}
 Множитель $(-1)^{k \frac{b^2 -1}{8}}$ равен $-1$ тогда и только токда, когда $k$ нечетно, а $b$~mod~$8 = \pm 3$.
 
-\definecolor{light-gray}{rgb}{0.8,0.8,0.8} 
 \begin{center}
 \fbox{ \begin{minipage}{30em}
 	int $a$ = fmod($u$, $v$); \par
@@ -158,15 +157,15 @@ $F_{n+k} - 2 =$ $=F_{n+k-1} F_{n+k-2} \ldots F_{n+1}F_n(n-2)$. Следоват�
 	int $J$ = $1$; \par
 	for ( ; ; ) \{ \par
 	\quad if ($a$ == $0$) return $0$; \par
-	\quad if (($a$ \& $1$) == $0$) \{ \colorbox{light-gray}{$0 \le a < b$, $b$ нечетное $\ge 3$ и $(\frac{a}{b})J = (\frac{u}{v}$)} \par
+	\quad if (($a$ \& $1$) == $0$) \{ // $0 \le a < b$, $b$ нечетное $\ge 3$ и $(\frac{a}{b})J = (\frac{u}{v}$) \par
 	\quad \quad int $k$ = $0$; \par
 	\quad \quad do \{ \par
-	\quad \quad \quad a \textbackslash = $2$; \par
+	\quad \quad \quad a /= $2$; \par
 	\quad \quad \quad $k++$; \par
 	\quad \quad \} while (($a$ \& $1$) == $0$); \par
 	\quad \quad if (($k$ \& $1$) == $1$ \&\& fabs(fmod($b$, $8$)) == $3$) $J$ = -$J$;\par
 	\quad \} \par
-	\quad \colorbox{light-gray}{$0 \le a < b$, $a,\,b$ нечетны, $b \ge 3$ и $(\frac{a}{b})J = (\frac{u}{v}$)} \par
+	\quad // $0 \le a < b$, $a,\,b$ нечетны, $b \ge 3$ и $(\frac{a}{b})J = (\frac{u}{v}$) \par
 	\quad if ($a$ == $1$) return $J$; \par
 	\quad if (fmod($a$, $4$) == $3$ \&\& fmod($b$, $4$) == $3$) $J$ = -$J$; \par
 	\quad int $c$ = $a$; \par
