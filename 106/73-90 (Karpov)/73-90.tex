@@ -306,6 +306,7 @@ $\delta = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 \\ 2 & 4 & 5 & 1 & 3 \end{pmatrix} $
 следования (соответственно, предшествования). Вот описание настра­
 иваемого пакета, определяющего такой генератор.
 
+\newpage
 \begin{lstlisting}
 
 typedef enum {
@@ -328,7 +329,6 @@ bijection min_bij(source s_min,
 inline void sucsessor_of(bijection bij, signature sig);
 
 \end{lstlisting}
-\newpage
 % TODO: code
 
 Э тот модуль определяет, кале указывает его имя, генератор биек­
@@ -370,6 +370,11 @@ inline void sucsessor_of(bijection bij, signature sig);
 программы, представленный здесь:
 
 % TODO: code
+\begin{lstlisting}
+typedef unsigned int index;
+typedef long long int coefficient;
+void compute_determ
+\end{lstlisting}
 
 Начинают, таким образом, с построения матричного типа и его
 примитивов; тогда можно конкретизировать пакет ввода-вывода ма-
