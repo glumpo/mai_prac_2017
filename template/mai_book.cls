@@ -27,7 +27,7 @@
 \RequirePackage{floatrow}
 
 \RequirePackage[justification=centering]{caption}
-%\RequirePckage[labelsep=period]{caption}
+\RequirePckage[labelsep=period]{caption}
 \RequirePackage{mathtools}
 
 %эпиграф
