@@ -1,7 +1,7 @@
-\documentclass{../../template/mai_book}
-\defaultfontfeatures{Mapping=tex-text}
-\setdefaultlanguage{russian}
-\begin{document}
+%\documentclass{../../template/mai_book}
+%\defaultfontfeatures{Mapping=tex-text}
+%\setdefaultlanguage{russian}
+%\begin{document}
 мы говорили. На распечатке спецификации можно увидеть определения
 типов, которые должны быть представлены в личной части.
 Все это может показаться невероятно сложным и неэффективным.
@@ -830,22 +830,18 @@ Descending\_Index = q\\
 отношение между сигнатурами начальной перестановки и полученной 
 из  нее  (число  осуществленных  перемен \textit{s}  =  \textit{Length}/2,
   и,  значит, это отношение равно $(—1)^{s})$.
-   
+
 \noindent \textbf{\large{Третья фаза}}
 
-\noindent \begin{wraptable}{i}{0.55\textwidth}
-\begin{tabular}{|l|}
-\hline
-\textit{\textbf{\begin{tabular}[c]{@{}l@{}}
-for(int i = First\_Index; i \textless q; i++)\\ 
-\{\\ 
-\hspace{0.3cm}if(Sigma(i) \textgreater Sigma(First\_Index)\\ 
-\hspace{0.3cm}\{\\ 
-\hspace{0.6cm}swap(Sigma(i),Sigma(First\_Index))\\ 
-\hspace{0.3cm}\}\\ 
-\}\end{tabular}}} \\ \hline
-\end{tabular}
-\end{wraptable}
+\begin{wrapfigure}{r}{0.6\textwidth}
+\begin{lstlisting}[mathescape=true]
+for (int $i=First\_Index; i\leqslant{q}; ++i$) {
+if (Sigma$(i)>$Sigma$(First\_Index)$)
+swap(Sigma($i$), Sigma($First\_Index$));
+}
+\end{lstlisting}
+\vspace{-15pt}
+\end{wrapfigure}
 
 Наконец, нужно отыскать в
 только  что  обращенной  части 
@@ -877,4 +873,4 @@ for(int i = First\_Index; i \textless q; i++)\\
 между двумя рассматриваемыми интервалами). Кроме того, процеду­ра \textit{Successor}
  имеет два параметра: исходная биекция и ее сигнатура, и 
 эта процедура вычисляет следующую биекцию и ее сигнатуру.
-\end{document}
+%\end{document}
