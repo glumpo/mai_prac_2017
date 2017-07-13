@@ -1,69 +1,3 @@
-\documentclass{mai_book}
-
-\defaultfontfeatures{Mapping=tex-text}
-\setmainfont{DejaVuSerif}
-\setdefaultlanguage{russian}
-\usepackage{color}
-
-\begin{document}
-
-	\lhead{III-2.3 \ \ \ \  Единственность нормального разложения}
-	\rhead{327}
-	
-	Пусть $I_{1} \supset I_{2} \supset I_{3} \supset \ldots \supset I_{p}$ - цепь собственных идеалов в А. Тогда \linebreak
-	$\rho(A/I_{1} \times A/I_{2} \times \ldots \times A/I_{p}) = p.$ %\linebreak
-	
-	\noindent
-	{\bf Доказательство.}
-	
-	\begin{tabular}{|p{12.5cm}}
-	\noindent
-	Теорема Крулля утверждает существование максимального идеала\linebreak
-	$M$, содержащего собственный идеал $I_{1}$ (если $A = \mathbb Z$ и $I_{1} = (a_{1}),$ то\linebreak
-	этот идеал $-$ $(q)$, где $q$ $-$ простой делитель $a_{1}$). Этот идеал будет\linebreak
-	самым большим в цепи. Применим тогда сюръективное отображе-\linebreak
-	ние:
-	$$\pi : A/I_{1} \times A/I_{2} \times \ldots \times A/I_{p} \longrightarrow (A/М)^{p},$$
-	которое является произведением канонических отображений\linebreak
-	$A/I_{i} \rightarrow A/0$ Если $S$ $-$ система образующих в $A/I_{1} \times A/I_{2} \times \linebreak
-	\ldots \times A/I_{p},$ то $\pi(S)$ $-$ система образующих векторного $A/0$-\linebreak
-	пространства $(A/0)^{p}$ и, следовательно, card $S \geqslant $ card $\pi (S) \geqslant$\linebreak
-	$\dim(A/0)^{p} = p. $ Любая система образующих в  $A/I_{1} \times A/I_{2} \times \ldots \times \linebreak
-	A/I_{p}$ содержит по крайней мере $p$ элементов. К тому же, семейство \linebreak
-	$e_{1} =  (\overline{1}, 0, \ldots, 0), e_{2} = (0, \overline{1}, 0, \ldots, 0), \ldots, e_{p} = (0, \ldots, 0, \overline{1})$ - система \linebreak
-	образующих в $A/I_{1} \times A/I_{2} \times \ldots \times A/I_{p}$, имеющая ровно $p$ элементов.\linebreak
-	Следовательно,
-	$$\rho (A/I_{1} \times A/I_{2} \times \ldots \times A/I_{p}) = p. $$
-	\end{tabular}
-	
-	\noindent
-	{\bf(21) Лемма.}
-	
-	{\it Пусть} $I${\it $-$ идеал в} $A$ {\it и} $b \in A.$ {\it Существует канонический изоморфизм\linebreak
-	$bA/I\simeq A/I^{b}$, идеал $I^{b}$ определяется как $I^{b} = \{ x \in A \ | \ bx \in I\} .$}
-	
-	\noindent
-	{\bf Доказательство.}
-	
-	\begin{tabular}{|p{12.5cm}}
-	\noindent
-	Отображение $A \longrightarrow bA/I$, которое элементу $x \in A$ ставит в соот-\linebreak
-	ветствие элемент $b\overline{x} \in bA/I$ являетя сюръективным ядром $I^{b}$ и
-	индуцирует изоморфизм между $A$-модулями $bA/A$ и $A/I^{b}.$
-	\end{tabular}
-	
-	\noindent
-	{\it {\bf Доказательство теоремы 18}}
-	
-	Пусть $P = A/I_{1} \times A/I_{2} \times \ldots \times A/I_{p}$ и $Q = A/J_{1} \times A/J_{2} \times \ldots \times A/J_{p}.$\linebreak
-	В силу леммы 20, $p = \rho (P)$.
-	
-	Докажем равенство $I_{1} = \{ b \in A \ | \ \rho (bP) \leqslant p - 1\} .$ По предыдущей\linebreak
-	лемме имеет место равенство:
-	$$bP \simeq A/I^{b}_{1} \times A/I^{b}_{2} \times \ldots \times A/I^{b}_{p} \ \text{, где} \ I^{b}_{1} \supset I^{b}_{2} \supset \ldots \supset I^{b}_{p}. $$
-	
-	\pagebreak
-
 	\lhead{328}
 	\rhead{III-2 \ \ \ \  Нормальная форма подгруппы группы ${\mathbb Z}^{n}$}
 	
@@ -1075,6 +1009,4 @@
 	
 	\pagebreak
 	
-	
-\end{document}
 
