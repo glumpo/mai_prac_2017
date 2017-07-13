@@ -23,7 +23,7 @@
 \RequirePackage[perpage]{footmisc}
 \RequirePackage{atbegshi}
 \RequirePackage{titlesec}
-\RequirePackage{caption}
+
 \RequirePackage{floatrow}
 
 \RequirePackage[justification=centering]{caption}
