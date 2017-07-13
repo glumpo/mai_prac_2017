@@ -369,6 +369,19 @@ while (true){
 	matrix mat;
 	get_all(mat);
 }
+
+index first_line = matrix.first_line;
+index last_line = matrix.last_row;
+bijection sigma = minamal_bij(first_line, last_line, first_line, last_line);
+signature s = 1;
+coefficient res = 0, term; 
+
+coefficien determ(matrix a) {
+	term = (coefficient) s;
+	for (int i = first_line; i <= last_line; i = mat.next_line(i)) {
+		term = term * coef_of_(A, i, sigma);
+	}
+	return term;
 \end{lstlisting}
 
 Начинают, таким образом, с построения матричного типа и его
@@ -388,7 +401,22 @@ while (true){
 этой функции, которая ничем особенным не отличается, это лишь пе­
 реписанное определение 7, данное в начале раздела 4:
 
-% TODO: code
+\begin{lstlisting}
+index first_line = matrix.first_line;
+index last_line = matrix.last_row;
+bijection sigma = minamal_bij(first_line, last_line, first_line, last_line);
+signature s = 1;
+coefficient res = 0, term; 
+
+coefficien determ(matrix a) {
+	term = (coefficient) s;
+	for (int i = first_line; i <= last_line; i = mat.next_line(i)) {
+		term = term * coef_of_(A, i, sigma);
+	}
+	return term;
+}
+	
+\end{lstlisting}
 
 Заметим, однако, что для облегчения записи для пакета
 Matrix-Handler был добавлен спецификатор use. Кроме того, во вре-
@@ -834,5 +862,4 @@ for(int i = First\_Index; i \textless q; i++)\\
 между двумя рассматриваемыми интервалами). Кроме того, процеду­ра \textit{Successor}
  имеет два параметра: исходная биекция и ее сигнатура, и 
 эта процедура вычисляет следующую биекцию и ее сигнатуру.
-\newpage
 %\end{document}
