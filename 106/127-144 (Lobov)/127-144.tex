@@ -78,10 +78,10 @@ $r<b$, то евклидово деление $a$ на $b$ получается 
 тель больше делимого. Вот рекурсивный алгоритм вычисления частно-\linebreak
 го и остатка, представленный в форме функции $Divide$:
 \begin{lstlisting}[frame=single, mathescape=true]
-if $b$ > $a$  return $(0,a)$;
+if ($b$ > $a$)  return $(0,a)$;
 else {
   $(q,r) \longleftarrow$ Divide $(a,2b)$;
-  if $r$ < $b$  return $(2q,r)$;
+  if ($r$ < $b$)  return $(2q,r)$;
   else  return $(2q+1,r-b)$; }
 \end{lstlisting}
 \hspace*{15pt}\textbf{d.} Недостаток рекурсивного алгоритма следующий: в ходе счета\linebreak
@@ -105,13 +105,13 @@ else {
 {\begin{lstlisting}[mathescape=true, frame=none]
 $k\longleftarrow0$;
 if $b$ > $a$  return (0,$a$);
-while $b\leqslant a/2$ {
+while ($b\leqslant a/2$) {
   $b\longleftarrow 2\times b$; $k\longleftarrow k+1$;
 }
 $q\longleftarrow 0$; $r\longleftarrow a$;
 for (int $i$=1; $i\leqslant k+1$; ++$i$) {
   $q\longleftarrow 2\times q$;
-  if $r\geqslant b$ {
+  if ($r\geqslant b$) {
     $q\longleftarrow q+1$; $r\longleftarrow r-b$;
   }
   $b\longleftarrow b/2$;
@@ -121,13 +121,13 @@ return (q,r);
 &
 {\begin{lstlisting}[mathescape=true, frame=none]
 $k\longleftarrow 0$;
-while $b\leqslant a$ {
+while ($b\leqslant a$) {
   $b\longleftarrow 2\times b$; $k\longleftarrow k+1$;
 }
 $q\longleftarrow 0$; $r\longleftarrow a$;
 for (int $i=1$; $i\leqslant k$; ++$i$) {
   $b\longleftarrow b/2$; $q\longleftarrow 2\times q$;
-  if $r\geqslant b$ {
+  if ($r\geqslant b$) {
     $q\longleftarrow q+1$; $r\longleftarrow r-b$;
   }
 }
@@ -178,7 +178,7 @@ $y\longleftarrow 0$; $d\longleftarrow 0$; $Plot(0,0)$;
 for (int $x=1$; $x\leqslant u$; ++$x$) {
   $2(vx-uy)=dc-u\leqslant d<u$.
   $d\longleftarrow d+2v$;
-  if $d\geqslant u$ {
+  if ($d\geqslant u$) {
     $y\longleftarrow y+1$; $d\longleftarrow d-2u$;
   }
   $Plot(x,y)$;
@@ -227,12 +227,12 @@ $x\longleftarrow 0$; $y\longleftarrow 0$; $d\longleftarrow v-u$;
 for (;;) {
   $Plot(x,y)$
   $d=\delta(x,y+v-u c |\delta(x,y)|\leqslant u+v)$.
-  if $d>0$ {
+  if ($d>0$) {
     $y\longleftarrow y+1$; $d\longleftarrow d-2u$;
   } else {
     $x\longleftarrow x+1$; $d\longleftarrow d+2v$;
   }
-  if ($x$==$u$) && ($y$==$v$))  break;
+  if (($x$==$u$) && ($y$==$v$))  break;
 }
 $Plot(x,y)$;
 \end{lstlisting}}
@@ -313,9 +313,9 @@ $y-1/2>\sqrt{R^2-(x+1)^2}$ тогда и только тогда, когда $e(
 \end{center}
 {\begin{lstlisting}[xleftmargin=15pt, mathescape=true]
 $y\longleftarrow R$; $x\longleftarrow 0$; $s\longleftarrow 1-R$;
-while x<y { $s=s(x,y)$
+while (x<y) { $s=s(x,y)$
   $Plot(x,y)$;
-  if $s\geqslant 0$ {
+  if ($s\geqslant 0$) {
     $s\longleftarrow s+2(x-y)+5$;
     $y\longleftarrow y-1$;
   } else {
@@ -323,7 +323,7 @@ while x<y { $s=s(x,y)$
   }
   $x\longleftarrow x+1$;
 }
-if $x$==$y$  $Plot(x,y)$;
+if ($x$==$y$)  $Plot(x,y)$;
 \end{lstlisting}}
 \columnbreak
 \begin{center}
@@ -554,7 +554,7 @@ return $R$;
 $R\longleftarrow 1$;
 for (int $i=n$; $i\geqslant 0$; --$i$) {
   $R\longleftarrow R^2$;
-  if $b_i$==$1$  $R\longleftarrow R\times x^{b_i}$;
+  if ($b_i$==$1$)  $R\longleftarrow R\times x^{b_i}$;
   $R=x^{b_n2^{n-i}+b_{n-1}2^{n-i-1}+...+b_i}=x^{P_i(2)}$
 }
 return $R$;
@@ -572,14 +572,14 @@ $n-2^k$ интервалу $[a^{k-1},2^k]$, чтобы узнать величи
 касается случая $n=0$):
 \begin{lstlisting}[xleftmargin=15pt, mathescape=true]
 $\alpha\longleftarrow 1$;
-while $\alpha\leqslant n-\alpha$  $\alpha\longleftarrow 2\alpha$;
+while ($\alpha\leqslant n-\alpha$)  $\alpha\longleftarrow 2\alpha$;
 Ici $2\alpha>n\geqslant \alpha=2^k$
 $R\longleftarrow x$; $m\longleftarrow n-\alpha$;
 for (;;) {
   $x^n=R^\alpha x^m$ et $0\leqslant m<\alpha$, $\alpha$ est une puissance de 2
-  if $\alpha==1$  break;
+  if ($\alpha==1$)  break;
   $\alpha\longleftarrow \alpha/2$; $R\longleftarrow R^2$;
-  if $m\geqslant \alpha$ {
+  if ($m\geqslant \alpha$) {
     $R\longleftarrow R\times x$;
     $m\longleftarrow m-\alpha$;
   }}
@@ -599,8 +599,8 @@ $a^k \leqslant n < 2^{k+1}$ (только без того, чтобы резул
 \hspace*{15pt}\textbf{a.} Несложно написать рекурсивный аглоритм, подобный следующе-\linebreak
 му:
 \begin{lstlisting}[xleftmargin=15pt, mathescape=true]
-if $n==0$  return 0;
-else if $n==1$  return 1;
+if ($n==0$)  return 0;
+else if ($n==1$)  return 1;
 else return $\textit{Фибоначчи}(n-1)+\textit{Фибоначчи}(n-2)$;
 \end{lstlisting}
 \hspace*{15pt}Число рекурсивных вызовов в действительности равно $2\sum_{i=1}^{n-1}F_i=$\linebreak
@@ -616,7 +616,7 @@ $2(F_{n+1}-1)$ (доказать этот результат), что дает �
 мула, которая имеет связь с матрицей упражнения 14), приходим к ал-\linebreak
 горитму, который для $n$ вычисляет пару чисел Фибоначчи $(F_{n+1},F_n)$:
 \begin{lstlisting}[xleftmargin=15pt, mathescape=true]
-if $n==0$  return $(1,0)$;
+if ($n==0$)  return $(1,0)$;
 else {
   $(F_n,F_{n-1})\longleftarrow\textit{Фибоначчи}(n-1)$;
   return $(F_n+F_{n-1},F_n)$;
@@ -686,12 +686,12 @@ $\phi$ вычислены в паре $(g,g')$, представляющей $g+
 $(f,f')\longleftarrow(1,0)$; $(g,g')\longleftarrow(0,1)$;
 $i\longleftarrow n$;
 for (;;) { $(f+\phi f')\times(g+\phi g')^i=\phi^n$
-  if $i\%2==1$ {
+  if ($i\%2==1$) {
    $(f,f')\longleftarrow(fg+f'g',fg'+f'(g+g'))$;
   }
   $i\longleftarrow [i/2]$;
   $(f+\phi f')\times(g+\phi g')^{2i}=\phi^n$
-  if $i==0$  break;
+  if ($i==0$)  break;
   $(g,g')\longleftarrow(g^2+g'^2,g'(2g+g'))$;
 }
 return $f'$; $f+\phi f'=\phi^n$
@@ -702,7 +702,7 @@ $n=\epsilon_q 2^q+\epsilon_{q-1}2^{q-1}+...+\epsilon_0$
 $(g,g')\longleftarrow(1,0)$;
 for (int $i=q$; $i\geqslant 0$; $--i$) {
   $(g,g')\longleftarrow (g^2+g'^2, g'(2g+g'))$;
-  if $\epsilon_i==1$ {
+  if ($\epsilon_i==1$) {
     $(g,g')\longleftarrow(g',g+g')$;
   }
 }
@@ -756,11 +756,11 @@ $max_{E\times F}=(max_E, max_F)$, если мощность множества E
 \hspace*{20pt}\underline{\textbf{A.} Рекурсивная версия}&
 \hspace*{5pt}\underline{\textbf{B.} Итеративная версия}\\
 {\begin{lstlisting}[mathescape=true, frame=none]
-if $\epsilon(x)==1$ && $y<\text{max}_F$
+if ($\epsilon(x)==1$ && $y<\text{max}_F$)
   return $(x,\text{succ}_F(y))$;
-else if $\epsilon(x)==-1$ && $y>\text{min}_F$
+else if ($\epsilon(x)==-1$ && $y>\text{min}_F$)
   return $(x,\text{предш}_F(y))$;
-else if $x<\text{max}_E$
+else if ($x<\text{max}_E$)
   return $(\text{succ}_E(x),y)$;
 else
   ici, $(x,y)=max_{E\times F}$;
@@ -772,10 +772,10 @@ for (int $i=n$; $i\geqslant 1$; $--i$) {
  $s\longleftarrow s\times\text{sign}_{E_i}(x_i)$;
  $s=\text{sign}_{E_1}(x_1)\text{sign}_{E_2}(x_2)...
  \text{sign}_{E_{i-1}}(x_{i-1})$
- if $s==1$ && $x_i<\text{max}_{E_i}$ {
+ if ($s==1$ && $x_i<\text{max}_{E_i}$) {
    $x_i\longleftarrow\text{succ}_{E_i}(x_i)$;
    return $x$;
- } else if $s==-1$ && $x_i>\text{min}_{E_i}$ {
+ } else if ($s==-1$ && $x_i>\text{min}_{E_i}$) {
    $x_i\longleftarrow\text{предш}_{E_i}(x_i)$;
    return $x$;
  }
@@ -893,7 +893,7 @@ $\{0,1\}^n=\{0,1\}\times\{0,1\}\times...\times\{0,1\}$
 %                                  143
 \begin{lstlisting}[mathescape=true]
 void $Gray$(int $n$, string $Prefix$) {
-  if $n==0$ $Put\_Line(Prefix)$;
+  if ($n==0$) $Put\_Line(Prefix)$;
   else {
     $Gray(n-1, Prefix \& "0")$; $Reverse\_Gray(n-1, Prefix \& "1")$;
   }
@@ -911,7 +911,7 @@ $E\times\{0,1\}$ \textit{в случае, когда этот последова
 \begin{lstlisting}[mathescape=true, caption=Код Грея]
 $s:=x_1+x_2+...+x_n\mod{2}$;
 for (int $i=n$; $i\geqslant 1$; $--i$) {
-  if $s==0$ {
+  if ($s==0$) {
     $x_i\longleftarrow 1-x_i$;
     return $x$;
   }
