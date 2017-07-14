@@ -2,6 +2,9 @@
 \ProvidesClass{mai_book}
 
 \LoadClass[10pt,a5paper]{book}
+
+\RequirePackage{etoolbox}
+
 \RequirePackage{fontspec}
 \RequirePackage{xunicode}
 \RequirePackage{xltxtra}
@@ -169,6 +172,9 @@ showspaces=false
 {} % before-code
 [\thispagestyle{empty}] % after-code
 
+%\makeatletter
+%\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+%\makeatother
 
 \makeatletter
 \@definecounter{chapter}
